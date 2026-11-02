@@ -17,3 +17,5 @@ Thumbs.db
 
 # temporary scrapes (generated data is committed on purpose)
 data/staging/
+
+.vercel
