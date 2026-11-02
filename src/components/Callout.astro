@@ -1,0 +1,19 @@
+---
+interface Props {
+  tone?: 'note' | 'warn';
+  title?: string;
+}
+
+const { tone = 'note', title } = Astro.props;
+const styles =
+  tone === 'warn'
+    ? 'border-accent/25 bg-accent-soft/70'
+    : 'border-brand/20 bg-brand-soft/60';
+---
+
+<div class:list={['rounded-sm border px-5 py-4', styles]}>
+  {title && <p class="text-[0.82rem] font-semibold text-ink">{title}</p>}
+  <div class="text-sm leading-relaxed text-ink-soft [&>p+p]:mt-2">
+    <slot />
+  </div>
+</div>

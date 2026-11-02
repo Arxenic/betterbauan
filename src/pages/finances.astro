@@ -1,0 +1,223 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import Stat from '../components/Stat.astro';
+import { FDP_FORM_NOTES } from '../data/fdp-forms';
+import fdp from '../data/generated/fdp.json';
+import { isoDate, num, quarterLabel } from '../lib/format';
+
+const latestByForm = new Map<string, (typeof fdp.filings)[number]>();
+for (const filing of fdp.filings) {
+  if (!latestByForm.has(filing.formSlug)) latestByForm.set(filing.formSlug, filing);
+}
+
+const latestPeriod = fdp.filings[0]?.documentPeriod ?? null;
+
+const years = Object.entries(fdp.summary.byYear)
+  .sort((a, b) => Number(b[0]) - Number(a[0]))
+  .map(([year, count]) => ({
+    year: Number(year),
+    count,
+    quarters: [1, 2, 3, 4].filter((quarter) =>
+      fdp.filings.some(
+        (filing) => filing.documentPeriod.year === Number(year) && filing.documentPeriod.quarter === quarter
+      )
+    ),
+  }));
+
+const quarterlyCount = FDP_FORM_NOTES.filter((form) => form.cadence === 'quarterly').length;
+const annualCount = FDP_FORM_NOTES.length - quarterlyCount;
+---
+
+<Base
+  title="Finances"
+  description="Every statutory financial document the Municipality of Bauan has published, indexed with direct links."
+>
+  <section class="border-b border-line">
+    <div class="wrap py-12 sm:py-14">
+      <p class="eyebrow">Finances</p>
+      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+        The documents are published. <span class="text-brand">Here they are.</span>
+      </h1>
+      <p class="lede mt-4 max-w-2xl">
+        Philippine municipalities are required to post fourteen financial and operational documents every
+        year. Bauan has posted {num(fdp.summary.count)} of them, covering CY{fdp.coverage.from} to
+        CY{fdp.coverage.to}. This page indexes them and links straight to each file.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <Stat value={num(fdp.summary.count)} label="Filings published" note="DILG Full Disclosure portal" />
+        <Stat value={String(FDP_FORM_NOTES.length)} label="Statutory forms" note={`${quarterlyCount} quarterly · ${annualCount} annual`} />
+        <Stat value={quarterLabel(latestPeriod)} label="Latest period" note="Most recent document period" />
+        <Stat value={`CY${fdp.coverage.from}–${fdp.coverage.to}`} label="Coverage" note="What the portal still hosts" />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-10 sm:py-12">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="font-display text-[1.5rem] tracking-tight">Most recent filing for each form</h2>
+        <p class="mt-1 text-sm text-muted">
+          One row per form, newest period first. Every link opens the municipality's own file.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-5 overflow-x-auto rounded-sm border border-line bg-surface">
+      <table class="data-table min-w-[46rem]">
+        <caption class="sr-only">Most recent filing available for each statutory form</caption>
+        <thead>
+          <tr>
+            <th scope="col">Form</th>
+            <th scope="col">Period</th>
+            <th scope="col">Posted</th>
+            <th scope="col">Cadence</th>
+            <th scope="col" class="num">File</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            FDP_FORM_NOTES.map((form) => {
+              const latest = latestByForm.get(form.slug);
+              return (
+                <tr>
+                  <td class="strong">{form.label}</td>
+                  <td class="tnum">{quarterLabel(latest?.documentPeriod ?? null)}</td>
+                  <td class="tnum text-muted">{quarterLabel(latest?.postingPeriod ?? null)}</td>
+                  <td class="text-[0.78rem] text-muted">{form.cadence}</td>
+                  <td class="num">
+                    {latest ? (
+                      <a
+                        href={latest.url}
+                        class="text-brand underline decoration-brand/30 underline-offset-2"
+                        rel="noopener"
+                      >
+                        Open ↗
+                      </a>
+                    ) : (
+                      <span class="text-muted">not published</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <EvidenceNote
+      sourceId="dilg-fdp"
+      locator="Full Disclosure portal, Batangas → Bauan"
+      retrievedAt={fdp.retrievedAt}
+      note="Index only. The documents themselves remain on the DILG portal, which is the authoritative copy."
+    />
+  </section>
+
+  <section class="border-y border-line bg-surface">
+    <div class="wrap grid gap-10 py-12 lg:grid-cols-[0.85fr_1.15fr] sm:py-14">
+      <div>
+        <h2 class="font-display text-[1.5rem] tracking-tight">How complete is the record?</h2>
+        <p class="lede mt-3">
+          A full year is four quarterly filings per quarterly form, plus the annual set — 44 documents.
+          Years that fall short are visible here rather than smoothed over.
+        </p>
+        <EvidenceNote
+          sourceId="dilg-fdp"
+          locator="Filing index, deduplicated by form and period"
+          retrievedAt={fdp.retrievedAt}
+        />
+      </div>
+
+      <div class="overflow-x-auto rounded-sm border border-line">
+        <table class="data-table min-w-[28rem]">
+          <caption class="sr-only">Filings published per year, and which quarters they cover</caption>
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col" class="num">Filings</th>
+              <th scope="col">Quarters present</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              years.map((row) => (
+                <tr>
+                  <td class="strong tnum">{row.year}</td>
+                  <td class="num">{num(row.count)}</td>
+                  <td>
+                    <div class="flex gap-1.5">
+                      {[1, 2, 3, 4].map((quarter) => (
+                        <span
+                          class:list={[
+                            'inline-flex size-6 items-center justify-center rounded-sm border text-[0.68rem]',
+                            row.quarters.includes(quarter)
+                              ? 'border-brand/30 bg-brand-soft text-brand-deep'
+                              : 'border-line text-muted/50',
+                          ]}
+                        >
+                          Q{quarter}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-12 sm:py-14">
+    <h2 class="font-display text-[1.5rem] tracking-tight">What each form tells you</h2>
+    <p class="lede mt-3 max-w-2xl">
+      The names are bureaucratic. What they contain is not.
+    </p>
+
+    <dl class="mt-7 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+      {
+        FDP_FORM_NOTES.map((form) => (
+          <div class="border-t border-line pt-3">
+            <dt class="text-[0.92rem] font-medium text-ink">{form.label}</dt>
+            <dd class="mt-1 text-sm leading-relaxed text-ink-soft">{form.what}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-2">
+      <Callout tone="warn" title="These are documents, not verdicts">
+        <p>
+          A filing tells you what the municipality reported. It does not tell you whether the report is
+          right — that is what the Commission on Audit is for, and its annual audit report is a separate
+          record this project has not yet retrieved.
+        </p>
+        <p>
+          Where this site shows a number from a filing, it will show the cell it came from. Until then,
+          this page links the documents and states no totals of its own.
+        </p>
+      </Callout>
+
+      <Callout tone="note" title="Coming next: the numbers inside them">
+        <p>
+          The Statement of Receipts and Expenditures has fixed labels and four value columns, which makes
+          it extractable as data rather than re-typed. That extraction is the next milestone: revenue and
+          expenditure by line item, each carrying its sheet and cell.
+        </p>
+        <p>
+          <a href="/about#verification" class="text-brand underline decoration-brand/30 underline-offset-2">
+            How verification works
+          </a>
+        </p>
+      </Callout>
+    </div>
+
+    <p class="mt-8 text-[0.78rem] text-muted">
+      Index last refreshed {isoDate(fdp.retrievedAt)}.
+    </p>
+  </section>
+</Base>

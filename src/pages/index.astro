@@ -1,0 +1,233 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Stat from '../components/Stat.astro';
+import dpwh from '../data/generated/dpwh.json';
+import fdp from '../data/generated/fdp.json';
+import psa from '../data/generated/psa.json';
+import { SITE } from '../data/site';
+import { isoDate, num, pesoShort } from '../lib/format';
+
+const m = psa.municipality;
+const completed = dpwh.summary.byStatus.Completed ?? 0;
+const ongoing = dpwh.summary.byStatus['On-Going'] ?? 0;
+const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at(-1) ?? '';
+
+const cards = [
+  {
+    href: '/government',
+    title: 'Government',
+    meta: 'Municipal profile',
+    blurb:
+      'The town in numbers and codes, plus a candid note on why the officials list is not published yet.',
+  },
+  {
+    href: '/barangays',
+    title: 'Barangays',
+    meta: `${psa.barangays.length} barangays`,
+    blurb: 'Population and households for every barangay, reconciled to the municipal total.',
+  },
+  {
+    href: '/finances',
+    title: 'Finances',
+    meta: `${num(fdp.summary.count)} filings`,
+    blurb:
+      'Every statutory financial document the municipality has posted, with a direct link to each one.',
+  },
+  {
+    href: '/projects',
+    title: 'Projects',
+    meta: `${num(dpwh.summary.count)} contracts`,
+    blurb: `National infrastructure contracts in Bauan — ${pesoShort(dpwh.summary.totalBudget)} across ${num(completed)} completed and ${num(ongoing)} ongoing.`,
+  },
+  {
+    href: '/documents',
+    title: 'Documents',
+    meta: `CY${fdp.coverage.from}–CY${fdp.coverage.to}`,
+    blurb: 'The full disclosure archive, searchable by form and period, downloadable from the source.',
+  },
+  {
+    href: '/sources',
+    title: 'Sources',
+    meta: 'Evidence tiers',
+    blurb: 'Every record this site reads, what it is allowed to support, and what is still missing.',
+  },
+];
+---
+
+<Base>
+  <section class="border-b border-line">
+    <div class="wrap grid gap-12 py-14 lg:grid-cols-[1.35fr_0.95fr] lg:items-start lg:py-20">
+      <div>
+        <p class="eyebrow">Bauan, Batangas · independent civic project</p>
+        <h1 class="mt-4 font-display text-[2.45rem] leading-[1.04] tracking-tight sm:text-[3.2rem] lg:text-[3.55rem]">
+          The town's public records,<br class="hidden sm:block" />
+          <span class="text-brand">in one place.</span>
+        </h1>
+        <p class="lede mt-6 max-w-xl">
+          Population, barangays, budgets and infrastructure contracts for the Municipality of Bauan —
+          each one traced to the agency that published it, and dated so you know how fresh it is.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/barangays" class="btn btn-primary">Start with the barangays</a>
+          <a href="/finances" class="btn btn-secondary">See public finances</a>
+        </div>
+        <p class="mt-5 max-w-xl text-[0.8rem] leading-relaxed text-muted">
+          No account, no tracking, no opinion. Just the record, with a link to check it yourself.
+        </p>
+      </div>
+
+      <aside class="card p-5 sm:p-6" aria-labelledby="snapshot-heading">
+        <div class="flex items-baseline justify-between gap-3">
+          <h2 id="snapshot-heading" class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
+            What you can check today
+          </h2>
+          <span class="text-[0.7rem] text-muted">{isoDate(refreshed)}</span>
+        </div>
+        <dl class="mt-4 divide-y divide-line">
+          <div class="flex items-baseline justify-between gap-4 py-2.5">
+            <dt class="text-sm text-ink-soft">Population</dt>
+            <dd class="tnum text-sm font-medium text-ink">{num(m.population)}</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-2.5">
+            <dt class="text-sm text-ink-soft">Barangays</dt>
+            <dd class="tnum text-sm font-medium text-ink">{num(psa.barangays.length)}</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-2.5">
+            <dt class="text-sm text-ink-soft">Financial filings</dt>
+            <dd class="tnum text-sm font-medium text-ink">{num(fdp.summary.count)}</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-2.5">
+            <dt class="text-sm text-ink-soft">Infrastructure contracts</dt>
+            <dd class="tnum text-sm font-medium text-ink">{num(dpwh.summary.count)}</dd>
+          </div>
+        </dl>
+        <p class="mt-4 border-t border-line pt-3 text-[0.74rem] leading-relaxed text-muted">
+          Each figure is regenerated from a government source by a script in the{' '}
+          <a href={SITE.repo} class="text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
+            public repository</a
+          >. Re-run it and you should get the same bytes.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="border-b border-line bg-surface/60">
+    <div class="wrap grid grid-cols-2 gap-6 py-8 sm:grid-cols-4 sm:gap-4">
+      <Stat value={num(m.population)} label="Population" note="PSA, 2024 census" />
+      <Stat value={num(m.households)} label="Households" note="PSA, 2024 census" />
+      <Stat value={num(psa.barangays.length)} label="Barangays" note="PSA PSGC" />
+      <Stat
+        value={`${m.landAreaKm2} km²`}
+        label="Land area"
+        note={`${num(m.density2024)} people per km²`}
+      />
+    </div>
+  </section>
+
+  <section class="wrap py-14 sm:py-16">
+    <SectionHeading
+      eyebrow="Browse"
+      title="Six ways into the record"
+      lede="Every page is built from a committed dataset, so the whole site can be rebuilt and audited from source."
+    />
+
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        cards.map((card) => (
+          <li>
+            <a
+              href={card.href}
+              class="card group flex h-full flex-col justify-between p-5 no-underline transition-colors hover:border-brand/50 hover:bg-brand-soft/40"
+            >
+              <div>
+                <div class="flex items-baseline justify-between gap-3">
+                  <h3 class="font-display text-[1.1rem] tracking-tight text-ink">{card.title}</h3>
+                  <span class="text-[0.7rem] uppercase tracking-[0.08em] text-muted">{card.meta}</span>
+                </div>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">{card.blurb}</p>
+              </div>
+              <span class="mt-4 text-[0.8rem] text-brand opacity-0 transition-opacity group-hover:opacity-100">
+                Open →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="border-y border-line bg-surface">
+    <div class="wrap py-14 sm:py-16">
+      <SectionHeading
+        eyebrow="How this works"
+        title="Nothing here is guessed"
+        lede="A transparency site is only worth the trust it can prove. Three rules govern every page."
+      />
+
+      <ol class="mt-8 grid gap-8 sm:grid-cols-3">
+        <li>
+          <p class="font-display text-2xl text-brand/40">01</p>
+          <h3 class="mt-1 text-[1rem] font-semibold text-ink">Every figure has a record</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Each number links to the agency that published it — a PSA table, a DILG filing, a DPWH
+            contract — with the date it was read.
+          </p>
+        </li>
+        <li>
+          <p class="font-display text-2xl text-brand/40">02</p>
+          <h3 class="mt-1 text-[1rem] font-semibold text-ink">Unverifiable means unpublished</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            If a claim cannot be traced to a primary record, the page says so and stays empty. An
+            honest gap beats a wrong number.
+          </p>
+        </li>
+        <li>
+          <p class="font-display text-2xl text-brand/40">03</p>
+          <h3 class="mt-1 text-[1rem] font-semibold text-ink">Corrections are public</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            A wrong figure is withdrawn first and re-verified second. Every change is recorded in the
+            repository's history.
+          </p>
+        </li>
+      </ol>
+
+      <EvidenceNote
+        sourceId="psa-openstat"
+        locator="PO_2024/0041A6DTPH3.px"
+        retrievedAt={psa.retrievedAt}
+        note="Population, households and land area on this page come from the table above. Barangay figures reconcile to the municipal total exactly."
+      />
+    </div>
+  </section>
+
+  <section class="wrap py-14 sm:py-16">
+    <div class="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <Callout tone="warn" title="This is not the municipality's website">
+        <p>
+          BetterBauan is built by volunteers from public records. It is not affiliated with, endorsed
+          by, or operated by the Municipality of Bauan. For official transactions, use the LGU's own
+          offices.
+        </p>
+        <p>
+          The official domain <span class="font-mono text-[0.8rem]">bauan.gov.ph</span> did not respond
+          when checked, which is one reason this project indexes records held by national agencies
+          instead.
+        </p>
+      </Callout>
+
+      <div class="card p-5">
+        <h2 class="font-display text-[1.1rem] tracking-tight">Found an error?</h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+          Corrections are the point, not an embarrassment. Send the source that contradicts us and the
+          figure comes down first, then gets re-verified.
+        </p>
+        <a href={SITE.issues} class="mt-4 inline-block text-sm text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
+          Open an issue on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,30 @@
+---
+import { isoDate } from '../lib/format';
+import { SOURCES } from '../data/sources';
+import TierBadge from './TierBadge.astro';
+
+interface Props {
+  sourceId: string;
+  locator?: string;
+  retrievedAt?: string;
+  note?: string;
+}
+
+const { sourceId, locator, retrievedAt, note } = Astro.props;
+const source = SOURCES.find((entry) => entry.id === sourceId);
+
+if (!source) throw new Error(`EvidenceNote: unknown source "${sourceId}"`);
+---
+
+<p class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.76rem] leading-relaxed text-muted">
+  <TierBadge tier={source.tier} />
+  <span>
+    Source:
+    <a href={`/sources#${source.id}`} class="text-brand underline decoration-brand/30 underline-offset-2">
+      {source.name}
+    </a>
+    {locator && <span class="text-ink-soft"> · {locator}</span>}
+    {retrievedAt && <span> · read {isoDate(retrievedAt)}</span>}
+  </span>
+  {note && <span class="w-full text-muted">{note}</span>}
+</p>

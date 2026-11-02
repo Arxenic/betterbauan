@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  help?: string[];
+}
+
+const { title, help = [] } = Astro.props;
+---
+
+<div class="rounded-sm border border-dashed border-line-strong bg-surface/60 px-5 py-6">
+  <p class="font-display text-[1.05rem] tracking-tight text-ink">{title}</p>
+  <div class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+    <slot />
+  </div>
+  {
+    help.length > 0 && (
+      <div class="mt-4 border-t border-line pt-3">
+        <p class="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
+          What would make this publishable
+        </p>
+        <ul class="mt-2 space-y-1 text-sm text-ink-soft">
+          {help.map((item) => (
+            <li class="flex gap-2">
+              <span aria-hidden="true" class="mt-[0.45rem] size-1 shrink-0 rounded-full bg-accent" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</div>

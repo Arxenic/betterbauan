@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import Stat from '../components/Stat.astro';
+import psa from '../data/generated/psa.json';
+import { num, pct } from '../lib/format';
+
+const m = psa.municipality;
+const barangays = [...psa.barangays].sort((a, b) => b.population - a.population);
+const maxShare = barangays[0].population / m.population;
+---
+
+<Base
+  title="Barangays"
+  description="Population and households for all 40 barangays of Bauan, Batangas, from the 2024 PSA census."
+>
+  <section class="border-b border-line">
+    <div class="wrap py-12 sm:py-14">
+      <p class="eyebrow">Barangays</p>
+      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+        Forty barangays, <span class="text-brand">one reconciled total.</span>
+      </h1>
+      <p class="lede mt-4 max-w-2xl">
+        The 2024 census counts every barangay separately. The numbers below are PSA's own, and they sum
+        to the municipal total exactly — a check the build enforces, not a hopeful note.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <Stat value={num(psa.barangays.length)} label="Barangays" note="PSGC 0401006000" />
+        <Stat value={num(m.population)} label="Population" note="2024 census" />
+        <Stat value={num(m.households)} label="Households" note="2024 census" />
+        <Stat value={`${m.landAreaKm2} km²`} label="Land area" note="PSA" />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-10 sm:py-12">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="font-display text-[1.5rem] tracking-tight">All barangays</h2>
+        <p class="mt-1 text-sm text-muted">
+          <span data-barangay-count class="tnum">{psa.barangays.length}</span> of {psa.barangays.length} shown
+        </p>
+      </div>
+      <div class="w-full sm:w-72">
+        <label for="barangay-filter" class="sr-only">Filter barangays</label>
+        <input
+          id="barangay-filter"
+          type="search"
+          placeholder="Filter by name or PSGC…"
+          autocomplete="off"
+          data-barangay-filter
+          class="w-full rounded-sm border border-line-strong bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none"
+        />
+      </div>
+    </div>
+
+    <div class="mt-5 overflow-x-auto rounded-sm border border-line bg-surface">
+      <table class="data-table min-w-[44rem]">
+        <caption class="sr-only">
+          Population and households by barangay, Municipality of Bauan, 2024 census
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Barangay</th>
+            <th scope="col">PSGC</th>
+            <th scope="col" class="num">Population</th>
+            <th scope="col" class="num">Households</th>
+            <th scope="col">Share of population</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            barangays.map((barangay) => {
+              const share = barangay.population / m.population;
+              return (
+                <tr data-barangay-row data-name={barangay.name.toLowerCase()} data-psgc={barangay.psgc}>
+                  <td class="strong">{barangay.name}</td>
+                  <td class="font-mono text-[0.76rem] text-muted">{barangay.psgc}</td>
+                  <td class="num strong">{num(barangay.population)}</td>
+                  <td class="num">{num(barangay.households)}</td>
+                  <td class="w-[28%]">
+                    <div class="flex items-center gap-2">
+                      <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-line/70">
+                        <div
+                          class="h-full rounded-full bg-brand/70"
+                          style={`width: ${Math.max((share / maxShare) * 100, 1.5).toFixed(2)}%`}
+                        />
+                      </div>
+                      <span class="tnum w-10 text-right text-[0.76rem] text-muted">{pct(share)}</span>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row" class="px-3 py-3 text-left text-[0.8rem] font-semibold text-ink">Total</th>
+            <td></td>
+            <td class="num px-3 py-3 text-[0.85rem] font-semibold text-ink">{num(m.population)}</td>
+            <td class="num px-3 py-3 text-[0.85rem] font-semibold text-ink">{num(m.households)}</td>
+            <td class="px-3 py-3 text-[0.76rem] text-muted">100%</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <p data-barangay-empty hidden class="mt-4 text-sm text-muted">
+      No barangay matches that filter.
+    </p>
+
+    <EvidenceNote
+      sourceId="psa-openstat"
+      locator="PO_2024/0041A6DTPH3.px"
+      retrievedAt={psa.retrievedAt}
+      note="Population, household population and household counts are PSA's, unmodified. The build fails if the 40 barangay rows do not sum to the municipal total."
+    />
+  </section>
+
+  <section class="wrap pb-16">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <Callout tone="note" title="Two spellings you will see">
+        <p>
+          PSA writes <strong>Manalupong</strong>; the barangay is widely written{' '}
+          <strong>Manalupang</strong>, and DPWH contract descriptions use that spelling too. This site
+          publishes PSA's spelling rather than silently correcting the authority.
+        </p>
+        <p>
+          <strong>Barangays I–IV</strong> are the <em>poblacion</em> — the town centre. PSA records them
+          by number only.
+        </p>
+      </Callout>
+
+      <Callout tone="warn" title="Why the numbers here may differ from what you've read">
+        <p>
+          A widely copied table labels its barangay figures as 2024, but its rows match the 2020 census
+          and its percentages are computed against the 2020 total. For example it lists As-Is at 2,344;
+          PSA's 2024 count is {num(psa.barangays.find((b) => b.name === 'As-Is')?.population ?? 0)}.
+        </p>
+        <p>
+          PSA also gives Bauan a land area of {m.landAreaKm2} km², while 53.31 km² is often repeated.
+          The density figure depends on which one is used, so this site follows PSA and says so.
+        </p>
+      </Callout>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-barangay-filter]');
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('[data-barangay-row]'));
+  const count = document.querySelector<HTMLElement>('[data-barangay-count]');
+  const empty = document.querySelector<HTMLElement>('[data-barangay-empty]');
+
+  const update = () => {
+    const query = (input?.value ?? '').trim().toLowerCase();
+    let visible = 0;
+
+    for (const row of rows) {
+      const name = row.dataset.name ?? '';
+      const psgc = row.dataset.psgc ?? '';
+      const match = query === '' || name.includes(query) || psgc.includes(query);
+      row.hidden = !match;
+      if (match) visible += 1;
+    }
+
+    if (count) count.textContent = String(visible);
+    if (empty) empty.hidden = visible > 0;
+  };
+
+  input?.addEventListener('input', update);
+  update();
+</script>

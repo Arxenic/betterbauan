@@ -1,0 +1,28 @@
+---
+import type { EvidenceTier } from '../data/evidence';
+import { TIERS } from '../data/evidence';
+
+interface Props {
+  tier: EvidenceTier;
+  showName?: boolean;
+}
+
+const { tier, showName = false } = Astro.props;
+const styles: Record<EvidenceTier, string> = {
+  A: 'border-brand/30 bg-brand-soft text-brand-deep',
+  B: 'border-ok/30 bg-ok/10 text-ok',
+  C: 'border-warn/30 bg-warn/10 text-warn',
+  D: 'border-line-strong bg-line/40 text-muted',
+  E: 'border-line-strong bg-transparent text-muted',
+};
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.08em]',
+    styles[tier],
+  ]}
+  title={`Tier ${tier} — ${TIERS[tier].name}: ${TIERS[tier].summary}`}
+>
+  Tier {tier}{showName && <span class="font-normal normal-case tracking-normal">· {TIERS[tier].name}</span>}
+</span>

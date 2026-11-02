@@ -1,0 +1,2626 @@
+{
+  "coverage": {
+    "from": 2022,
+    "to": 2026
+  },
+  "filings": [
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "264295",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264295"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "264296",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264296"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "264397",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264397"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "264297",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264297"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "264298",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264298"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "264299",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264299"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "264300",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264300"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "264301",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264301"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "264302",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264302"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "264303",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=264303"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "241978",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241978"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "241980",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241980"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "241981",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241981"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "241982",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241982"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "241983",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241983"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "241985",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241985"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "241987",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241987"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "241988",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241988"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "241991",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241991"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "241992",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=241992"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2026
+      },
+      "form": "Annual Budget Report",
+      "formSlug": "annual-budget-report",
+      "id": "224029",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224029"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2026
+      },
+      "form": "Annual Procurement Plan",
+      "formSlug": "annual-procurement-plan",
+      "id": "224031",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224031"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "224002",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224002"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "224008",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224008"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "224010",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224010"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "224012",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224012"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "224014",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224014"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "224016",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224016"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "224020",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224020"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "224022",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224022"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "224025",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224025"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "224026",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224026"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "207029",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207029"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "207024",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207024"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "207026",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207026"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "207030",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207030"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "207033",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207033"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "207034",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207034"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "207036",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207036"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "207040",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207040"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "207041",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207041"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "207042",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=207042"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "181459",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=181459"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "181504",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=181504"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "180876",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180876"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "181460",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=181460"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "180883",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180883"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "180887",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180887"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "180889",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180889"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "180891",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180891"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "180874",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180874"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "180884",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=180884"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "165035",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=165035"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "162226",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=162226"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "162276",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=162276"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "163818",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=163818"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "162341",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=162341"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "162351",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=162351"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "166417",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=166417"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "163820",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=163820"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "162851",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=162851"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "162277",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=162277"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2025
+      },
+      "form": "Annual Budget Report",
+      "formSlug": "annual-budget-report",
+      "id": "145268",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=145268"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2025
+      },
+      "form": "Annual Gender and Development Accomplishment Report",
+      "formSlug": "gad-accomplishment-report",
+      "id": "239299",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=239299"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2025
+      },
+      "form": "Annual Procurement Plan",
+      "formSlug": "annual-procurement-plan",
+      "id": "143503",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=143503"
+    },
+    {
+      "address": "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2025
+      },
+      "form": "Supplemental Procurement Plan",
+      "formSlug": "supplemental-procurement-plan",
+      "id": "224033",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2026
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=224033"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "141324",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=141324"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "140939",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=140939"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "140788",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=140788"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St.,",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "145184",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=145184"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "140893",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=140893"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "140898",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=140898"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "143369",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=143369"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "143440",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=143440"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "140903",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=140903"
+    },
+    {
+      "address": "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "140765",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=140765"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "123278",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=123278"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "122777",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122777"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "122733",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122733"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "122756",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122756"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "122703",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122703"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "122709",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122709"
+    },
+    {
+      "address": "THIS DOCUMENT WAS ALSO POSTED IN THE (1) BAUAN MUNICIPAL HALL, 1ST FLOOR, F. MANGOBOS ST., POBLACION I, BAUAN BATANGAS, AT THE (2) BAUAN PUBLIC MARKET, 2ND FLOOR, BUILDING A, POBLACION III, BAUAN, BATANGAS AND IN THE (3) POLICE SUB-STATION, PLAZA ORENSE, POBLACION II, BAUAN, BATANGAS.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "117366",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=117366"
+    },
+    {
+      "address": "THIS DOCUMENT WAS ALSO POSTED IN THE (1) BAUAN MUNICIPAL HALL, 1ST FLOOR, F. MANGOBOS ST., POBLACION I, BAUAN BATANGAS, AT THE (2) BAUAN PUBLIC MARKET, 2ND FLOOR, BUILDING A, POBLACION III, BAUAN, BATANGAS AND IN THE (3) POLICE SUB-STATION, PLAZA ORENSE, POBLACION II, BAUAN, BATANGAS.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "117392",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=117392"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "122724",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122724"
+    },
+    {
+      "address": "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "122746",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=122746"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "109225",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=109225"
+    },
+    {
+      "address": "THIS DOCUMENT WAS ALSO POSTED IN THE (1) BAUAN MUNICIPAL HALL, 1ST FLOOR, F. MANGOBOS ST., POBLACION I, BAUAN BATANGAS, AT THE (2) BAUAN PUBLIC MARKET, 2ND FLOOR, BUILDING A, POBLACION III, BAUAN, BATANGAS AND IN THE (3) POLICE SUB-STATION, PLAZA ORENSE, POBLACION II, BAUAN, BATANGAS.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "109608",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=109608"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "104475",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104475"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "104302",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104302"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "104580",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104580"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "104471",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104471"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "104583",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104583"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "104582",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104582"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "104461",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104461"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "104494",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=104494"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "92734",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=92734"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "87425",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=87425"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "87040",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=87040"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "90010",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=90010"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "87059",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=87059"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "87083",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=87083"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "84681",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=84681"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "84680",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=84680"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "87092",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=87092"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "87051",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=87051"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2024
+      },
+      "form": "Annual Budget Report",
+      "formSlug": "annual-budget-report",
+      "id": "70388",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70388"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2024
+      },
+      "form": "Annual Gender and Development Accomplishment Report",
+      "formSlug": "gad-accomplishment-report",
+      "id": "160528",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=160528"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2024
+      },
+      "form": "Annual Procurement Plan",
+      "formSlug": "annual-procurement-plan",
+      "id": "70354",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70354"
+    },
+    {
+      "address": "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2024
+      },
+      "form": "Supplemental Procurement Plan",
+      "formSlug": "supplemental-procurement-plan",
+      "id": "143507",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2025
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=143507"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "70578",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70578"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "69226",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=69226"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "69252",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=69252"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "70579",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70579"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "70331",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70331"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "69260",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=69260"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "60604",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=60604"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "70364",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70364"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "69244",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=69244"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "69259",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=69259"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "49499",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=49499"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "48969",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=48969"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "46865",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46865"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "46566",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46566"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "46503",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46503"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "46572",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46572"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "46380",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46380"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "47819",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=47819"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "46586",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46586"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "46479",
+      "postingPeriod": {
+        "quarter": 4,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=46479"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "32980",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=32980"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "32969",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=32969"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "30733",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=30733"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "30017",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=30017"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "29963",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=29963"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "29973",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=29973"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "28247",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=28247"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "30229",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=30229"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "29966",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=29966"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "30005",
+      "postingPeriod": {
+        "quarter": 3,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=30005"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "20% of the National Tax Allotment Utilization",
+      "formSlug": "nta-20-percent-utilization",
+      "id": "1835",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1835"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "formSlug": "bid-results",
+      "id": "3353",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=3353"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "formSlug": "ldrrmf-utilization",
+      "id": "1577",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1577"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Manpower Complement",
+      "formSlug": "manpower-complement",
+      "id": "1578",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1578"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Quarterly Statement of Cash Flow",
+      "formSlug": "quarterly-statement-of-cash-flow",
+      "id": "1801",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1801"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Report of Special Education Fund Utilization",
+      "formSlug": "sef-utilization",
+      "id": "1599",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1599"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Statement of Indebtedness, Payments and Balances",
+      "formSlug": "statement-of-indebtedness",
+      "id": "1812",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1812"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Statement of Receipts and Expenditures",
+      "formSlug": "statement-of-receipts-and-expenditures",
+      "id": "1815",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1815"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Trust Fund Utilization",
+      "formSlug": "trust-fund-utilization",
+      "id": "1581",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1581"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "quarterly",
+      "documentPeriod": {
+        "quarter": 1,
+        "year": 2023
+      },
+      "form": "Unliquidated Cash Advances",
+      "formSlug": "unliquidated-cash-advances",
+      "id": "1595",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1595"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2023
+      },
+      "form": "Annual Budget Report",
+      "formSlug": "annual-budget-report",
+      "id": "1809",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1809"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2023
+      },
+      "form": "Annual Gender and Development Accomplishment Report",
+      "formSlug": "gad-accomplishment-report",
+      "id": "81123",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=81123"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2023
+      },
+      "form": "Annual Procurement Plan",
+      "formSlug": "annual-procurement-plan",
+      "id": "1810",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1810"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2023
+      },
+      "form": "Supplemental Procurement Plan",
+      "formSlug": "supplemental-procurement-plan",
+      "id": "70352",
+      "postingPeriod": {
+        "quarter": 1,
+        "year": 2024
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=70352"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2022
+      },
+      "form": "Annual Gender and Development Accomplishment Report",
+      "formSlug": "gad-accomplishment-report",
+      "id": "1427",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1427"
+    },
+    {
+      "address": "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "cadence": "annual",
+      "documentPeriod": {
+        "quarter": null,
+        "year": 2022
+      },
+      "form": "Supplemental Procurement Plan",
+      "formSlug": "supplemental-procurement-plan",
+      "id": "1818",
+      "postingPeriod": {
+        "quarter": 2,
+        "year": 2023
+      },
+      "url": "https://fdpp.dilg.gov.ph/fdpp/report/document-download?id=1818"
+    }
+  ],
+  "forms": [
+    {
+      "cadence": "annual",
+      "label": "Annual Budget Report",
+      "slug": "annual-budget-report"
+    },
+    {
+      "cadence": "annual",
+      "label": "Annual Gender and Development Accomplishment Report",
+      "slug": "gad-accomplishment-report"
+    },
+    {
+      "cadence": "annual",
+      "label": "Annual Procurement Plan",
+      "slug": "annual-procurement-plan"
+    },
+    {
+      "cadence": "annual",
+      "label": "Supplemental Procurement Plan",
+      "slug": "supplemental-procurement-plan"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Statement of Indebtedness, Payments and Balances",
+      "slug": "statement-of-indebtedness"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "20% of the National Tax Allotment Utilization",
+      "slug": "nta-20-percent-utilization"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Bid Results on Civil Works, Goods and Services, and Consulting Services",
+      "slug": "bid-results"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Local Disaster Risk Reduction and Management Fund Utilization",
+      "slug": "ldrrmf-utilization"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Manpower Complement",
+      "slug": "manpower-complement"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Statement of Receipts and Expenditures",
+      "slug": "statement-of-receipts-and-expenditures"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Trust Fund Utilization",
+      "slug": "trust-fund-utilization"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Quarterly Statement of Cash Flow",
+      "slug": "quarterly-statement-of-cash-flow"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Report of Special Education Fund Utilization",
+      "slug": "sef-utilization"
+    },
+    {
+      "cadence": "quarterly",
+      "label": "Unliquidated Cash Advances",
+      "slug": "unliquidated-cash-advances"
+    }
+  ],
+  "posting": {
+    "locations": [
+      "1. Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas. 2. Bauan Public Market, 2nd Floor, Building C, Poblacion III, Bauan, Batangas. 3. Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas.",
+      "This Documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "(1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St.,",
+      "The documents are also posted at the (1.) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan, Batangas. (2.) Police Sub-Station Bldg., Bauan Plaza Orense, J.P Rizal St. Cor. Kap. Ponso St., Poblacion II, Bauan, Batangas. (3.) Bauan Public Market, Bldg. C., 2nd Floor, JY Orosa St., Poblacion III, Bauan, Batangas.",
+      "THIS DOCUMENT WAS ALSO POSTED IN THE (1) BAUAN MUNICIPAL HALL, 1ST FLOOR, F. MANGOBOS ST., POBLACION I, BAUAN BATANGAS, AT THE (2) BAUAN PUBLIC MARKET, 2ND FLOOR, BUILDING A, POBLACION III, BAUAN, BATANGAS AND IN THE (3) POLICE SUB-STATION, PLAZA ORENSE, POBLACION II, BAUAN, BATANGAS.",
+      "This document was also posted in the (1) Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas, at the (2) Bauan Public Market, 2nd Floor, Building A, Poblacion III, Bauan, Batangas and in the (3) Police Sub-Station, Plaza Orense, Poblacion II, Bauan, Batangas."
+    ],
+    "municipalHall": "Bauan Municipal Hall, 1st Floor, F. Mangobos St., Poblacion I, Bauan Batangas"
+  },
+  "retrievedAt": "2026-11-02T12:11:55.376Z",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "filters": {
+      "lgu_filter": "06",
+      "province_filter": "010",
+      "region_filter": "04"
+    },
+    "name": "Full Disclosure Policy Portal",
+    "portal": "https://fdpp.dilg.gov.ph",
+    "publisher": "Department of the Interior and Local Government"
+  },
+  "summary": {
+    "byForm": {
+      "20% of the National Tax Allotment Utilization": 14,
+      "Annual Budget Report": 4,
+      "Annual Gender and Development Accomplishment Report": 4,
+      "Annual Procurement Plan": 4,
+      "Bid Results on Civil Works, Goods and Services, and Consulting Services": 14,
+      "Local Disaster Risk Reduction and Management Fund Utilization": 14,
+      "Manpower Complement": 14,
+      "Quarterly Statement of Cash Flow": 14,
+      "Report of Special Education Fund Utilization": 14,
+      "Statement of Indebtedness, Payments and Balances": 14,
+      "Statement of Receipts and Expenditures": 14,
+      "Supplemental Procurement Plan": 4,
+      "Trust Fund Utilization": 14,
+      "Unliquidated Cash Advances": 14
+    },
+    "byYear": {
+      "2022": 2,
+      "2023": 44,
+      "2024": 44,
+      "2025": 44,
+      "2026": 22
+    },
+    "count": 156
+  }
+}

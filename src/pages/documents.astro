@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import Stat from '../components/Stat.astro';
+import { FDP_FORM_NOTES } from '../data/fdp-forms';
+import fdp from '../data/generated/fdp.json';
+import { isoDate, num, quarterLabel } from '../lib/format';
+
+const years = Object.entries(fdp.summary.byYear)
+  .map(([year]) => Number(year))
+  .sort((a, b) => b - a);
+
+const byYear = years.map((year) => ({
+  year,
+  filings: fdp.filings.filter((filing) => filing.documentPeriod.year === year),
+}));
+
+const latest = fdp.filings[0]?.documentPeriod ?? null;
+---
+
+<Base
+  title="Documents"
+  description="The full archive of statutory filings published by the Municipality of Bauan, Batangas."
+>
+  <section class="border-b border-line">
+    <div class="wrap py-12 sm:py-14">
+      <p class="eyebrow">Documents</p>
+      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+        The full archive, <span class="text-brand">with the originals one click away.</span>
+      </h1>
+      <p class="lede mt-4 max-w-2xl">
+        {num(fdp.summary.count)} filings across all fourteen statutory forms. Nothing is summarised here
+        that could mislead: each row links to the file the municipality posted, on DILG's portal.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <Stat value={num(fdp.summary.count)} label="Documents indexed" note="Deduplicated by form and period" />
+        <Stat value={String(FDP_FORM_NOTES.length)} label="Forms" note="All 14 statutory forms present" />
+        <Stat value={`CY${fdp.coverage.from}–${fdp.coverage.to}`} label="Coverage" note="Earliest to latest document period" />
+        <Stat value={quarterLabel(latest)} label="Most recent" note="Latest document period posted" />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-10 sm:py-12">
+    <div class="grid gap-3 sm:grid-cols-[1fr_18rem]">
+      <div>
+        <label for="document-search" class="sr-only">Filter documents by form name</label>
+        <input
+          id="document-search"
+          type="search"
+          placeholder="Filter by form name…"
+          autocomplete="off"
+          data-document-search
+          class="w-full rounded-sm border border-line-strong bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none"
+        />
+      </div>
+      <div>
+        <label for="document-form" class="sr-only">Filter by form</label>
+        <select
+          id="document-form"
+          data-document-form
+          class="w-full rounded-sm border border-line-strong bg-surface px-3 py-2 text-sm text-ink focus:border-brand focus:outline-none"
+        >
+          <option value="">All forms</option>
+          {FDP_FORM_NOTES.map((form) => <option value={form.slug}>{form.label}</option>)}
+        </select>
+      </div>
+    </div>
+
+    <p class="mt-3 text-sm text-muted">
+      <span data-document-count class="tnum">{fdp.summary.count}</span> of {fdp.summary.count} shown
+    </p>
+
+    {
+      byYear.map((group) => (
+        <section class="mt-10" data-year-section>
+          <div class="flex items-baseline justify-between gap-4 border-b border-line-strong pb-2">
+            <h2 class="font-display text-[1.35rem] tracking-tight">CY {group.year}</h2>
+            <span class="text-[0.78rem] text-muted">{num(group.filings.length)} filings</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="data-table min-w-[46rem]">
+              <caption class="sr-only">Filings with a {group.year} document period</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Form</th>
+                  <th scope="col">Document period</th>
+                  <th scope="col">Posted</th>
+                  <th scope="col">Cadence</th>
+                  <th scope="col" class="num">File</th>
+                </tr>
+              </thead>
+              <tbody>
+                {group.filings.map((filing) => (
+                  <tr data-document-row data-form={filing.formSlug}>
+                    <td class="strong">{filing.form}</td>
+                    <td class="tnum">{quarterLabel(filing.documentPeriod)}</td>
+                    <td class="tnum text-muted">{quarterLabel(filing.postingPeriod)}</td>
+                    <td class="text-[0.78rem] text-muted">{filing.cadence}</td>
+                    <td class="num">
+                      <a
+                        href={filing.url}
+                        class="text-brand underline decoration-brand/30 underline-offset-2"
+                        rel="noopener"
+                      >
+                        Open ↗
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))
+    }
+
+    <p data-document-empty hidden class="mt-8 text-sm text-muted">No document matches those filters.</p>
+
+    <EvidenceNote
+      sourceId="dilg-fdp"
+      locator="Full Disclosure portal, Batangas → Bauan, all posting periods"
+      retrievedAt={fdp.retrievedAt}
+      note="One row per form per document period. When a filing is resubmitted the portal issues a new document id; the newest posting is kept and the slot is not duplicated."
+    />
+  </section>
+
+  <section class="wrap pb-16">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <Callout tone="note" title="Why 44 a year, not 14">
+        <p>
+          Ten of the fourteen forms are filed quarterly, four annually. A complete year is therefore
+          forty-four documents, and that is what 2023, 2024 and 2025 each contain.
+        </p>
+        <p>
+          CY{fdp.coverage.from} holds{' '}
+          {num((fdp.summary.byYear as Record<string, number>)[String(fdp.coverage.from)] ?? 0)} filings and
+          CY{fdp.coverage.to} is partial: the year is still running.
+        </p>
+      </Callout>
+
+      <Callout tone="warn" title="Original files, not our copies">
+        <p>
+          These documents are spreadsheets and PDFs hosted by DILG. This project does not re-host them,
+          because a stale copy under someone else's domain is a worse record than a link to the source.
+        </p>
+        <p>
+          If a link is broken, the portal has withdrawn or moved the file. Report it and the row will be
+          marked rather than quietly removed.
+        </p>
+      </Callout>
+    </div>
+
+    <p class="mt-8 text-[0.78rem] text-muted">Archive last refreshed {isoDate(fdp.retrievedAt)}.</p>
+  </section>
+</Base>
+
+<script>
+  const search = document.querySelector<HTMLInputElement>('[data-document-search]');
+  const form = document.querySelector<HTMLSelectElement>('[data-document-form]');
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('[data-document-row]'));
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-year-section]'));
+  const count = document.querySelector<HTMLElement>('[data-document-count]');
+  const empty = document.querySelector<HTMLElement>('[data-document-empty]');
+
+  const update = () => {
+    const query = (search?.value ?? '').trim().toLowerCase();
+    const wantForm = form?.value ?? '';
+    let visible = 0;
+
+    for (const row of rows) {
+      const text = (row.textContent ?? '').toLowerCase();
+      const match = (query === '' || text.includes(query)) && (wantForm === '' || row.dataset.form === wantForm);
+      row.hidden = !match;
+      if (match) visible += 1;
+    }
+
+    for (const section of sections) {
+      const sectionRows = Array.from(section.querySelectorAll<HTMLTableRowElement>('[data-document-row]'));
+      section.hidden = sectionRows.every((row) => row.hidden);
+    }
+
+    if (count) count.textContent = String(visible);
+    if (empty) empty.hidden = visible > 0;
+  };
+
+  search?.addEventListener('input', update);
+  form?.addEventListener('change', update);
+  update();
+</script>

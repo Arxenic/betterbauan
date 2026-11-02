@@ -1,0 +1,318 @@
+{
+  "barangays": [
+    {
+      "householdPopulation": 2531,
+      "households": 580,
+      "name": "Alagao",
+      "population": 2531,
+      "psgc": "0401006001"
+    },
+    {
+      "householdPopulation": 7386,
+      "households": 1987,
+      "name": "Aplaya",
+      "population": 7386,
+      "psgc": "0401006002"
+    },
+    {
+      "householdPopulation": 6967,
+      "households": 1817,
+      "name": "As-Is",
+      "population": 6967,
+      "psgc": "0401006003"
+    },
+    {
+      "householdPopulation": 541,
+      "households": 172,
+      "name": "Bagong Silang",
+      "population": 541,
+      "psgc": "0401006004"
+    },
+    {
+      "householdPopulation": 1555,
+      "households": 371,
+      "name": "Baguilawa",
+      "population": 1555,
+      "psgc": "0401006005"
+    },
+    {
+      "householdPopulation": 2505,
+      "households": 722,
+      "name": "Balayong",
+      "population": 2505,
+      "psgc": "0401006006"
+    },
+    {
+      "householdPopulation": 4265,
+      "households": 1115,
+      "name": "Barangay I",
+      "population": 4265,
+      "psgc": "0401006007"
+    },
+    {
+      "householdPopulation": 2733,
+      "households": 774,
+      "name": "Barangay II",
+      "population": 2743,
+      "psgc": "0401006008"
+    },
+    {
+      "householdPopulation": 456,
+      "households": 118,
+      "name": "Barangay III",
+      "population": 456,
+      "psgc": "0401006009"
+    },
+    {
+      "householdPopulation": 2620,
+      "households": 696,
+      "name": "Barangay IV",
+      "population": 2623,
+      "psgc": "0401006010"
+    },
+    {
+      "householdPopulation": 4776,
+      "households": 1320,
+      "name": "Bolo",
+      "population": 4776,
+      "psgc": "0401006011"
+    },
+    {
+      "householdPopulation": 500,
+      "households": 141,
+      "name": "Colvo",
+      "population": 500,
+      "psgc": "0401006012"
+    },
+    {
+      "householdPopulation": 2217,
+      "households": 646,
+      "name": "Cupang",
+      "population": 2217,
+      "psgc": "0401006013"
+    },
+    {
+      "householdPopulation": 1744,
+      "households": 469,
+      "name": "Durungao",
+      "population": 1744,
+      "psgc": "0401006014"
+    },
+    {
+      "householdPopulation": 1323,
+      "households": 337,
+      "name": "Gulibay",
+      "population": 1323,
+      "psgc": "0401006015"
+    },
+    {
+      "householdPopulation": 4133,
+      "households": 1056,
+      "name": "Inicbulan",
+      "population": 4133,
+      "psgc": "0401006016"
+    },
+    {
+      "householdPopulation": 1332,
+      "households": 347,
+      "name": "Locloc",
+      "population": 1332,
+      "psgc": "0401006018"
+    },
+    {
+      "householdPopulation": 316,
+      "households": 88,
+      "name": "Magalang-Galang",
+      "population": 316,
+      "psgc": "0401006019"
+    },
+    {
+      "householdPopulation": 443,
+      "households": 108,
+      "name": "Malindig",
+      "population": 443,
+      "psgc": "0401006020"
+    },
+    {
+      "householdPopulation": 1367,
+      "households": 311,
+      "name": "Manalupong",
+      "population": 1367,
+      "psgc": "0401006021"
+    },
+    {
+      "householdPopulation": 7068,
+      "households": 1831,
+      "name": "Manghinao Proper",
+      "population": 7068,
+      "psgc": "0401006022"
+    },
+    {
+      "householdPopulation": 2821,
+      "households": 757,
+      "name": "Manghinao Uno",
+      "population": 2821,
+      "psgc": "0401006023"
+    },
+    {
+      "householdPopulation": 1453,
+      "households": 344,
+      "name": "New Danglayan",
+      "population": 1453,
+      "psgc": "0401006024"
+    },
+    {
+      "householdPopulation": 843,
+      "households": 197,
+      "name": "Orense",
+      "population": 843,
+      "psgc": "0401006025"
+    },
+    {
+      "householdPopulation": 960,
+      "households": 289,
+      "name": "Pitugo",
+      "population": 960,
+      "psgc": "0401006026"
+    },
+    {
+      "householdPopulation": 913,
+      "households": 227,
+      "name": "Rizal",
+      "population": 913,
+      "psgc": "0401006028"
+    },
+    {
+      "householdPopulation": 574,
+      "households": 148,
+      "name": "Sampaguita",
+      "population": 574,
+      "psgc": "0401006029"
+    },
+    {
+      "householdPopulation": 1200,
+      "households": 289,
+      "name": "San Agustin",
+      "population": 1200,
+      "psgc": "0401006030"
+    },
+    {
+      "householdPopulation": 2604,
+      "households": 642,
+      "name": "San Andres Proper",
+      "population": 2604,
+      "psgc": "0401006031"
+    },
+    {
+      "householdPopulation": 625,
+      "households": 174,
+      "name": "San Andres Uno",
+      "population": 625,
+      "psgc": "0401006032"
+    },
+    {
+      "householdPopulation": 588,
+      "households": 151,
+      "name": "San Diego",
+      "population": 588,
+      "psgc": "0401006033"
+    },
+    {
+      "householdPopulation": 1440,
+      "households": 439,
+      "name": "San Miguel",
+      "population": 1502,
+      "psgc": "0401006034"
+    },
+    {
+      "householdPopulation": 823,
+      "households": 218,
+      "name": "San Pablo",
+      "population": 823,
+      "psgc": "0401006035"
+    },
+    {
+      "householdPopulation": 2801,
+      "households": 763,
+      "name": "San Pedro",
+      "population": 2801,
+      "psgc": "0401006036"
+    },
+    {
+      "householdPopulation": 6494,
+      "households": 1740,
+      "name": "San Roque",
+      "population": 6494,
+      "psgc": "0401006037"
+    },
+    {
+      "householdPopulation": 1722,
+      "households": 455,
+      "name": "San Teodoro",
+      "population": 1722,
+      "psgc": "0401006038"
+    },
+    {
+      "householdPopulation": 819,
+      "households": 191,
+      "name": "San Vicente",
+      "population": 819,
+      "psgc": "0401006039"
+    },
+    {
+      "householdPopulation": 4706,
+      "households": 1222,
+      "name": "Santa Maria",
+      "population": 4706,
+      "psgc": "0401006041"
+    },
+    {
+      "householdPopulation": 2788,
+      "households": 702,
+      "name": "Santo Domingo",
+      "population": 2788,
+      "psgc": "0401006042"
+    },
+    {
+      "householdPopulation": 2989,
+      "households": 734,
+      "name": "Sinala",
+      "population": 2989,
+      "psgc": "0401006044"
+    }
+  ],
+  "municipality": {
+    "density2024": 1826,
+    "householdPopulation": 93941,
+    "households": 24688,
+    "landAreaKm2": 51.49,
+    "name": "Bauan",
+    "population": 94016,
+    "psgc": "0401006000"
+  },
+  "retrievedAt": "2026-11-02T11:32:58.373Z",
+  "schemaVersion": "1.0.0",
+  "series": [
+    {
+      "census": "2015 POPCEN",
+      "population": 91297
+    },
+    {
+      "census": "2020 CPH",
+      "population": 90819
+    },
+    {
+      "census": "2024 POPCEN",
+      "population": 94016
+    }
+  ],
+  "source": {
+    "api": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/1A",
+    "name": "PSA OpenSTAT — 2024 Census of Population",
+    "publisher": "Philippine Statistics Authority",
+    "tables": {
+      "census2024": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/1A/PO_2024/0041A6DTPH3.px",
+      "series": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/1A/PO_2024/0221A6DLPD0.px"
+    }
+  }
+}

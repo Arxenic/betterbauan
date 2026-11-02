@@ -1,0 +1,305 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import Stat from '../components/Stat.astro';
+import dpwh from '../data/generated/dpwh.json';
+import { dayDate, num, peso, pesoShort } from '../lib/format';
+
+const contracts = dpwh.contracts;
+const completed = dpwh.summary.byStatus.Completed ?? 0;
+const ongoing = dpwh.summary.byStatus['On-Going'] ?? 0;
+const procurement = dpwh.summary.byStatus['For Procurement'] ?? 0;
+
+const years = Object.entries(dpwh.summary.byYear)
+  .map(([year, count]) => ({ year: Number(year), count }))
+  .sort((a, b) => b.year - a.year);
+const maxYearCount = Math.max(...years.map((row) => row.count));
+
+const largest = [...contracts]
+  .filter((contract) => contract.budget !== null)
+  .sort((a, b) => (b.budget ?? 0) - (a.budget ?? 0))
+  .slice(0, 5);
+
+const sharedCount = dpwh.summary.sharedCount ?? 0;
+const sharedBudget = dpwh.summary.sharedBudget ?? 0;
+const bauanOnlyBudget = dpwh.summary.totalBudget - sharedBudget;
+
+const statusStyle: Record<string, string> = {
+  Completed: 'border-ok/30 bg-ok/10 text-ok',
+  'On-Going': 'border-brand/30 bg-brand-soft text-brand-deep',
+  'For Procurement': 'border-warn/30 bg-warn/10 text-warn',
+};
+---
+
+<Base
+  title="Projects"
+  description="National infrastructure contracts in Bauan, Batangas, from DPWH records: cost, contractor, status and dates."
+>
+  <section class="border-b border-line">
+    <div class="wrap py-12 sm:py-14">
+      <p class="eyebrow">Projects</p>
+      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+        National money, <span class="text-brand">built in Bauan.</span>
+      </h1>
+      <p class="lede mt-4 max-w-2xl">
+        DPWH publishes every contract it lets. Filtered to Bauan, the record runs from 2016 to 2026:{' '}
+        {num(dpwh.summary.count)} contracts worth {pesoShort(dpwh.summary.totalBudget)}. Roads, drainage,
+        school buildings, health facilities and flood control.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <Stat value={num(dpwh.summary.count)} label="Contracts" note="DPWH, 2016–2026" />
+        <Stat
+          value={pesoShort(dpwh.summary.totalBudget)}
+          label="Total contract value"
+          note={`${pesoShort(bauanOnlyBudget)} Bauan-only · ${pesoShort(sharedBudget)} shared`}
+        />
+        <Stat value={num(completed)} label="Completed" note={`${num(ongoing)} ongoing · ${num(procurement)} for procurement`} />
+        <Stat value={num(Object.keys(dpwh.summary.byYear).length)} label="Years on record" note="2016 to 2026" />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-10 sm:py-12">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+      <div>
+        <h2 class="font-display text-[1.5rem] tracking-tight">Contracts by year</h2>
+        <p class="mt-1 text-sm text-muted">
+          Count of contracts, by the year DPWH attributes them to. Values are not adjusted for inflation.
+        </p>
+        <ul class="mt-5 space-y-2">
+          {
+            years.map((row) => (
+              <li class="flex items-center gap-3">
+                <span class="tnum w-10 text-[0.78rem] text-muted">{row.year}</span>
+                <div class="h-2 flex-1 overflow-hidden rounded-full bg-line/60">
+                  <div
+                    class="h-full rounded-full bg-brand/70"
+                    style={`width: ${((row.count / maxYearCount) * 100).toFixed(1)}%`}
+                  />
+                </div>
+                <span class="tnum w-8 text-right text-[0.78rem] text-ink-soft">{row.count}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-[1.5rem] tracking-tight">Largest five</h2>
+        <ol class="mt-4 divide-y divide-line border-y border-line">
+          {
+            largest.map((contract, index) => (
+              <li class="py-3">
+                <div class="flex items-baseline gap-3">
+                  <span class="tnum text-[0.72rem] text-muted">{String(index + 1).padStart(2, '0')}</span>
+                  <p class="flex-1 text-[0.82rem] leading-snug text-ink-soft">{contract.description}</p>
+                </div>
+                <p class="tnum mt-1 pl-7 text-[0.8rem] font-medium text-ink">{peso(contract.budget)}</p>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="mt-3 text-[0.76rem] leading-relaxed text-muted">
+          The first three are shared contracts covering other LGUs as well; their amounts are not
+          Bauan-only spending. See the note below.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <Callout tone="warn" title={`${num(sharedCount)} contracts are not Bauan-only`}>
+        <p>
+          {pesoShort(sharedBudget)} of the {pesoShort(dpwh.summary.totalBudget)} total sits in contracts
+          that name Bauan alongside other local governments — three of them read “Batangas City, San
+          Pascual and Bauan”. The published amount covers the entire contract, so it cannot be read as
+          money spent in Bauan.
+        </p>
+        <p>
+          Excluding those, the Bauan-only total is {pesoShort(bauanOnlyBudget)}. Shared contracts are kept
+          because they include Bauan work, and they are marked <em>shared</em> in the table.
+        </p>
+      </Callout>
+    </div>
+
+    <EvidenceNote
+      sourceId="dpwh-api"
+      locator="Contract records where description names BAUAN and province is BATANGAS"
+      retrievedAt={dpwh.retrievedAt}
+      note="Budgets are the contract's published amount, not the amount actually disbursed. No inflation or exchange adjustment is applied."
+    />
+  </section>
+
+  <section class="border-y border-line bg-surface">
+    <div class="wrap py-10 sm:py-12">
+      <h2 class="font-display text-[1.5rem] tracking-tight">Every contract</h2>
+      <p class="mt-1 max-w-2xl text-sm text-muted">
+        <span data-project-count class="tnum">{contracts.length}</span> of {contracts.length} shown. Filter
+        by year, status or text.
+      </p>
+
+      <div class="mt-5 grid gap-3 sm:grid-cols-[1fr_10rem_12rem]">
+        <div>
+          <label for="project-search" class="sr-only">Filter contracts by text</label>
+          <input
+            id="project-search"
+            type="search"
+            placeholder="Filter by description or contractor…"
+            autocomplete="off"
+            data-project-search
+            class="w-full rounded-sm border border-line-strong bg-paper px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none"
+          />
+        </div>
+        <div>
+          <label for="project-year" class="sr-only">Filter by year</label>
+          <select
+            id="project-year"
+            data-project-year
+            class="w-full rounded-sm border border-line-strong bg-paper px-3 py-2 text-sm text-ink focus:border-brand focus:outline-none"
+          >
+            <option value="">All years</option>
+            {years.map((row) => <option value={String(row.year)}>{row.year}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="project-status" class="sr-only">Filter by status</label>
+          <select
+            id="project-status"
+            data-project-status
+            class="w-full rounded-sm border border-line-strong bg-paper px-3 py-2 text-sm text-ink focus:border-brand focus:outline-none"
+          >
+            <option value="">All statuses</option>
+            {Object.keys(dpwh.summary.byStatus).map((status) => <option value={status}>{status}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-5 overflow-x-auto rounded-sm border border-line bg-paper">
+        <table class="data-table min-w-[60rem]">
+          <caption class="sr-only">DPWH infrastructure contracts in Bauan, Batangas</caption>
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col">Contract</th>
+              <th scope="col">Contractor</th>
+              <th scope="col">Status</th>
+              <th scope="col">Completed</th>
+              <th scope="col" class="num">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              contracts.map((contract) => (
+                <tr
+                  data-project-row
+                  data-year={contract.year ?? ''}
+                  data-status={contract.status ?? ''}
+                  data-search={`${contract.description} ${contract.contractor ?? ''}`.toLowerCase()}
+                >
+                  <td class="tnum text-muted">{contract.year ?? '—'}</td>
+                  <td class="max-w-[26rem]">
+                    <p class="text-[0.84rem] leading-snug text-ink">{contract.description}</p>
+                    <p class="mt-1 flex flex-wrap items-center gap-2 font-mono text-[0.68rem] text-muted">
+                      <span>{contract.id}</span>
+                      {contract.sharedWith.length > 0 && (
+                        <span
+                          class="rounded-full border border-accent/30 bg-accent-soft px-1.5 py-0.5 font-sans text-[0.62rem] uppercase tracking-[0.06em] text-accent"
+                          title={`Shared with ${contract.sharedWith.join(', ')}`}
+                        >
+                          shared
+                        </span>
+                      )}
+                    </p>
+                  </td>
+                  <td class="max-w-[14rem] text-[0.78rem] leading-snug">{contract.contractor ?? '—'}</td>
+                  <td>
+                    <span
+                      class:list={[
+                        'inline-block whitespace-nowrap rounded-full border px-2 py-0.5 text-[0.68rem]',
+                        statusStyle[contract.status ?? ''] ?? 'border-line bg-transparent text-muted',
+                      ]}
+                    >
+                      {contract.status ?? '—'}
+                    </span>
+                  </td>
+                  <td class="tnum whitespace-nowrap text-[0.78rem]">{dayDate(contract.completionDate)}</td>
+                  <td class="num strong">{peso(contract.budget)}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p data-project-empty hidden class="mt-4 text-sm text-muted">No contract matches those filters.</p>
+    </div>
+  </section>
+
+  <section class="wrap py-12 sm:py-14">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <Callout tone="warn" title="No map, and here's why">
+        <p>
+          {num(dpwh.summary.coordinatesUnverified)} of the {num(dpwh.summary.count)} records carry
+          coordinates that fall outside Bauan's bounding box — including one marked at latitude 14.644,
+          roughly a hundred kilometres north. Those records name Bauan and are genuine contracts, but the
+          pin is wrong.
+        </p>
+        <p>
+          Rather than plot a road in the wrong province, this page publishes no map. A record is only
+          mappable once its coordinates agree with its description.
+        </p>
+      </Callout>
+
+      <Callout tone="note" title="What this list is not">
+        <p>
+          This is DPWH's national programme, not the municipality's own projects. Locally funded works —
+          the ones in the Annual Investment Programme and the 20% development fund — sit inside the DILG
+          filings, and extracting them is a separate milestone.
+        </p>
+        <p>
+          Contract amounts are commitments. Whether the work was completed to specification, and what it
+          finally cost, is answered by audit and inspection reports, not by this table.
+        </p>
+      </Callout>
+    </div>
+
+    <p class="mt-8 text-[0.78rem] text-muted">
+      Contract list last rebuilt {dayDate(dpwh.retrievedAt.slice(0, 10))}. A rebuild re-reads the API and
+      refuses to overwrite the dataset if it returns nothing.
+    </p>
+  </section>
+</Base>
+
+<script>
+  const search = document.querySelector<HTMLInputElement>('[data-project-search]');
+  const year = document.querySelector<HTMLSelectElement>('[data-project-year]');
+  const status = document.querySelector<HTMLSelectElement>('[data-project-status]');
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('[data-project-row]'));
+  const count = document.querySelector<HTMLElement>('[data-project-count]');
+  const empty = document.querySelector<HTMLElement>('[data-project-empty]');
+
+  const update = () => {
+    const query = (search?.value ?? '').trim().toLowerCase();
+    const wantYear = year?.value ?? '';
+    const wantStatus = status?.value ?? '';
+    let visible = 0;
+
+    for (const row of rows) {
+      const match =
+        (query === '' || (row.dataset.search ?? '').includes(query)) &&
+        (wantYear === '' || row.dataset.year === wantYear) &&
+        (wantStatus === '' || row.dataset.status === wantStatus);
+      row.hidden = !match;
+      if (match) visible += 1;
+    }
+
+    if (count) count.textContent = String(visible);
+    if (empty) empty.hidden = visible > 0;
+  };
+
+  search?.addEventListener('input', update);
+  year?.addEventListener('change', update);
+  status?.addEventListener('change', update);
+  update();
+</script>

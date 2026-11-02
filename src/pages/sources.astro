@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import TierBadge from '../components/TierBadge.astro';
+import { TIERS, type EvidenceTier } from '../data/evidence';
+import { SOURCES } from '../data/sources';
+import { SITE } from '../data/site';
+
+const tierOrder: EvidenceTier[] = ['A', 'B', 'C', 'D', 'E'];
+
+const statusStyle: Record<string, string> = {
+  used: 'border-ok/30 bg-ok/10 text-ok',
+  pending: 'border-warn/30 bg-warn/10 text-warn',
+  unavailable: 'border-line-strong bg-line/40 text-muted',
+};
+
+const statusLabel: Record<string, string> = {
+  used: 'In use',
+  pending: 'Pending',
+  unavailable: 'Unavailable',
+};
+
+const missing = SOURCES.filter((source) => source.status !== 'used');
+---
+
+<Base
+  title="Sources"
+  description="Every record BetterBauan reads, the evidence tier it carries, and what is still missing."
+>
+  <section class="border-b border-line">
+    <div class="wrap py-12 sm:py-14">
+      <p class="eyebrow">Sources</p>
+      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+        Where every number <span class="text-brand">comes from.</span>
+      </h1>
+      <p class="lede mt-4 max-w-2xl">
+        This is the whole source list, including the records this project wants but does not have yet. If a
+        figure appears anywhere on this site, it traces to an entry below.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap py-10 sm:py-12">
+    <h2 class="font-display text-[1.5rem] tracking-tight">The evidence tiers</h2>
+    <p class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+      A source is not trusted because it is official-sounding. It is trusted because of what kind of record
+      it is, and only certain tiers are allowed to carry a figure.
+    </p>
+
+    <dl class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        tierOrder.map((tier) => (
+          <div class="card p-4">
+            <dt class="flex items-center justify-between gap-3">
+              <TierBadge tier={tier} />
+              <span class="text-[0.68rem] uppercase tracking-[0.08em] text-muted">
+                {TIERS[tier].publishesFigures ? 'may carry figures' : 'never a figure'}
+              </span>
+            </dt>
+            <dd class="mt-2">
+              <p class="text-[0.9rem] font-medium text-ink">{TIERS[tier].name}</p>
+              <p class="mt-1 text-[0.82rem] leading-relaxed text-ink-soft">{TIERS[tier].summary}</p>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="border-y border-line bg-surface">
+    <div class="wrap py-10 sm:py-12">
+      <h2 class="font-display text-[1.5rem] tracking-tight">Source register</h2>
+      <p class="mt-1 max-w-2xl text-sm text-muted">
+        {SOURCES.length} records: {SOURCES.filter((source) => source.status === 'used').length} in use,{' '}
+        {missing.length} pending or unavailable.
+      </p>
+
+      <ul class="mt-6 space-y-4">
+        {
+          SOURCES.map((source) => (
+            <li id={source.id} class="card scroll-mt-24 p-5">
+              <div class="grid gap-4 lg:grid-cols-[1.05fr_1.2fr]">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <TierBadge tier={source.tier} />
+                    <span
+                      class:list={[
+                        'rounded-full border px-2 py-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.08em]',
+                        statusStyle[source.status],
+                      ]}
+                    >
+                      {statusLabel[source.status]}
+                    </span>
+                  </div>
+                  <h3 class="mt-2 font-display text-[1.05rem] leading-snug tracking-tight">
+                    {source.url ? (
+                      <a href={source.url} class="text-ink no-underline hover:text-brand" rel="noopener">
+                        {source.name}
+                      </a>
+                    ) : (
+                      source.name
+                    )}
+                  </h3>
+                  <p class="mt-0.5 text-[0.8rem] text-muted">{source.publisher}</p>
+                </div>
+
+                <div class="border-t border-line pt-3 lg:border-t-0 lg:border-l lg:pl-5 lg:pt-0">
+                  <p class="text-sm leading-relaxed text-ink-soft">
+                    <span class="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-muted">
+                      Supports
+                    </span>
+                    <span class="mt-1 block">{source.supports}</span>
+                  </p>
+                  {source.note && (
+                    <p class="mt-2 text-[0.8rem] leading-relaxed text-muted">{source.note}</p>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap py-12 sm:py-14">
+    <h2 class="font-display text-[1.5rem] tracking-tight">What is still missing</h2>
+    <p class="lede mt-3 max-w-2xl">
+      These are the gaps that keep whole pages unpublished. Each one has a route to closing it.
+    </p>
+
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      <li class="card p-5">
+        <h3 class="text-[0.95rem] font-medium text-ink">Elected officials</h3>
+        <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+          Needs COMELEC's 2025 certificate of canvass, the Sangguniang Bayan's directory, or a response to
+          an FOI request. A tier B document is enough to publish.
+        </p>
+        <p class="mt-2 text-[0.76rem] text-muted">Route: FOI to the Municipality of Bauan, or COMELEC.</p>
+      </li>
+      <li class="card p-5">
+        <h3 class="text-[0.95rem] font-medium text-ink">Audited finances</h3>
+        <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+          The Commission on Audit's annual audit report is the independent check on everything the
+          municipality self-reports. Its site blocks automated requests.
+        </p>
+        <p class="mt-2 text-[0.76rem] text-muted">Route: manual download, referenced by page.</p>
+      </li>
+      <li class="card p-5">
+        <h3 class="text-[0.95rem] font-medium text-ink">Poverty incidence</h3>
+        <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+          PSA publishes municipal small-area estimates as documents rather than through OpenSTAT, and only
+          for selected years.
+        </p>
+        <p class="mt-2 text-[0.76rem] text-muted">Route: PSA Small Area Estimates report.</p>
+      </li>
+      <li class="card p-5">
+        <h3 class="text-[0.95rem] font-medium text-ink">Local ordinances and the AIP</h3>
+        <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+          The Annual Investment Programme and the Sangguniang Bayan ordinance index would make locally
+          funded projects visible, not just national ones.
+        </p>
+        <p class="mt-2 text-[0.76rem] text-muted">Route: FOI request to the Municipal Secretary.</p>
+      </li>
+    </ul>
+
+    <div class="mt-8">
+      <Callout tone="note" title="The full policy is in the repository">
+        <p>
+          Tiers, reconciliation gates, the correction process and the FOI wording live in
+          <a
+            href={`${SITE.repo}/blob/main/docs/verification.md`}
+            class="text-brand underline decoration-brand/30 underline-offset-2"
+            rel="noopener"
+          >
+            docs/verification.md</a
+          >. If a page here disagrees with that document, the document wins and the page is the bug.
+        </p>
+        <p>
+          The research behind the datasets — endpoint behaviour, discrepancies, spelling variants — is in
+          <a
+            href={`${SITE.repo}/blob/main/docs/research-bauan.md`}
+            class="text-brand underline decoration-brand/30 underline-offset-2"
+            rel="noopener"
+          >
+            docs/research-bauan.md</a
+          >.
+        </p>
+      </Callout>
+    </div>
+  </section>
+</Base>

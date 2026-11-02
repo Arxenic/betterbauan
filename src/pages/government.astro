@@ -1,0 +1,152 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EmptyState from '../components/EmptyState.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import fpdi from '../data/generated/fdp.json';
+import psa from '../data/generated/psa.json';
+import { num } from '../lib/format';
+
+const m = psa.municipality;
+
+const profile = [
+  { label: 'Official name', value: 'Municipality of Bauan' },
+  { label: 'PSGC', value: m.psgc, mono: true },
+  { label: 'Province', value: 'Batangas' },
+  { label: 'Region', value: 'IV-A (CALABARZON)' },
+  { label: 'Land area', value: `${m.landAreaKm2} km²` },
+  { label: 'Population (2024)', value: num(m.population) },
+  { label: 'Households (2024)', value: num(m.households) },
+  { label: 'Population density', value: `${num(m.density2024)} / km²` },
+];
+
+---
+
+<Base
+  title="Government"
+  description="Municipal profile of Bauan, Batangas, and the records this project still needs before publishing a list of officials."
+>
+  <section class="border-b border-line">
+    <div class="wrap py-12 sm:py-14">
+      <p class="eyebrow">Government</p>
+      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+        The municipal profile, <span class="text-brand">as far as the record goes.</span>
+      </h1>
+      <p class="lede mt-4 max-w-2xl">
+        What follows is limited to facts held in machine-readable government records. Where a fact is
+        missing, the page says so instead of filling it in.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap py-10 sm:py-12">
+    <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 class="font-display text-[1.5rem] tracking-tight">Profile</h2>
+        <dl class="mt-4 divide-y divide-line border-y border-line">
+          {
+            profile.map((row) => (
+              <div class="flex items-baseline justify-between gap-6 py-3">
+                <dt class="text-sm text-muted">{row.label}</dt>
+                <dd class:list={['text-sm text-ink', row.mono && 'font-mono text-[0.82rem]']}>
+                  {row.value}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+        <EvidenceNote
+          sourceId="psa-openstat"
+          locator="2024 POPCEN tables 0041A6DTPH3 (population) and 0221A6DLPD0 (area, density)"
+          retrievedAt={psa.retrievedAt}
+          note="Every value in this table is read from PSA. Nothing is transcribed from a secondary source."
+        />
+      </div>
+
+      <div class="space-y-6">
+        <Callout tone="note" title="Official channels">
+          <p class="font-medium text-ink">Bauan Municipal Hall</p>
+          <p>{fpdi.posting.municipalHall ?? 'Address not recorded in the filing index.'}</p>
+          <p class="text-[0.8rem] text-muted">
+            Address block printed on the municipality's own full-disclosure filings.
+          </p>
+          <p>
+            Official website:{' '}
+            <span class="font-mono text-[0.8rem]">bauan.gov.ph</span> — did not respond when checked on
+            2 November 2026. This site does not link to a page it cannot verify.
+          </p>
+        </Callout>
+
+        <div class="card p-5">
+          <h2 class="font-display text-[1.05rem] tracking-tight">ZIP code and area code</h2>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Postal and telephone prefixes are omitted here: they are stable, but this project has not
+            yet read them from a primary record, and a half-sourced row undermines the fully-sourced
+            ones beside it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-surface">
+    <div class="wrap py-12 sm:py-14">
+      <h2 class="font-display text-[1.5rem] tracking-tight">Elected officials</h2>
+      <p class="lede mt-3 max-w-2xl">
+        Not published yet — deliberately. This is the most-checked fact on any LGU portal, and the one
+        most often wrong.
+      </p>
+
+      <div class="mt-6">
+        <EmptyState
+          title="Officials are withheld pending a primary record"
+          help={[
+            'COMELEC 2025 Certificate of Canvass or proclamation for Bauan',
+            'The Sangguniang Bayan’s own records, or the Municipal Secretary’s Directory of Officials',
+            'A response to a filed FOI request (foi.gov.ph, 15 working days)',
+          ]}
+        >
+          <p>
+            Names circulating on secondary sites cannot be checked by a reader, and a wrong mayor's name
+            discredits every correct figure next to it. Until one of the records above is in hand, this
+            section stays empty and says why.
+          </p>
+          <p class="mt-2 text-[0.8rem] text-muted">
+            If you can supply the document, open an issue with a scan or link — that is a tier B source
+            and it is enough to publish.
+          </p>
+        </EmptyState>
+      </div>
+
+      <div class="mt-6 max-w-2xl">
+        <EvidenceNote
+          sourceId="comelec-proclamation"
+          retrievedAt={psa.retrievedAt}
+          note="Recorded as pending, not as verified. The tier D summaries consulted are listed in the sources table with their status."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-12 sm:py-14">
+    <h2 class="font-display text-[1.5rem] tracking-tight">What the municipality does publish</h2>
+    <p class="lede mt-3 max-w-2xl">
+      The LGU's own statutory filings are online and current — 156 documents covering CY{fpdi.coverage.from}
+      to CY{fpdi.coverage.to}, posted through DILG's Full Disclosure portal.
+    </p>
+    <div class="mt-5 flex flex-wrap gap-3">
+      <a href="/finances" class="btn btn-primary">Browse the filings</a>
+      <a href="/documents" class="btn btn-secondary">Open the document archive</a>
+    </div>
+    <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
+      Three posting locations recur in those filings: the Municipal Hall in Poblacion I, the Public Market
+      in Poblacion III, and the Police Sub-Station at Plaza Orense in Poblacion II.
+    </p>
+    <EvidenceNote
+      sourceId="dilg-fdp"
+      locator="Address block on the filing index"
+      retrievedAt={fpdi.retrievedAt}
+      note="Read from the filings themselves rather than from a directory."
+    />
+  </section>
+</Base>
