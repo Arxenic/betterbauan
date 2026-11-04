@@ -451,6 +451,13 @@ html[data-theme='dark'] {
     -webkit-backdrop-filter: blur(18px);
   }
 
+  /* Without JS the dock triggers cannot open. The <noscript> flat list above
+     replaces it, and the read-progress rule has nothing to measure. */
+  html:not(.js) .dock-wrap,
+  html:not(.js) .read-progress {
+    display: none;
+  }
+
   .dock {
     position: relative;
     display: flex;

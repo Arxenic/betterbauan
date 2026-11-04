@@ -4,6 +4,7 @@ import BauanMark from './BauanMark.astro';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const groups = NAV_GROUPS;
+const noscriptLinks = [...new Map(groups.flatMap((group) => group.items).map((item) => [item.href, item])).values()];
 
 const dateline = new Intl.DateTimeFormat('en-GB', {
   weekday: 'long',
@@ -154,6 +155,28 @@ const dateline = new Intl.DateTimeFormat('en-GB', {
       </div>
     </div>
   </div>
+
+  <noscript>
+    <nav class="wrap border-b border-line py-3" aria-label="All pages">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2">
+        {
+          noscriptLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-soft hover:text-brand"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-2 text-[0.66rem] text-muted">
+        Navigation is shown as a flat list because JavaScript is off. Every page still works.
+      </p>
+    </nav>
+  </noscript>
 </header>
 
 <script>
