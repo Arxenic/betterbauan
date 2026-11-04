@@ -18,16 +18,19 @@ Bauan or any government agency.
 
 | Page | What it holds | Source |
 | --- | --- | --- |
-| `/map` | A three-level 3D map: the Philippines, Batangas, then 40 barangays grown to their own statistics, with contract pins | PSA, DPWH, PSA/NAMRIA boundaries |
+| `/` | The magazine cover: tagline, figures, contents and the 3D municipal mark | PSA, DILG, DPWH |
+| `/map` | A three-level 3D map: the Philippines, Batangas, then 40 barangays grown to their own statistics, with contract pins and a year scrubber | PSA, DPWH, PSA/NAMRIA boundaries |
 | `/barangays` | Population and households for all 40 barangays, reconciled to the municipal total | PSA OpenSTAT, 2024 POPCEN |
-| `/finances` | Index of the 14 statutory financial forms, with direct links | DILG Full Disclosure Policy Portal |
+| `/culture` | Sublian, the Holy Cross, the feast days and the town's three relocations | LGU history, festival programmes |
+| `/government` | The 2025–2028 mayor and council (tier C), mayors since 1998, and the municipal profile | LGU announcements, PSA |
+| `/finances` | Statutory filings by year and form, with the completeness of each year | DILG Full Disclosure Policy Portal |
 | `/documents` | All 156 filings, by form and period | DILG Full Disclosure Policy Portal |
 | `/projects` | 132 DPWH contracts, 2016–2026: cost, contractor, status | DPWH via BetterGov's open API |
-| `/government` | Municipal profile; officials deliberately withheld | PSA |
 | `/sources` | Every record, its evidence tier, and what is still missing | — |
 
-Deliberately **not** published yet: elected officials, municipal poverty incidence, the LGU's income class,
-and the ordinance index. Each requires a primary record this project does not have. The
+Deliberately **not** published yet: municipal poverty incidence, the LGU's income class, the ordinance
+index, and the vote counts behind the 2025–2028 officials. Each requires a primary record this project does
+not have; the officials themselves are published as a clearly labelled tier C roster. The
 [sources page](https://betterbauan.vercel.app/sources) says exactly what would unblock each one.
 
 ## How verification works
@@ -36,10 +39,11 @@ Every figure must clear three gates:
 
 1. **Provenance.** It comes from a tier A or B record — a machine-readable table published by the agency
    that produces it, or a primary document read by a person. Encyclopaedias and news reports are leads,
-   never citations.
+   never citations. A tier C roster (the officials, for now) is labelled as reported and carries no
+   derived numbers.
 2. **Reconciliation.** The dataset must agree with itself. The build fails if the 40 barangay populations
-   do not sum to the municipal total, and DPWH records whose coordinates fall outside Bauan are flagged
-   rather than plotted.
+   do not sum to the municipal total, and DPWH records whose coordinates fall outside a barangay polygon
+   are left off the map and counted in the disclosure rather than nudged into place.
 3. **Withdrawal first.** A disputed figure is removed before it is re-checked. Reinstatement needs the same
    evidence as first publication.
 
@@ -51,7 +55,7 @@ variants — are in [`docs/research-bauan.md`](docs/research-bauan.md).
 
 - [Astro](https://astro.build) — static output, no server, no database, no client-side data fetching
 - [Tailwind CSS 4](https://tailwindcss.com) via the Vite plugin
-- [three.js](https://threejs.org) for the map, bundled locally
+- [three.js](https://threejs.org) for the 3D map and the procedural municipal mark, bundled locally
 - Node scripts that read public APIs and write committed JSON
 
 The site has no analytics, no cookies and no backend. Every figure is in the HTML at build time.
@@ -60,7 +64,7 @@ The site has no analytics, no cookies and no backend. Every figure is in the HTM
 
 This is a hard constraint, not a preference:
 
-- **Fonts** are self-hosted from npm (`@fontsource-variable/public-sans`, `@fontsource-variable/fraunces`).
+- **Fonts** are self-hosted from npm (`@fontsource-variable/archivo`, `@fontsource/archivo-black`, `@fontsource-variable/newsreader`, `@fontsource-variable/public-sans`).
   There is no Google Fonts request and no font CDN.
 - **Map geometry** is committed as `src/data/generated/map.json`. The page never calls a tile server, a
   geocoder or a basemap API. `scripts/build-map.mjs --download` fetches the raw boundaries only when a

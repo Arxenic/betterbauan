@@ -3,12 +3,14 @@ import Base from '../layouts/Base.astro';
 import Callout from '../components/Callout.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
 import map from '../data/generated/map.json';
-import { num, peso } from '../lib/format';
+import { num, peso, pesoCompact } from '../lib/format';
 
 const pins = map.levels.bauan.pins.length;
 const mapped = map.levels.bauan.totals.assignedPins;
+const mappedValue = map.levels.bauan.totals.assignedContractAmount;
 const barangays = map.levels.bauan.barangays.length;
 const totals = map.levels.bauan.totals;
+const years = map.levels.bauan.years ?? [];
 const largest = [...map.levels.bauan.barangays].sort((a, b) => b.population - a.population)[0];
 const ranking = [...map.levels.bauan.barangays]
   .sort((a, b) => b.population - a.population)
@@ -19,45 +21,51 @@ const ranking = [...map.levels.bauan.barangays]
   title="Map"
   description="A 3D data map of Bauan, Batangas: the province, the town, its 40 barangays grown to their own statistics, and the DPWH contracts with verified coordinates."
 >
-  <section class="border-b border-line bg-paper">
-    <div class="wrap pb-8 pt-10 sm:pt-14">
-      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        <div class="max-w-2xl">
-          <p class="eyebrow">Location · 13.79°N 120.96°E</p>
-          <h1 class="mt-3 font-display text-[2.6rem] leading-[0.98] font-semibold tracking-[-0.03em] sm:text-[3.4rem]">
-            Where Bauan is,
-            <span class="text-accent">and what it holds.</span>
+  <!-- Header ------------------------------------------------------- -->
+  <section class="border-b border-line">
+    <div class="wrap py-10 sm:py-14">
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <p class="kicker">Feature 01 · the map</p>
+        <p class="folio">13.79°N 120.96°E · 40 barangays</p>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+        <div data-reveal>
+          <h1 class="display-xl">
+            Bauan,<br />
+            <span class="text-brand">measured.</span>
           </h1>
-          <p class="lede mt-4 max-w-xl">
+        </div>
+
+        <div class="self-end" data-reveal style="--reveal-delay:100ms">
+          <p class="standfirst">
             Three scales, one town. The country, then the province, then forty barangays grown into a
             landscape of their own numbers — with every DPWH contract that has a usable coordinate.
           </p>
+          <dl class="mt-6 grid grid-cols-3 gap-4 border-t border-ink pt-4">
+            <div>
+              <dt class="folio">Barangays</dt>
+              <dd class="tnum font-display text-xl font-bold">{barangays}</dd>
+            </div>
+            <div>
+              <dt class="folio">Mapped</dt>
+              <dd class="tnum font-display text-xl font-bold">{mapped}</dd>
+            </div>
+            <div>
+              <dt class="folio">Value</dt>
+              <dd class="tnum font-display text-xl font-bold">{pesoCompact(mappedValue)}</dd>
+            </div>
+          </dl>
         </div>
-
-        <dl class="flex gap-8 border-t border-line pt-5 lg:border-t-0 lg:pt-0">
-          <div>
-            <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Barangays</dt>
-            <dd class="tnum font-display text-[1.6rem] font-semibold leading-none">{barangays}</dd>
-          </div>
-          <div>
-            <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Mapped contracts</dt>
-            <dd class="tnum font-display text-[1.6rem] font-semibold leading-none">{mapped}</dd>
-          </div>
-          <div>
-            <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Mapped value</dt>
-            <dd class="tnum font-display text-[1.6rem] font-semibold leading-none">
-              ₱{(totals.contractAmount / 1_000_000_000).toFixed(2)}B
-            </dd>
-          </div>
-        </dl>
       </div>
     </div>
   </section>
 
-  <section class="bg-paper">
+  <!-- The map ------------------------------------------------------ -->
+  <section>
     <div class="wrap map-layout">
       <div class="map-controls">
-        <p class="map-scale-label text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">Scale</p>
+        <p class="map-scale-label kicker-plain">Scale</p>
 
         <div class="map-rail-wrap mt-3" role="group" aria-label="Map level">
           <ol class="map-rail">
@@ -101,9 +109,7 @@ const ranking = [...map.levels.bauan.barangays]
         </div>
 
         <div data-map-metric-row hidden class="map-metrics mt-5">
-          <p class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">
-            Height is data, not elevation
-          </p>
+          <p class="kicker-plain text-[0.6rem]">Height is data, not elevation</p>
           <div class="mt-2.5 grid grid-cols-2 gap-1.5">
             <button type="button" data-map-metric="population" aria-pressed="true" class="map-metric">
               Population
@@ -125,6 +131,30 @@ const ranking = [...map.levels.bauan.barangays]
           </div>
         </div>
 
+        <div data-map-year-row hidden class="map-year">
+          <div class="flex items-baseline justify-between gap-3">
+            <p class="kicker-plain text-[0.6rem]">Contracts by year</p>
+            <output data-map-year-label class="font-mono text-[0.68rem] font-semibold text-gold">
+              All years
+            </output>
+          </div>
+          <input
+            type="range"
+            data-map-year
+            min="0"
+            max={years.length}
+            step="1"
+            value="0"
+            aria-label="Filter contracts by the year they were dated"
+            aria-valuetext="All years"
+          />
+          <div class="map-year-ends">
+            <span>{years[0] ?? '2016'}</span>
+            <span>{years.at(-1) ?? '2025'}</span>
+          </div>
+          <p data-map-year-stat class="map-year-stat"></p>
+        </div>
+
         <div data-map-pin-row hidden class="map-pins mt-4">
           <label class="flex cursor-pointer items-start gap-2.5 text-[0.78rem] leading-snug text-ink-soft">
             <input type="checkbox" data-map-pins class="map-switch" checked />
@@ -138,8 +168,17 @@ const ranking = [...map.levels.bauan.barangays]
           data-map-frame
           class="map-frame"
           role="img"
-          aria-label="Interactive 3D map of the Philippines, Batangas and Bauan. Use the scale rail to change level."
+          aria-label="Interactive 3D map of the Philippines, Batangas and Bauan. Use the scale rail to change level, and the year slider to filter contracts."
         >
+          <span class="map-corner map-corner-tl" aria-hidden="true"></span>
+          <span class="map-corner map-corner-tr" aria-hidden="true"></span>
+          <span class="map-corner map-corner-bl" aria-hidden="true"></span>
+          <span class="map-corner map-corner-br" aria-hidden="true"></span>
+
+          <p class="pointer-events-none absolute left-4 top-3 z-4 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-muted">
+            Fig. 01 — Data terrain
+          </p>
+
           <div data-map-canvas class="map-canvas"></div>
           <div data-map-tooltip hidden class="map-tooltip" aria-hidden="true"></div>
           <div data-map-fallback hidden class="map-fallback">
@@ -162,14 +201,14 @@ const ranking = [...map.levels.bauan.barangays]
         <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
           <p class="text-[0.7rem] text-muted">Drag to turn · scroll to zoom</p>
           <ul class="flex items-center gap-4 text-[0.68rem] text-muted">
-            <li class="flex items-center gap-1.5">
-              <span class="size-2 bg-[#ded6c5] outline outline-1 outline-[#9f9278]"></span> Land
+            <li class="map-legend-key">
+              <span class="map-swatch border border-line-strong bg-surface-soft"></span> Land
             </li>
-            <li class="flex items-center gap-1.5">
-              <span class="size-2 bg-[#c2542d]"></span> Bauan / height
+            <li class="map-legend-key">
+              <span class="map-swatch bg-brand"></span> Height / Bauan
             </li>
-            <li class="flex items-center gap-1.5">
-              <span class="size-2 rounded-full bg-[#0e4a40]"></span> Contract
+            <li class="map-legend-key">
+              <span class="map-swatch rounded-full bg-gold"></span> Contract
             </li>
           </ul>
         </div>
@@ -177,13 +216,10 @@ const ranking = [...map.levels.bauan.barangays]
 
         <div class="mt-5 border border-line bg-surface-soft/60 p-4 sm:p-5">
           <div class="flex items-baseline justify-between gap-4">
-            <h2
-              data-map-ranking-title
-              class="font-display text-[1.05rem] font-semibold tracking-tight"
-            >
+            <h2 data-map-ranking-title class="font-display text-[1.05rem] font-bold tracking-tight">
               Largest barangays
             </h2>
-            <span class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Top six</span>
+            <span class="folio">Top six</span>
           </div>
           <ol data-map-ranking class="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
             {
@@ -204,22 +240,24 @@ const ranking = [...map.levels.bauan.barangays]
     </div>
   </section>
 
+  <!-- Notes -------------------------------------------------------- -->
   <section class="border-t border-line bg-surface-soft">
     <div class="wrap grid grid-cols-1 gap-10 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:py-16">
-      <div>
-        <h2 class="font-display text-[1.8rem] font-semibold tracking-tight">Reading the model</h2>
+      <div data-reveal>
+        <p class="kicker">How to read it</p>
+        <h2 class="display-l mt-3">A drawing of numbers.</h2>
         <div class="prose-block mt-4 max-w-2xl text-[0.92rem] leading-relaxed text-ink-soft">
           <p>
             The country silhouette is dissolved from the 18 regional boundaries. The province view shows
-            all 34 cities and municipalities of Batangas, with Bauan raised and coloured. The town view
-            breaks Bauan into its {barangays} barangays — the same forty, with the same PSA counts, as the
-            <a href="/barangays">barangays page</a>.
+            all 34 cities and municipalities of Batangas, with Bauan raised and coloured gold. The town
+            view breaks Bauan into its {barangays} barangays — the same forty, with the same PSA counts,
+            as the <a href="/barangays">barangays page</a>.
           </p>
           <p>
             <strong>Height is a statistic, not terrain.</strong> Each barangay is extruded to its
             population by default; the measure buttons rebuild the town by households, contract count or
-            contract value. A true relief model would need a digital elevation file, which this project
-            does not ship — so the map does not pretend to show one.
+            contract value. The year slider keeps only the contracts dated in that year; with Contracts or
+            Contract value selected, it also regrows the town to the year's own totals.
           </p>
           <p>
             {pins} DPWH contracts carry coordinates that fall inside Bauan; {mapped} of those also land
@@ -237,7 +275,7 @@ const ranking = [...map.levels.bauan.barangays]
         />
       </div>
 
-      <div class="space-y-6">
+      <div class="space-y-6" data-reveal style="--reveal-delay:100ms">
         <Callout tone="note" title="Nothing is fetched while you look">
           <p>
             The geometry, the barangay counts and the contract pins are committed files. The page is
@@ -247,7 +285,7 @@ const ranking = [...map.levels.bauan.barangays]
         </Callout>
 
         <div class="border border-line bg-paper p-5">
-          <h2 class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">On this map</h2>
+          <h2 class="kicker-plain">On this map</h2>
           <dl class="mt-3 space-y-2 text-sm">
             <div class="flex justify-between gap-4">
               <dt class="text-muted">Regions</dt>
@@ -267,7 +305,7 @@ const ranking = [...map.levels.bauan.barangays]
             </div>
             <div class="flex justify-between gap-4">
               <dt class="text-muted">Value of mapped contracts</dt>
-              <dd class="tnum text-ink">{peso(totals.contractAmount)}</dd>
+              <dd class="tnum text-ink">{peso(mappedValue)}</dd>
             </div>
             <div class="flex justify-between gap-4">
               <dt class="text-muted">Largest barangay</dt>

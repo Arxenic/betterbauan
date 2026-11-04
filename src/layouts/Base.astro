@@ -7,7 +7,9 @@ interface Props {
 import { SITE } from '../data/site';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import '@fontsource-variable/fraunces/wght.css';
+import '@fontsource-variable/archivo/wght.css';
+import '@fontsource/archivo-black';
+import '@fontsource-variable/newsreader/wght-italic.css';
 import '@fontsource-variable/public-sans/wght.css';
 import '../styles/global.css';
 
@@ -25,7 +27,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#0e4a40" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+
+    <script is:inline>
+      // Resolve the theme before the first paint. Light is the default; the
+      // reader's choice is remembered, and the toggle lives in the dock.
+      (function () {
+        document.documentElement.classList.add('js');
+        try {
+          var saved = localStorage.getItem('bb-theme');
+          var theme = saved === 'dark' || saved === 'light' ? saved : 'light';
+          document.documentElement.dataset.theme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'dark' ? '#080d0f' : '#ffffff');
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
@@ -39,9 +59,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="min-h-dvh">
+    <div class="read-progress" data-progress aria-hidden="true"></div>
+
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-brand focus:px-4 focus:py-2 focus:text-paper"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
     >
       Skip to content
     </a>
@@ -53,5 +75,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </main>
 
     <SiteFooter />
+    <script>
+      import '../lib/motion';
+    </script>
   </body>
 </html>

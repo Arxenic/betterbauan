@@ -32,6 +32,7 @@ type Shape = {
   households?: number;
   contracts?: number;
   contractAmount?: number;
+  contractsByYear?: Record<string, { contracts: number; contractAmount: number }>;
   polygons: Polygons;
 };
 
@@ -60,11 +61,14 @@ type MapData = {
       barangays?: Shape[];
       municipality?: Polygons;
       pins?: Pin[];
+      years?: string[];
       totals?: {
         pins: number;
         assignedPins: number;
         contractAmount: number;
+        assignedContractAmount: number;
         barangaysWithContracts: number;
+        byYear?: { year: string; contracts: number; contractAmount: number }[];
       };
     }
   >;
@@ -77,16 +81,41 @@ const BAUAN_DEPTH = 0.16;
 const MIN_HEIGHT = 0.16;
 const MAX_HEIGHT = 2.05;
 
-const PALETTE = {
-  land: 0xded6c5,
-  landEdge: 0x9f9278,
-  low: 0xe8e1d2,
-  high: 0xc2542d,
-  accent: 0xc2542d,
-  accentEdge: 0x8f3a1c,
-  hover: 0x0e4a40,
-  pin: 0x0e4a40,
-};
+type ThemeKey = 'light' | 'dark';
+
+const THEMES = {
+  light: {
+    land: 0xdde7e1,
+    landEdge: 0x93a89f,
+    low: 0xd2e5d9,
+    high: 0x0e5537,
+    focus: 0xe8a317,
+    focusEdge: 0xa9760a,
+    hover: 0x0e5537,
+    pin: 0xe8a317,
+    gold: 0xe8a317,
+    ground: 0x9db3a8,
+    ring: 0x0e5537,
+    glow: 'rgba(232,163,23,0.30)',
+  },
+  dark: {
+    land: 0x16241f,
+    landEdge: 0x31473e,
+    low: 0x1a3a2c,
+    high: 0x5fd3a0,
+    focus: 0xf3be4f,
+    focusEdge: 0x9d7a20,
+    hover: 0xf3be4f,
+    pin: 0xf3be4f,
+    gold: 0xf3be4f,
+    ground: 0x2d4a3d,
+    ring: 0x57c293,
+    glow: 'rgba(243,190,79,0.24)',
+  },
+} as const;
+
+let themeKey: ThemeKey = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+let PALETTE = THEMES[themeKey];
 
 const METRICS: Record<
   MetricKey,
@@ -245,6 +274,28 @@ function setOpacity(root: THREE.Object3D, value: number) {
   });
 }
 
+function radialTexture(rgb: [number, number, number]) {
+  const size = 256;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const context = canvas.getContext('2d');
+
+  if (context) {
+    const [r, g, b] = rgb;
+    const gradient = context.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    gradient.addColorStop(0, `rgba(${r},${g},${b},0.38)`);
+    gradient.addColorStop(0.42, `rgba(${r},${g},${b},0.14)`);
+    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, size, size);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
 /* ------------------------------------------------------------------ */
 /* main                                                                */
 /* ------------------------------------------------------------------ */
@@ -264,6 +315,11 @@ export function initMap() {
   const fallback = document.querySelector<HTMLElement>('[data-map-fallback]');
   const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-map-level]'));
   const metrics = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-map-metric]'));
+  const yearRow = document.querySelector<HTMLElement>('[data-map-year-row]');
+  const yearInput = document.querySelector<HTMLInputElement>('[data-map-year]');
+  const yearLabel = document.querySelector<HTMLElement>('[data-map-year-label]');
+  const yearStat = document.querySelector<HTMLElement>('[data-map-year-stat]');
+  const years = data.levels.bauan.years ?? [];
 
   if (!host || !frame) return;
 
@@ -303,7 +359,12 @@ export function initMap() {
   controls.autoRotate = !prefersReducedMotion;
   controls.autoRotateSpeed = 0.4;
 
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xb9b0a0, 1.5));
+  const ambient = new THREE.HemisphereLight(
+    0xffffff,
+    themeKey === 'dark' ? 0x14221b : 0xb9c8bd,
+    themeKey === 'dark' ? 1.1 : 1.45
+  );
+  scene.add(ambient);
 
   const key = new THREE.DirectionalLight(0xfff6ea, 2.4);
   key.position.set(6, 13, 7);
@@ -326,12 +387,56 @@ export function initMap() {
 
   const ground = new THREE.Mesh(
     new THREE.CircleGeometry(48, 64),
-    new THREE.ShadowMaterial({ color: 0x2a2418, opacity: 0.2 })
+    new THREE.ShadowMaterial({ color: 0x1c3026, opacity: themeKey === 'dark' ? 0.4 : 0.16 })
   );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.02;
   ground.receiveShadow = true;
   scene.add(ground);
+
+  // A surveyor's grid and three survey rings: the map reads as a drawing of a
+  // place, not a toy island. They only appear on the town level.
+  const grid = new THREE.GridHelper(34, 68, PALETTE.ground, PALETTE.ground);
+  const gridMaterial = grid.material as THREE.LineBasicMaterial;
+  gridMaterial.transparent = true;
+  gridMaterial.opacity = themeKey === 'dark' ? 0.14 : 0.1;
+  gridMaterial.depthWrite = false;
+  grid.position.y = -0.045;
+  scene.add(grid);
+
+  const rings = new THREE.Group();
+  const ringMaterials: THREE.MeshBasicMaterial[] = [];
+
+  for (const radius of [3.1, 4.5, 5.9]) {
+    const material = new THREE.MeshBasicMaterial({
+      color: PALETTE.ring,
+      transparent: true,
+      opacity: 0.16,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    const ring = new THREE.Mesh(new THREE.RingGeometry(radius, radius + 0.012, 128), material);
+    ring.rotation.x = -Math.PI / 2;
+    ring.position.y = -0.035;
+    rings.add(ring);
+    ringMaterials.push(material);
+  }
+  rings.visible = false;
+  scene.add(rings);
+
+  const glow = new THREE.Sprite(
+    new THREE.SpriteMaterial({
+      map: radialTexture(themeKey === 'dark' ? [243, 190, 79] : [232, 163, 23]),
+      transparent: true,
+      opacity: themeKey === 'dark' ? 0.14 : 0.08,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    })
+  );
+  glow.scale.set(15, 15, 1);
+  glow.position.set(0, 1.1, -1.6);
+  glow.visible = false;
+  scene.add(glow);
 
   /* ---------------------------------------------------------------- */
   /* level construction                                                */
@@ -342,7 +447,7 @@ export function initMap() {
     pickables: THREE.Object3D[];
     bars: THREE.Mesh[];
     pinGroup?: THREE.Group;
-    pins: THREE.Mesh[];
+    pins: THREE.Group[];
   };
 
   const built: Partial<Record<LevelKey, BuiltLevel>> = {};
@@ -356,6 +461,8 @@ export function initMap() {
       data: Record<string, unknown>;
       emissive?: number;
       emissiveIntensity?: number;
+      gradient?: boolean;
+      tone?: string;
     }
   ) {
     const geometry = new THREE.ExtrudeGeometry(shape, {
@@ -364,11 +471,26 @@ export function initMap() {
       curveSegments: 1,
     });
 
+    if (options.gradient) {
+      const position = geometry.attributes.position;
+      const colors = new Float32Array(position.count * 3);
+      for (let index = 0; index < position.count; index += 1) {
+        const z = position.getZ(index);
+        const t = Math.max(0, Math.min(1, z / Math.max(options.depth, 1e-6)));
+        const shade = 0.64 + 0.36 * t;
+        colors[index * 3] = shade;
+        colors[index * 3 + 1] = shade;
+        colors[index * 3 + 2] = shade;
+      }
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    }
+
     const material = new THREE.MeshStandardMaterial({
       color: options.color,
-      roughness: 0.86,
-      metalness: 0.02,
+      roughness: 0.82,
+      metalness: 0.04,
       flatShading: true,
+      vertexColors: Boolean(options.gradient),
       emissive: options.emissive ?? 0x000000,
       emissiveIntensity: options.emissiveIntensity ?? 0,
     });
@@ -377,16 +499,17 @@ export function initMap() {
     mesh.rotation.x = -Math.PI / 2;
     mesh.castShadow = true;
     mesh.receiveShadow = true;
-    mesh.userData = { ...options.data };
+    mesh.userData = { ...options.data, tone: options.tone ?? 'land' };
 
     const edges = new THREE.LineSegments(
       new THREE.EdgesGeometry(geometry, 26),
       new THREE.LineBasicMaterial({
         color: options.edgeColor,
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.42,
       })
     );
+    (edges.material as THREE.LineBasicMaterial).userData.tone = 'edge';
     mesh.add(edges);
 
     return mesh;
@@ -405,6 +528,7 @@ export function initMap() {
           edgeColor: PALETTE.landEdge,
           depth: 0.1,
           data: { kind: 'region', name: region.name },
+          tone: 'land',
         });
         group.add(mesh);
         pickables.push(mesh);
@@ -417,15 +541,15 @@ export function initMap() {
 
     const stem = new THREE.Mesh(
       new THREE.CylinderGeometry(0.012, 0.012, 0.55, 8),
-      new THREE.MeshStandardMaterial({ color: PALETTE.accent, roughness: 0.5 })
+      new THREE.MeshStandardMaterial({ color: PALETTE.focus, roughness: 0.5 })
     );
     stem.position.set(bx, 0.27, -bz);
 
     const head = new THREE.Mesh(
       new THREE.SphereGeometry(0.055, 14, 14),
       new THREE.MeshStandardMaterial({
-        color: PALETTE.accent,
-        emissive: PALETTE.accent,
+        color: PALETTE.focus,
+        emissive: PALETTE.focus,
         emissiveIntensity: 0.4,
         roughness: 0.35,
       })
@@ -435,7 +559,7 @@ export function initMap() {
     const halo = new THREE.Mesh(
       new THREE.RingGeometry(0.1, 0.15, 40),
       new THREE.MeshBasicMaterial({
-        color: PALETTE.accent,
+        color: PALETTE.focus,
         transparent: true,
         opacity: 0.55,
         side: THREE.DoubleSide,
@@ -460,16 +584,17 @@ export function initMap() {
     for (const municipality of level.shapes ?? []) {
       for (const shape of polygonsToShapes(municipality.polygons, project)) {
         const mesh = makeMesh(shape, {
-          color: municipality.focus ? PALETTE.accent : PALETTE.land,
-          edgeColor: municipality.focus ? PALETTE.accentEdge : PALETTE.landEdge,
+          color: municipality.focus ? PALETTE.focus : PALETTE.land,
+          edgeColor: municipality.focus ? PALETTE.focusEdge : PALETTE.landEdge,
           depth: municipality.focus ? 0.5 : 0.3,
           data: {
             kind: 'municipality',
             name: municipality.name,
             focus: Boolean(municipality.focus),
           },
-          emissive: municipality.focus ? PALETTE.accent : undefined,
+          emissive: municipality.focus ? PALETTE.focus : undefined,
           emissiveIntensity: municipality.focus ? 0.1 : 0,
+          tone: municipality.focus ? 'focus' : 'land',
         });
         group.add(mesh);
         pickables.push(mesh);
@@ -490,7 +615,7 @@ export function initMap() {
       for (const shape of polygonsToShapes(barangay.polygons, project)) {
         const mesh = makeMesh(shape, {
           color: PALETTE.low,
-          edgeColor: PALETTE.accentEdge,
+          edgeColor: PALETTE.focusEdge,
           depth: BAUAN_DEPTH,
           data: {
             kind: 'barangay',
@@ -502,8 +627,27 @@ export function initMap() {
             contractAmount: barangay.contractAmount,
             index,
           },
+          gradient: true,
+          tone: 'bar',
         });
         mesh.userData.currentColor = PALETTE.low;
+
+        // A gold rim on the top face: each barangay reads as a measured block,
+        // and the rim catches the light as the town grows.
+        const rimPoints = shape
+          .getPoints(2)
+          .map((point) => new THREE.Vector3(point.x, point.y, BAUAN_DEPTH + 0.004));
+        const rim = new THREE.LineLoop(
+          new THREE.BufferGeometry().setFromPoints(rimPoints),
+          new THREE.LineBasicMaterial({
+            color: PALETTE.gold,
+            transparent: true,
+            opacity: 0.55,
+          })
+        );
+        (rim.material as THREE.LineBasicMaterial).userData.tone = 'gold';
+        mesh.add(rim);
+
         // Start squashed so the town can grow when the level is entered.
         mesh.scale.z = 0.001;
         group.add(mesh);
@@ -514,7 +658,7 @@ export function initMap() {
 
     const pinGroup = new THREE.Group();
     pinGroup.name = 'pins';
-    const pinMeshes: THREE.Mesh[] = [];
+    const pinGroups: THREE.Group[] = [];
 
     for (const pin of level.pins ?? []) {
       // Only pins that land inside a barangay polygon are plotted on the town.
@@ -523,26 +667,55 @@ export function initMap() {
       if (!pin.barangay) continue;
 
       const [x, z] = project(pin.lon, pin.lat);
-      const dot = new THREE.Mesh(
-        new THREE.SphereGeometry(0.042, 10, 10),
+      const beacon = new THREE.Group();
+
+      const stem = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.007, 0.012, 0.38, 6),
+        new THREE.MeshStandardMaterial({ color: PALETTE.pin, roughness: 0.45, metalness: 0.15 })
+      );
+      stem.position.y = 0.19;
+      stem.castShadow = false;
+      (stem.material as THREE.MeshStandardMaterial).userData.tone = 'pin';
+
+      const head = new THREE.Mesh(
+        new THREE.SphereGeometry(0.048, 12, 12),
         new THREE.MeshStandardMaterial({
           color: PALETTE.pin,
           emissive: PALETTE.pin,
-          emissiveIntensity: 0.35,
-          roughness: 0.35,
+          emissiveIntensity: 0.6,
+          roughness: 0.3,
         })
       );
-      dot.position.set(x, 0.25, -z);
-      dot.userData = { kind: 'pin', pin, baseY: 0.25 };
-      dot.castShadow = false;
-      pinGroup.add(dot);
-      pickables.push(dot);
-      pinMeshes.push(dot);
+      head.position.y = 0.4;
+      head.userData = { kind: 'pin', pin };
+      head.castShadow = false;
+      (head.material as THREE.MeshStandardMaterial).userData.tone = 'pin';
+
+      const halo = new THREE.Mesh(
+        new THREE.RingGeometry(0.055, 0.11, 24),
+        new THREE.MeshBasicMaterial({
+          color: PALETTE.gold,
+          transparent: true,
+          opacity: 0.45,
+          side: THREE.DoubleSide,
+          depthWrite: false,
+        })
+      );
+      halo.rotation.x = -Math.PI / 2;
+      halo.position.y = 0.006;
+
+      beacon.position.set(x, 0.25, -z);
+      beacon.userData = { kind: 'pin-beacon', pin, baseY: 0.25, head, halo };
+      beacon.add(stem, head, halo);
+
+      pinGroup.add(beacon);
+      pickables.push(head);
+      pinGroups.push(beacon);
     }
 
     group.add(pinGroup);
 
-    return { group, pickables, bars, pinGroup, pins: pinMeshes };
+    return { group, pickables, bars, pinGroup, pins: pinGroups };
   }
 
   /* ---------------------------------------------------------------- */
@@ -550,6 +723,7 @@ export function initMap() {
   /* ---------------------------------------------------------------- */
 
   let metric: MetricKey = 'population';
+  let activeYear: string | null = null;
   const heightByBarangay = new Map<string, number>();
 
   function heightFor(value: number, max: number) {
@@ -557,11 +731,19 @@ export function initMap() {
     return MIN_HEIGHT + Math.pow(value / max, 0.62) * (MAX_HEIGHT - MIN_HEIGHT);
   }
 
-  function applyMetric(next: MetricKey, options: { intro?: boolean } = {}) {
+  function metricValue(barangay: Shape, key: MetricKey) {
+    if (activeYear && (key === 'contracts' || key === 'contractAmount')) {
+      const stats = barangay.contractsByYear?.[activeYear];
+      return stats ? stats[key] : 0;
+    }
+    return METRICS[key].value(barangay);
+  }
+
+  function applyMetric(next: MetricKey, options: { intro?: boolean; instant?: boolean } = {}) {
     metric = next;
     const barangays = data.levels.bauan.barangays ?? [];
     const config = METRICS[next];
-    const values = barangays.map((barangay) => config.value(barangay));
+    const values = barangays.map((barangay) => metricValue(barangay, next));
     const max = Math.max(...values, 1);
 
     for (const button of metrics) {
@@ -579,12 +761,12 @@ export function initMap() {
 
     if (ranking) {
       const top = [...barangays]
-        .sort((a, b) => config.value(b) - config.value(a))
+        .sort((a, b) => metricValue(b, next) - metricValue(a, next))
         .slice(0, 6);
 
       ranking.replaceChildren();
       for (const [index, barangay] of top.entries()) {
-        const value = config.value(barangay);
+        const value = metricValue(barangay, next);
         const item = document.createElement('li');
         item.className = 'map-rank';
 
@@ -623,7 +805,7 @@ export function initMap() {
       const barangay = barangays[index];
       if (!barangay) continue;
 
-      const value = config.value(barangay);
+      const value = metricValue(barangay, next);
       const targetHeight = heightFor(value, max);
       heightByBarangay.set(barangay.name, targetHeight);
 
@@ -633,6 +815,12 @@ export function initMap() {
 
       colour.lerpColors(low, high, Math.min(1, Math.sqrt(value / max) * 0.95));
       bar.userData.currentColor = colour.getHex();
+
+      if (options.instant) {
+        bar.scale.z = to;
+        (bar.material as THREE.MeshStandardMaterial).color.setHex(colour.getHex());
+        continue;
+      }
 
       // A short stagger turns the intro into a wave across the town, not a
       // single switch. Capped so the last barangay does not lag behind.
@@ -664,13 +852,23 @@ export function initMap() {
     // Pins sit on top of whichever bar contains them.
     for (const pin of level.pins) {
       const info = pin.userData.pin as Pin;
-      const target = info.barangay ? (heightByBarangay.get(info.barangay) ?? MIN_HEIGHT) + 0.09 : 0.25;
+      pin.visible = !activeYear || info.year === activeYear;
+
+      const target = info.barangay ? (heightByBarangay.get(info.barangay) ?? MIN_HEIGHT) : 0.25;
       const from = pin.position.y;
       pin.userData.baseY = target;
+
+      if (options.instant) {
+        pin.position.y = target;
+        continue;
+      }
+
       tween(620, (t) => {
         pin.position.y = from + (target - from) * t;
       });
     }
+
+    updateYear();
   }
 
   /* ---------------------------------------------------------------- */
@@ -758,6 +956,22 @@ export function initMap() {
     return built[key] as BuiltLevel;
   }
 
+  function updateYear() {
+    if (yearLabel) yearLabel.textContent = activeYear ?? 'All years';
+
+    if (yearStat) {
+      const totals = data.levels.bauan.totals;
+      const yearTotal = activeYear
+        ? totals?.byYear?.find((entry) => entry.year === activeYear)
+        : null;
+      const contracts = yearTotal ? yearTotal.contracts : (totals?.assignedPins ?? 0);
+      const amount = yearTotal ? yearTotal.contractAmount : (totals?.assignedContractAmount ?? 0);
+      yearStat.textContent = activeYear
+        ? `${num(contracts)} mapped contracts in ${activeYear} · ${peso(amount)}`
+        : `${num(contracts)} mapped contracts · ${peso(amount)}`;
+    }
+  }
+
   function updateChrome(key: LevelKey) {
     for (const tab of tabs) {
       tab.setAttribute('aria-pressed', String(tab.dataset.mapLevel === key));
@@ -768,6 +982,9 @@ export function initMap() {
     if (pinToggle) pinToggle.disabled = key !== 'bauan';
     if (metricRow) metricRow.hidden = key !== 'bauan';
     if (legend) legend.hidden = key !== 'bauan';
+    if (yearRow) yearRow.hidden = key !== 'bauan';
+    rings.visible = key === 'bauan';
+    glow.visible = key === 'bauan';
   }
 
   function renderHint() {
@@ -779,9 +996,19 @@ export function initMap() {
 
     if (current === 'bauan') {
       const totals = data.levels.bauan.totals;
-      line.textContent = `${num(totals?.pins ?? 0)} contracts with usable coordinates, ${num(
-        totals?.assignedPins ?? 0
-      )} of them inside a barangay polygon. Hover a bar; click a dot.`;
+      const yearTotal = activeYear
+        ? totals?.byYear?.find((entry) => entry.year === activeYear)
+        : null;
+
+      if (yearTotal) {
+        line.textContent = `${num(yearTotal.contracts)} mapped contracts dated ${activeYear}, worth ${peso(
+          yearTotal.contractAmount
+        )}. Hover a bar; click a beacon.`;
+      } else {
+        line.textContent = `${num(totals?.pins ?? 0)} contracts with usable coordinates, ${num(
+          totals?.assignedPins ?? 0
+        )} of them inside a barangay polygon. Hover a bar; click a beacon.`;
+      }
     } else {
       line.textContent = 'Hover a shape to read its name, then click to fly in.';
     }
@@ -1108,10 +1335,55 @@ export function initMap() {
     });
   }
 
+  yearInput?.addEventListener('input', () => {
+    const index = Number(yearInput.value);
+    activeYear = index > 0 ? (years[index - 1] ?? null) : null;
+    if (yearInput) yearInput.setAttribute('aria-valuetext', activeYear ?? 'All years');
+    applyMetric(metric, { intro: false });
+    if (current === 'bauan') renderHint();
+  });
+
   pinToggle?.addEventListener('change', () => {
     const level = built.bauan;
     if (level?.pinGroup) level.pinGroup.visible = Boolean(pinToggle.checked);
   });
+
+  /* ---------------------------------------------------------------- */
+  /* theme                                                             */
+  /* ---------------------------------------------------------------- */
+
+  function restyle() {
+    themeKey = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    PALETTE = THEMES[themeKey];
+
+    gridMaterial.opacity = themeKey === 'dark' ? 0.14 : 0.1;
+    for (const material of ringMaterials) material.color.setHex(PALETTE.ring);
+    (glow.material as THREE.SpriteMaterial).opacity = themeKey === 'dark' ? 0.14 : 0.08;
+    ambient.groundColor.setHex(themeKey === 'dark' ? 0x14221b : 0xb9c8bd);
+    ambient.intensity = themeKey === 'dark' ? 1.1 : 1.45;
+    (ground.material as THREE.ShadowMaterial).opacity = themeKey === 'dark' ? 0.4 : 0.16;
+
+    scene.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      const material = mesh.material as THREE.MeshStandardMaterial | undefined;
+      if (!material || !('color' in material)) return;
+
+      const tone = (material.userData?.tone ?? mesh.userData?.tone) as string | undefined;
+      if (!tone) return;
+
+      if (tone === 'land') material.color.setHex(PALETTE.land);
+      if (tone === 'focus') material.color.setHex(PALETTE.focus);
+      if (tone === 'edge') material.color.setHex(PALETTE.landEdge);
+      if (tone === 'gold') material.color.setHex(PALETTE.gold);
+      if (tone === 'pin') material.color.setHex(PALETTE.pin);
+    });
+
+    // Bar colours encode the active metric, so recompute them rather than
+    // guessing from the old palette.
+    if (built.bauan) applyMetric(metric, { instant: true });
+  }
+
+  window.addEventListener('bb:themechange', restyle);
 
   /* ---------------------------------------------------------------- */
   /* resize + loop                                                     */
@@ -1140,6 +1412,15 @@ export function initMap() {
   // Deep links: /map?level=bauan&metric=contracts. Read these before the opening
   // dolly, so a level chosen from the URL is not dragged back to country framing.
   const params = new URLSearchParams(window.location.search);
+  const linkYear = params.get('year');
+  if (linkYear && years.includes(linkYear)) {
+    activeYear = linkYear;
+    if (yearInput) {
+      yearInput.value = String(years.indexOf(linkYear) + 1);
+      yearInput.setAttribute('aria-valuetext', linkYear);
+    }
+  }
+
   const startMetric = params.get('metric');
   if (startMetric && startMetric !== metric && startMetric in METRICS) {
     applyMetric(startMetric as MetricKey);
@@ -1176,10 +1457,16 @@ export function initMap() {
 
     const pins = built.bauan?.pinGroup;
     if (pins?.visible) {
-      pins.children.forEach((pin, index) => {
-        pin.scale.setScalar(1 + Math.sin(t * 2 + index * 0.6) * 0.12);
+      pins.children.forEach((beacon, index) => {
+        const halo = beacon.userData.halo as THREE.Mesh | undefined;
+        if (!halo) return;
+        const material = halo.material as THREE.MeshBasicMaterial;
+        material.opacity = 0.28 + (Math.sin(t * 1.8 + index * 0.7) + 1) * 0.14;
+        halo.scale.setScalar(1 + Math.sin(t * 1.8 + index * 0.7) * 0.18);
       });
     }
+
+    if (rings.visible) rings.rotation.y = t * 0.03;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);

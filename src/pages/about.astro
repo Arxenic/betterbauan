@@ -16,8 +16,8 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
 >
   <section class="border-b border-line">
     <div class="wrap py-12 sm:py-16">
-      <p class="eyebrow">About</p>
-      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
+      <p class="kicker">About</p>
+      <h1 class="display-xl mt-3 max-w-3xl">
         A record, <span class="text-brand">not a campaign.</span>
       </h1>
       <p class="lede mt-4 max-w-2xl">
@@ -126,7 +126,8 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
           <p class="mt-2 text-sm leading-relaxed text-ink-soft">
             The figure must come from a tier A or B record — a machine-readable table published by the
             agency that produces it, or a primary document read by a person. Encyclopedia entries and news
-            reports are leads, never citations.
+            reports are leads, never citations. A tier C roster (the officials, for now) is labelled as
+            reported and carries no derived numbers.
           </p>
         </li>
         <li>
@@ -160,7 +161,8 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
           <p class="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-muted">Gate in practice · DPWH</p>
           <p class="mt-1 text-sm leading-relaxed text-ink-soft">
             Contracts are kept only if the description names Bauan as a whole word. Coordinates outside the
-            town's bounding box are flagged, and the site publishes no map.
+            town are flagged, and pins are plotted only when the coordinate lands inside a barangay polygon;
+            the unmapped remainder is disclosed rather than nudged into place.
           </p>
         </div>
       </div>
@@ -168,9 +170,10 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
       <div class="mt-6 max-w-2xl">
         <Callout tone="warn" title="What is deliberately absent">
           <p>
-            Elected officials, municipal poverty incidence, the LGU's income class, and the ordinance index
-            are all missing. Each one is checked by someone as a matter of course and each one is easy to
-            get subtly wrong. They stay off until a primary record is in hand — the{' '}
+            Municipal poverty incidence, the LGU's income class, and the ordinance index are missing. Each
+            one is checked by someone as a matter of course and each one is easy to get subtly wrong. They
+            stay off until a primary record is in hand. The 2025–2028 officials are published as a tier C
+            roster; vote counts wait for the COMELEC proclamation — the{' '}
             <a href="/sources" class="text-brand underline decoration-brand/30 underline-offset-2">
               sources page</a
             > lists exactly what would unblock them.
@@ -180,7 +183,7 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
     </div>
   </section>
 
-  <section class="wrap py-12 sm:py-14">
+  <section id="contribute" class="wrap scroll-mt-20 py-12 sm:py-14">
     <div class="grid gap-10 lg:grid-cols-2">
       <div>
         <h2 class="font-display text-[1.5rem] tracking-tight">Correcting us</h2>
@@ -223,7 +226,8 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
           <li class="flex items-start gap-3 py-3">
             <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand/50"></span>
             <span class="text-ink-soft">
-              Publish elected officials once a certificate of canvass or FOI response is obtained.
+              Verify the 2025–2028 officials against the COMELEC proclamation, then publish vote counts
+              alongside the roster.
             </span>
           </li>
           <li class="flex items-start gap-3 py-3">

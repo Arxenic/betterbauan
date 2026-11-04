@@ -1,0 +1,254 @@
+---
+import Base from '../layouts/Base.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import { SITE } from '../data/site';
+import { num } from '../lib/format';
+
+const feast = [
+  { day: '1 May', title: 'The crosses travel', text: 'The Mahal na Poong Sta. Cruz of Bauan is carried to Alitagtag.' },
+  { day: '2 May', title: 'Salubong at Concordia', text: 'The sibling crosses meet; Mass at Binukalan, then luwa and subli.' },
+  { day: '3 May', title: 'The town fiesta', text: 'The feast of the Holy Cross, kept in Bauan since the sixteenth century.' },
+];
+
+const timeline = [
+  { year: '1590', title: 'A visita of Taal', text: 'Bauan begins as a chapel community on the shore of Taal Lake, served from Taal. Fr. Diego de Avila is appointed to the natives of Bauan on 17 May.' },
+  { year: '1596', title: 'An independent parish', text: 'On 12 May Bauan becomes the fifth parish in Batangas, with Fr. Ildefonso Bernal as first parish priest. The Holy Cross tradition belongs to this same decade.' },
+  { year: '1653', title: 'A town of its own', text: 'Bauan is separated from Taal and constituted as a town, after a petition led by Fernando Mangobos, who becomes its first governadorcillo.' },
+  { year: '1662', title: 'The first move', text: 'Taal Volcano drives the town inland to Durungao, under Fr. Jose Rodriguez. A stone church and convent follow in 1667.' },
+  { year: '1671', title: 'The second move', text: 'The town moves to Duclap, beside Sinala, under Fr. Nicolas de Rivera. It stays until 1690.' },
+  { year: '1690', title: 'The present site', text: 'The third and last relocation brings Bauan to Tulusan, by the sea. The town still counts its founding from this move: the 336th anniversary fell on 30 January 2026.' },
+  { year: '1762', title: 'The church we know', text: 'The present Immaculate Conception Church is begun under Fr. Jose Victoria and Don Juan Bandino, and finished over the following decades.' },
+  { year: '1775', title: 'A fort by the sea', text: 'A cotta is built to protect the town from Moro raids, a reminder that this coast was a frontier.' },
+  { year: '1898', title: 'Fire and revolution', text: 'The church is razed during the Philippine revolution against Spain, and suffers again in the twentieth century before its restoration.' },
+  { year: '1910', title: 'Alitagtag', text: 'The first of Bauan’s children becomes a separate municipality. The Holy Cross is divided into the two sibling crosses.' },
+  { year: '1918', title: 'Mabini', text: 'Mabini, including the country around Cape Santiago, is carved out of Bauan.' },
+  { year: '1955', title: 'Tingloy', text: 'Tingloy, on Maricaban Island, becomes its own municipality.' },
+  { year: '1969', title: 'San Pascual', text: 'San Pascual is separated, leaving Bauan at its present 40 barangays.' },
+  { year: '2025', title: 'The first woman mayor', text: 'Wendah Katrina Rivera Dolor is elected mayor and takes office on 30 June, succeeding Ryanh M. Dolor.' },
+];
+---
+
+<Base
+  title="Culture & history"
+  description="Bauan's Sublian festival, the Holy Cross, its three relocations, and the timeline of a town that has been on this coast since 1690."
+>
+  <!-- Hero -------------------------------------------------------- -->
+  <section class="border-b border-line">
+    <div class="wrap py-10 sm:py-16">
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <p class="kicker">Culture & history</p>
+        <p class="folio">Bauan, Batangas · est. 1596 · moved 1690</p>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div data-reveal>
+          <h1 class="display-xl">
+            Three moves,<br />
+            one cross,<br />
+            <span class="text-brand">one dance.</span>
+          </h1>
+        </div>
+
+        <div class="self-end" data-reveal style="--reveal-delay:100ms">
+          <p class="standfirst">
+            Bauan has been burned, rebuilt and relocated three times. Through all of it, the town kept a
+            wooden cross and a dance for it — the subli — and still keeps both on the first days of May.
+          </p>
+          <p class="serif-note mt-4">
+            {SITE.tagline} The line is the town's own, used again at its 336th founding anniversary.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feast ------------------------------------------------------- -->
+  <section class="border-b border-line bg-surface-soft">
+    <div class="wrap py-10 sm:py-14">
+      <div class="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink pb-4">
+        <h2 class="display-l">Three days in May.</h2>
+        <span class="folio">Sublian Festival · 25th edition, 2026</span>
+      </div>
+
+      <ol class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {
+          feast.map((item) => (
+            <li class="border-l border-gold pl-4">
+              <p class="folio text-gold">{item.day}</p>
+              <h3 class="mt-1 font-display text-lg font-bold">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="mt-6 max-w-3xl text-[0.8rem] leading-relaxed text-muted">
+        The 25th Sublian Festival was held on 2 May 2026. The programme began with the cross carried to
+        Alitagtag for Mass at Binukalan, then the two crosses returned to Bauan, met the manunubli at
+        the Manghinao bridge, and were carried through the Poblacion to the church.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sublian ----------------------------------------------------- -->
+  <section class="wrap py-12 sm:py-16">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+      <article data-reveal>
+        <p class="kicker">The subli</p>
+        <h2 class="display-l mt-3">A dance offered<br />to the cross.</h2>
+
+        <p class="dropcap mt-5 max-w-2xl text-[0.98rem] leading-[1.72] text-ink-soft">
+          The subli is Bauan's own devotional dance: part prayer, part procession, part performance. It
+          is offered to the Mahal na Poong Santa Cruz, the Holy Cross kept in the Immaculate Conception
+          Church. Dancers work in pairs, the men shuffling hard against the ground with a bamboo stick,
+          the women answering with small, precise turns of the wrist.
+        </p>
+        <p class="mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
+          The name is often explained as coming from <em>subsob</em> and <em>bali</em> — to fall forward,
+          to break — a description of the dancers' movement rather than a doctrine. The performance has
+          three parts: the <em>kambulong</em>, the subli proper, and the <em>pandangguhan</em>. It can be
+          danced for a feast, a birthday, a recovery, or the fulfilment of a <em>panata</em>.
+        </p>
+
+        <p class="pullquote mt-8">
+          The cross was said to grow light when the people of Bauan danced. It has been theirs ever
+          since.
+          <cite>The Alitagtag tradition, as retold in the subli</cite>
+        </p>
+
+        <p class="mt-6 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
+          The story places the finding around 1595, in a place called Diñgin near what is now Alitagtag,
+          then part of Bauan. Taal, Lipa and Bauan each sent a delegation to claim the wood. Only Bauan's
+          priest is said to have moved it, accompanied by dancers. When Alitagtag became a municipality
+          in 1910, the cross was divided: the two <em>magkapatid na krus</em> still meet at Concordia
+          every 2 May.
+        </p>
+      </article>
+
+      <aside class="space-y-6" data-reveal style="--reveal-delay:100ms">
+        <div class="border-t-2 border-ink pt-4">
+          <p class="kicker-plain">At a glance</p>
+          <dl class="mt-3 space-y-3 text-sm">
+            <div class="flex justify-between gap-4 border-b border-line pb-2">
+              <dt class="text-muted">Feast day</dt>
+              <dd class="text-ink">3 May</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-b border-line pb-2">
+              <dt class="text-muted">Festival</dt>
+              <dd class="text-ink">Sublian, 1–2 May</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-b border-line pb-2">
+              <dt class="text-muted">Patron</dt>
+              <dd class="text-ink">Mahal na Poong Sta. Cruz</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-b border-line pb-2">
+              <dt class="text-muted">Church</dt>
+              <dd class="text-ink">Immaculate Conception</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Dance</dt>
+              <dd class="text-ink">Subli</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="bg-gold-soft p-5">
+          <p class="display-m">“We are One in Bauan.”</p>
+          <p class="mt-2 text-[0.78rem] leading-relaxed text-ink-soft">
+            The anniversary theme for 2026 was “One Legacy, One Community, One Future, as We are One in
+            Bauan.”
+          </p>
+        </div>
+
+        <p class="serif-note">
+          Bauan's fiesta is older than the municipality's present name for the Sublian Festival. The
+          dance is the constant; the programme around it has changed.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Timeline ---------------------------------------------------- -->
+  <section class="border-y border-line bg-surface-soft">
+    <div class="wrap py-12 sm:py-16">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4">
+        <h2 class="display-l">The town, moved.</h2>
+        <span class="folio">1590 → today</span>
+      </div>
+
+      <ol class="mt-4">
+        {
+          timeline.map((item, index) => (
+            <li
+              class="grid grid-cols-[4.6rem_1fr] gap-x-5 gap-y-1 border-b border-line py-5 sm:grid-cols-[7rem_1fr_1.15fr] sm:gap-x-8"
+              data-reveal
+              style={`--reveal-delay:${Math.min(index * 40, 200)}ms`}
+            >
+              <span class="font-display text-[1.15rem] font-bold leading-none text-gold sm:text-[1.35rem]">
+                {item.year}
+              </span>
+              <p class="font-display text-[1rem] font-bold leading-tight sm:text-[1.1rem]">{item.title}</p>
+              <p class="col-span-2 text-[0.86rem] leading-relaxed text-ink-soft sm:col-span-1">{item.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <p class="max-w-2xl text-[0.8rem] leading-relaxed text-muted">
+          Dates follow the LGU's published history and its anniversary posts. Where the record gives a
+          range or a succession rather than an election, the text says so. The pre-1690 relocations are
+          the town's own account, not an archaeological survey.
+        </p>
+        <p class="serif-note">
+          The name itself is disputed: <em>bauang</em>, a concealed ridge, or <em>bawang</em>, the garlic
+          farmers were planting when a Spanish official asked.
+        </p>
+      </div>
+
+      <div class="mt-8 max-w-3xl">
+        <EvidenceNote
+          sourceId="lgu-bauan"
+          locator="History of Bauan; 336th Founding Anniversary; 25th Sublian Festival"
+          retrievedAt="2026-11-04"
+          note="The municipal server timed out when fetched directly. Passages used here were read from the LGU's indexed pages on 4 November 2026 and are quoted, not paraphrased into figures."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Close ------------------------------------------------------- -->
+  <section class="wrap py-12 sm:py-16">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1fr] lg:gap-16">
+      <div data-reveal>
+        <p class="kicker">Keep reading</p>
+        <h2 class="display-l mt-3">The record around the story.</h2>
+        <p class="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-ink-soft">
+          Culture is the part of Bauan that national datasets cannot hold. The rest of this site can be
+          checked line by line; this page is a narrative, and says so.
+        </p>
+      </div>
+
+      <div class="grid gap-3 self-end" data-reveal style="--reveal-delay:100ms">
+        <a href="/government#mayors" class="toc-item">
+          <span class="toc-num">01</span>
+          <span class="toc-title">Mayors since 1998</span>
+          <span class="toc-desc">The succession the town made history with.</span>
+          <span class="toc-arrow">→</span>
+        </a>
+        <a href="/map" class="toc-item">
+          <span class="toc-num">02</span>
+          <span class="toc-title">Where it happens</span>
+          <span class="toc-desc">Batangas, the coast, and the forty barangays.</span>
+          <span class="toc-arrow">→</span>
+        </a>
+        <a href="/barangays" class="toc-item">
+          <span class="toc-num">03</span>
+          <span class="toc-title">The forty</span>
+          <span class="toc-desc">{num(40)} barangays, with PSA counts.</span>
+          <span class="toc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

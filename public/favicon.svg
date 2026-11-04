@@ -1,13 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BetterBauan">
-  <rect width="64" height="64" rx="8" fill="#0c4a56" />
-  <path d="M14 14h36v3H14z" fill="#faf8f3" opacity=".35" />
-  <text
-    x="32"
-    y="45"
-    text-anchor="middle"
-    font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', serif"
-    font-size="38"
-    fill="#faf8f3"
-  >B</text>
-  <path d="M14 50h36v2H14z" fill="#9d5a2d" />
+  <rect width="64" height="64" rx="12" fill="#083A26" />
+  <circle cx="40" cy="17" r="7" fill="#E8A317" />
+  <g stroke="#E8A317" stroke-width="2.2" stroke-linecap="round">
+    <path d="M40 4.5v3" />
+    <path d="M52.5 8.5l-2.2 2.2" />
+    <path d="M55.5 20h-3" />
+    <path d="M51.4 28.6l-2.2-2.2" />
+  </g>
+  <path d="M3 43 21 23l9 10 6-6 25 16Z" fill="#2E7D46" />
+  <path d="M3 43h58v4H3Z" fill="#0E5537" />
+  <path d="M13 43V32h15v11Z" fill="#FFFFFF" />
+  <path d="M16 32.8h9v4.4h-9Z" fill="#0A1114" opacity=".82" />
+  <path d="M37 43V35h11v8Z" fill="#FFFFFF" opacity=".9" />
+  <path
+    d="M4 51c3.8-2.4 7.6-2.4 11.4 0s7.6 2.4 11.4 0 7.6-2.4 11.4 0 7.6 2.4 11.4 0 7.6-2.4 11.4 0"
+    stroke="#62B8E8"
+    stroke-width="3"
+    stroke-linecap="round"
+    fill="none"
+  />
 </svg>

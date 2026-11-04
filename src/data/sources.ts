@@ -76,9 +76,31 @@ export const SOURCES: Source[] = [
     name: '2025 Certificate of Canvass and Proclamation',
     publisher: 'Commission on Elections',
     tier: 'B',
-    supports: 'The names of elected officials, and the electorate count.',
+    supports: 'The names and vote counts of elected officials, and the proclamation date.',
     status: 'pending',
-    note: 'Officials are withheld from this site until confirmed against a primary record.',
+    note: 'Not yet retrieved. The roster on /government is published from the LGU’s own announcements as tier C and labelled “reported”. Vote counts are withheld until this record is in hand.',
+  },
+  {
+    id: 'lgu-bauan',
+    name: 'Municipality of Bauan — news, history and anniversary pages',
+    publisher: 'Municipality of Bauan',
+    url: 'https://bauan.gov.ph',
+    tier: 'C',
+    supports:
+      'The 2025–2028 roster as announced by the LGU, the mayoral succession since 1998, the founding-anniversary theme and the Sublian Festival dates.',
+    status: 'used',
+    note: 'The server timed out when fetched directly on 4 November 2026; the passages used were read from the LGU pages as indexed on that date. Quoted and dated, never used for a fiscal figure.',
+  },
+  {
+    id: 'subli-mirano',
+    name: 'Subli: On the Use of Multidisciplinary Methods in Musicology',
+    publisher: 'Bienvenido L. Mirano · Diagonal, University of California, Riverside',
+    url: 'https://cilam.ucr.edu/diagonal/issues/2008/Mirano2.pdf',
+    tier: 'D',
+    supports:
+      'Narrative account of the subli, the Holy Cross of Bauan and the Alitagtag discovery story.',
+    status: 'used',
+    note: 'Secondary scholarship. Used for narrative and leads only; no figure on this site cites it.',
   },
   {
     id: 'psa-sae',

@@ -1,10 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import Callout from '../components/Callout.astro';
-import EmptyState from '../components/EmptyState.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
+import TierBadge from '../components/TierBadge.astro';
 import fpdi from '../data/generated/fdp.json';
 import psa from '../data/generated/psa.json';
+import { COUNCILORS, EX_OFFICIO, MAYOR, MAYORS, VICE_MAYOR } from '../data/officials';
 import { num } from '../lib/format';
 
 const m = psa.municipality;
@@ -18,43 +19,229 @@ const profile = [
   { label: 'Population (2024)', value: num(m.population) },
   { label: 'Households (2024)', value: num(m.households) },
   { label: 'Population density', value: `${num(m.density2024)} / km²` },
+  { label: 'Income class', value: '1st municipal income class' },
+  { label: 'Legislative district', value: '2nd district, Batangas' },
 ];
-
 ---
 
 <Base
   title="Government"
-  description="Municipal profile of Bauan, Batangas, and the records this project still needs before publishing a list of officials."
+  description="The mayor and council of Bauan, Batangas for 2025–2028, the mayoral succession since 1998, and the municipal profile held in primary records."
 >
+  <!-- Mayor ------------------------------------------------------- -->
   <section class="border-b border-line">
-    <div class="wrap py-12 sm:py-14">
-      <p class="eyebrow">Government</p>
-      <h1 class="mt-3 max-w-3xl font-display text-[2.1rem] leading-[1.1] tracking-tight sm:text-[2.6rem]">
-        The municipal profile, <span class="text-brand">as far as the record goes.</span>
-      </h1>
-      <p class="lede mt-4 max-w-2xl">
-        What follows is limited to facts held in machine-readable government records. Where a fact is
-        missing, the page says so instead of filling it in.
-      </p>
+    <div class="wrap py-10 sm:py-14">
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <p class="kicker">Government · the 2025–2028 term</p>
+        <p class="folio">Bauan, Batangas · 2nd district</p>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:gap-14">
+        <div data-reveal>
+          <p class="kicker-plain text-brand">Municipal Mayor</p>
+          <h1 class="display-xl mt-3">
+            Wendah Katrina<br />
+            Rivera Dolor
+          </h1>
+          <p class="standfirst mt-5 max-w-xl">
+            The first woman elected mayor of Bauan, sworn in on 30 June 2025.
+          </p>
+          <p class="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink-soft">
+            She succeeded Ryanh M. Dolor, who had held the post since 2019. The turnover was held at the
+            HJD Coliseum on 29 June 2025, with the symbolic key and municipal flag passed on the
+            following day. Her administration calls its programme SHIELD: shelter, health, inclusive
+            education, employment, livelihood and development.
+          </p>
+
+          <div class="mt-6 inline-flex flex-wrap items-center gap-2 border border-gold/40 bg-gold-soft px-3 py-2 text-[0.72rem] leading-snug text-ink-soft">
+            <TierBadge tier="C" />
+            <span>
+              Roster read from the LGU's own announcements and the 2025 returns. The COMELEC
+              proclamation is still pending, so vote counts are withheld and the table is labelled as
+              reported, not proclamation-verified.
+            </span>
+          </div>
+        </div>
+
+        <aside class="border-t border-ink pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0" data-reveal>
+          <dl class="space-y-4">
+            <div>
+              <dt class="folio">Term</dt>
+              <dd class="mt-0.5 font-display text-lg font-bold">{MAYOR.term}</dd>
+            </div>
+            <div>
+              <dt class="folio">Took office</dt>
+              <dd class="mt-0.5 font-display text-lg font-bold">30 June 2025</dd>
+            </div>
+            <div>
+              <dt class="folio">Predecessor</dt>
+              <dd class="mt-0.5 font-display text-lg font-bold">Ryanh M. Dolor</dd>
+            </div>
+            <div>
+              <dt class="folio">Vice Mayor</dt>
+              <dd class="mt-0.5 font-display text-lg font-bold">{VICE_MAYOR.name}</dd>
+            </div>
+          </dl>
+          <p class="serif-note mt-5">
+            Bauan's 246th local chief executive since 1653 is counted from the LGU's own history; this
+            page repeats the count rather than re-deriving it.
+          </p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <section class="wrap py-10 sm:py-12">
-    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-      <div>
-        <h2 class="font-display text-[1.5rem] tracking-tight">Profile</h2>
-        <dl class="mt-4 divide-y divide-line border-y border-line">
+  <!-- Council ----------------------------------------------------- -->
+  <section class="wrap py-12 sm:py-16">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4">
+      <h2 class="display-l">The council.</h2>
+      <span class="folio">Sangguniang Bayan · 2025–2028</span>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div data-reveal>
+        <div class="flex items-baseline justify-between border-b border-line pb-2">
+          <p class="kicker-plain">Vice Mayor</p>
+          <span class="folio">Presiding officer</span>
+        </div>
+        <p class="mt-2 font-display text-xl font-bold">{VICE_MAYOR.name}</p>
+
+        <div class="mt-7 flex items-baseline justify-between border-b border-line pb-2">
+          <p class="kicker-plain">Councilors</p>
+          <span class="folio">Eight elected</span>
+        </div>
+        <ol class="mt-1">
+          {
+            COUNCILORS.map((official, index) => (
+              <li class="grid grid-cols-[1.6rem_1fr_auto] items-baseline gap-3 border-b border-line py-2.5">
+                <span class="folio">{String(index + 1).padStart(2, '0')}</span>
+                <span class="text-[0.95rem] text-ink">{official.name}</span>
+                <span class="text-[0.68rem] uppercase tracking-[0.1em] text-muted">Councilor</span>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="mt-7 flex items-baseline justify-between border-b border-line pb-2">
+          <p class="kicker-plain">Ex officio</p>
+          <span class="folio">By office</span>
+        </div>
+        <ul class="mt-1">
+          {
+            EX_OFFICIO.map((official) => (
+              <li class="grid grid-cols-[1.6rem_1fr_auto] items-baseline gap-3 border-b border-line py-2.5">
+                <span class="folio">—</span>
+                <span class="text-[0.95rem] text-ink">{official.name}</span>
+                <span class="text-[0.68rem] uppercase tracking-[0.1em] text-muted">{official.role}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="space-y-6" data-reveal style="--reveal-delay:100ms">
+        <Callout tone="note" title="Why there are no vote counts here">
+          <p>
+            The counts circulating online come from media transcriptions of the COMELEC returns. They
+            are useful leads, but this site's rule is that a number appears only when the record behind
+            it can be checked by the reader.
+          </p>
+          <p>
+            When the 2025 Certificate of Canvass and Proclamation is in hand, the counts and the exact
+            proclamation date will be added, and this note will come down.
+          </p>
+        </Callout>
+
+        <div class="border border-line bg-surface-soft p-5">
+          <p class="kicker-plain">What would unlock the table</p>
+          <ul class="mt-3 space-y-2 text-sm leading-relaxed text-ink-soft">
+            <li>COMELEC 2025 Certificate of Canvass for Bauan</li>
+            <li>The Sangguniang Bayan's Directory of Officials</li>
+            <li>A response to an FOI request filed at foi.gov.ph</li>
+          </ul>
+          <a
+            href="https://www.foi.gov.ph"
+            class="mt-4 inline-block text-sm link-underline"
+            target="_blank"
+            rel="noopener"
+          >
+            foi.gov.ph ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mayors ------------------------------------------------------ -->
+  <section id="mayors" class="border-y border-line bg-surface-soft">
+    <div class="wrap py-12 sm:py-16">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4">
+        <h2 class="display-l">Mayors since 1998.</h2>
+        <span class="folio">The succession, as the LGU tells it</span>
+      </div>
+
+      <ol class="mt-2">
+        {
+          MAYORS.map((mayor) => (
+            <li
+              class:list={[
+                'grid grid-cols-[5.2rem_1fr] gap-x-5 gap-y-1 border-b border-line py-5 sm:grid-cols-[7rem_1fr_1fr] sm:gap-x-8',
+                mayor.current && 'bg-gold-soft/60',
+              ]}
+            >
+              <span class:list={['folio pt-1', mayor.current && 'text-gold']}>{mayor.label}</span>
+              <div>
+                <p class:list={['font-display font-bold leading-tight', mayor.current ? 'text-[1.35rem]' : 'text-[1.05rem]']}>
+                  {mayor.name}
+                </p>
+                {mayor.current && (
+                  <p class="mt-1 inline-block bg-ink px-2 py-0.5 text-[0.58rem] font-bold uppercase tracking-[0.14em] text-paper">
+                    In office
+                  </p>
+                )}
+              </div>
+              <p class="col-span-2 text-[0.85rem] leading-relaxed text-ink-soft sm:col-span-1">
+                {mayor.note}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+        <p class="max-w-2xl text-[0.8rem] leading-relaxed text-muted">
+          The list stops at 1998 because that is where the LGU's own narrative becomes specific. Before
+          that, Bauan has had 246 local chief executives since 1653 — a full list needs the Municipal
+          Secretary's records, and this page will not invent the missing terms.
+        </p>
+        <p class="serif-note">
+          Herminigildo Dolor died in office on 28 June 2018; Vice Mayor Julian Casapao finished the
+          unexpired term.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile ----------------------------------------------------- -->
+  <section id="profile" class="wrap py-12 sm:py-16">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+      <div data-reveal>
+        <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4">
+          <h2 class="display-l">The municipal profile.</h2>
+          <span class="folio">Tier A</span>
+        </div>
+
+        <dl class="mt-2 divide-y divide-line">
           {
             profile.map((row) => (
               <div class="flex items-baseline justify-between gap-6 py-3">
                 <dt class="text-sm text-muted">{row.label}</dt>
-                <dd class:list={['text-sm text-ink', row.mono && 'font-mono text-[0.82rem]']}>
-                  {row.value}
-                </dd>
+                <dd class:list={['text-sm text-ink', row.mono && 'font-mono text-[0.8rem]']}>{row.value}</dd>
               </div>
             ))
           }
         </dl>
+
         <EvidenceNote
           sourceId="psa-openstat"
           locator="2024 POPCEN tables 0041A6DTPH3 (population) and 0221A6DLPD0 (area, density)"
@@ -63,7 +250,15 @@ const profile = [
         />
       </div>
 
-      <div class="space-y-6">
+      <div class="space-y-6" data-reveal style="--reveal-delay:100ms">
+        <Callout tone="warn" title="Land area: two figures, one published">
+          <p>
+            PSA's 2024 tables give <strong>{m.landAreaKm2} km²</strong>; the figure most often quoted
+            elsewhere is 53.31 km². This site publishes the PSA figure and names the conflict instead of
+            choosing the friendlier number.
+          </p>
+        </Callout>
+
         <Callout tone="note" title="Official channels">
           <p class="font-medium text-ink">Bauan Municipal Hall</p>
           <p>{fpdi.posting.municipalHall ?? 'Address not recorded in the filing index.'}</p>
@@ -71,82 +266,68 @@ const profile = [
             Address block printed on the municipality's own full-disclosure filings.
           </p>
           <p>
-            Official website:{' '}
-            <span class="font-mono text-[0.8rem]">bauan.gov.ph</span> — did not respond when checked on
-            2 November 2026. This site does not link to a page it cannot verify.
+            Official website: <span class="font-mono text-[0.8rem]">bauan.gov.ph</span> — resolves, but
+            the server did not answer when checked on 2 November 2026. This site does not link to a page
+            it cannot verify.
           </p>
         </Callout>
 
         <div class="card p-5">
-          <h2 class="font-display text-[1.05rem] tracking-tight">ZIP code and area code</h2>
+          <h2 class="display-m">ZIP code and area code</h2>
           <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            Postal and telephone prefixes are omitted here: they are stable, but this project has not
-            yet read them from a primary record, and a half-sourced row undermines the fully-sourced
-            ones beside it.
+            Postal and telephone prefixes are omitted: they are stable, but this project has not yet
+            read them from a primary record, and a half-sourced row undermines the fully-sourced ones
+            beside it.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="border-y border-line bg-surface">
-    <div class="wrap py-12 sm:py-14">
-      <h2 class="font-display text-[1.5rem] tracking-tight">Elected officials</h2>
-      <p class="lede mt-3 max-w-2xl">
-        Not published yet — deliberately. This is the most-checked fact on any LGU portal, and the one
-        most often wrong.
-      </p>
-
-      <div class="mt-6">
-        <EmptyState
-          title="Officials are withheld pending a primary record"
-          help={[
-            'COMELEC 2025 Certificate of Canvass or proclamation for Bauan',
-            'The Sangguniang Bayan’s own records, or the Municipal Secretary’s Directory of Officials',
-            'A response to a filed FOI request (foi.gov.ph, 15 working days)',
-          ]}
-        >
-          <p>
-            Names circulating on secondary sites cannot be checked by a reader, and a wrong mayor's name
-            discredits every correct figure next to it. Until one of the records above is in hand, this
-            section stays empty and says why.
+  <!-- What the LGU publishes -------------------------------------- -->
+  <section class="border-t border-line bg-surface-soft">
+    <div class="wrap py-12 sm:py-16">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+        <div data-reveal>
+          <p class="kicker">What the municipality does publish</p>
+          <h2 class="display-l mt-3">The filings are online, and current.</h2>
+          <p class="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-ink-soft">
+            {num(fpdi.summary.count)} statutory documents covering CY{fpdi.coverage.from} to
+            CY{fpdi.coverage.to}, posted through DILG's Full Disclosure portal. Three posting locations
+            recur in those filings: the Municipal Hall in Poblacion I, the Public Market in Poblacion
+            III, and the Police Sub-Station at Plaza Orense in Poblacion II.
           </p>
-          <p class="mt-2 text-[0.8rem] text-muted">
-            If you can supply the document, open an issue with a scan or link — that is a tier B source
-            and it is enough to publish.
-          </p>
-        </EmptyState>
-      </div>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/finances" class="btn btn-primary">Browse the filings</a>
+            <a href="/documents" class="btn btn-secondary">Open the archive</a>
+          </div>
+        </div>
 
-      <div class="mt-6 max-w-2xl">
-        <EvidenceNote
-          sourceId="comelec-proclamation"
-          retrievedAt={psa.retrievedAt}
-          note="Recorded as pending, not as verified. The tier D summaries consulted are listed in the sources table with their status."
-        />
+        <div class="self-end" data-reveal style="--reveal-delay:100ms">
+          <div class="grid grid-cols-3 gap-4 border-t border-ink pt-5">
+            <div>
+              <p class="folio">Filings</p>
+              <p class="stat-mega mt-1 text-brand">{num(fpdi.summary.count)}</p>
+            </div>
+            <div>
+              <p class="folio">Forms</p>
+              <p class="stat-mega mt-1">{num(fpdi.forms.length)}</p>
+            </div>
+            <div>
+              <p class="folio">Years</p>
+              <p class="stat-mega mt-1">
+                {fpdi.coverage.to - fpdi.coverage.from + 1}
+              </p>
+            </div>
+          </div>
+          <EvidenceNote
+            sourceId="dilg-fdp"
+            locator="Address block and filing index"
+            retrievedAt={fpdi.retrievedAt}
+            note="Read from the filings themselves rather than from a directory."
+          />
+        </div>
       </div>
     </div>
-  </section>
-
-  <section class="wrap py-12 sm:py-14">
-    <h2 class="font-display text-[1.5rem] tracking-tight">What the municipality does publish</h2>
-    <p class="lede mt-3 max-w-2xl">
-      The LGU's own statutory filings are online and current — 156 documents covering CY{fpdi.coverage.from}
-      to CY{fpdi.coverage.to}, posted through DILG's Full Disclosure portal.
-    </p>
-    <div class="mt-5 flex flex-wrap gap-3">
-      <a href="/finances" class="btn btn-primary">Browse the filings</a>
-      <a href="/documents" class="btn btn-secondary">Open the document archive</a>
-    </div>
-    <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
-      Three posting locations recur in those filings: the Municipal Hall in Poblacion I, the Public Market
-      in Poblacion III, and the Police Sub-Station at Plaza Orense in Poblacion II.
-    </p>
-    <EvidenceNote
-      sourceId="dilg-fdp"
-      locator="Address block on the filing index"
-      retrievedAt={fpdi.retrievedAt}
-      note="Read from the filings themselves rather than from a directory."
-    />
   </section>
 </Base>

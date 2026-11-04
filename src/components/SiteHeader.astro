@@ -1,99 +1,265 @@
 ---
-import { NAV, SITE } from '../data/site';
+import { NAV_GROUPS, SITE, isNavGroupCurrent, isNavItemCurrent } from '../data/site';
+import BauanMark from './BauanMark.astro';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => path === href;
+const groups = NAV_GROUPS;
+
+const dateline = new Intl.DateTimeFormat('en-GB', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date());
 ---
 
-<header class="bg-paper">
-  <div class="border-b border-line">
-    <div
-      class="wrap flex items-center justify-between gap-4 py-2 text-[0.62rem] uppercase tracking-[0.15em] text-muted"
-    >
-      <p>An independent public record</p>
-      <p class="hidden sm:block">Bauan, Batangas · Philippines</p>
+<header class="site-header" data-site-header>
+  <div class="head-bar">
+    <div class="wrap head-bar-inner">
+      <p><span class="text-brand">●</span> Independent public record</p>
+      <p class="hidden md:block">{dateline} · Issue 01</p>
+      <p class="md:hidden">Bauan, Batangas</p>
     </div>
   </div>
 
-  <div class="wrap flex items-center justify-between gap-6 py-4 lg:py-5">
-    <a href="/" class="group flex items-baseline gap-3 no-underline">
-      <span class="font-display text-[1.5rem] leading-none font-semibold tracking-[-0.02em] text-ink lg:text-[1.7rem]">
-        {SITE.wordmarkFirst}<span class="text-brand">{SITE.wordmarkSecond}</span>
-      </span>
-      <span
-        class="hidden border-l border-line pl-3 text-[0.6rem] uppercase leading-[1.5] tracking-[0.14em] text-muted sm:inline"
-      >
-        Municipal<br />record
-      </span>
+  <div class="wrap masthead">
+    <a href="/" class="masthead-link" aria-label="BetterBauan front page">
+      <BauanMark class="size-9 shrink-0 text-ink" />
+      <span class="masthead-word">Better<em>Bauan</em></span>
+      <span class="masthead-sub">We are One in Bauan.</span>
     </a>
 
-    <nav aria-label="Primary" class="hidden lg:block">
-      <ul class="flex items-center gap-4 lg:gap-6">
-        {
-          NAV.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                aria-current={isActive(item.href) ? 'page' : undefined}
-                class:list={[
-                  'relative block pb-1 text-[0.68rem] uppercase tracking-[0.12em] no-underline transition-colors hover:text-brand',
-                  isActive(item.href)
-                    ? 'font-semibold text-ink after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-accent'
-                    : 'text-ink-soft',
-                ]}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-        <li class="border-l border-line pl-4 lg:pl-6">
-          <a
-            href={SITE.repo}
-            class="inline-flex items-center gap-1.5 text-[0.68rem] uppercase tracking-[0.12em] text-ink-soft no-underline transition-colors hover:text-brand"
-            rel="noopener"
-          >
-            <svg viewBox="0 0 16 16" aria-hidden="true" class="size-3 fill-current">
-              <path
-                d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.055-.49.055-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.073-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
-              ></path>
-            </svg>
-            Source
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <span
-      class="border border-line-strong px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.12em] text-muted lg:hidden"
-    >
-      Independent
-    </span>
+    <div class="hidden items-center gap-4 lg:flex">
+      <span class="kicker-plain hidden xl:block">Municipality of Bauan · 0401006000</span>
+      <a href="/map" class="btn btn-secondary">Open the map</a>
+    </div>
   </div>
 
-  <nav aria-label="Primary, compact" class="border-t border-line lg:hidden">
-    <ul class="no-scrollbar wrap flex gap-5 overflow-x-auto py-2.5 text-[0.66rem] uppercase tracking-[0.1em]">
-      {
-        NAV.map((item) => (
-          <li class="shrink-0">
-            <a
-              href={item.href}
-              aria-current={isActive(item.href) ? 'page' : undefined}
-              class:list={[
-                'relative block pb-1 no-underline',
-                isActive(item.href)
-                  ? 'font-semibold text-ink after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-accent'
-                  : 'text-ink-soft',
-              ]}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-      <li class="shrink-0">
-        <a href={SITE.repo} class="text-ink-soft no-underline" rel="noopener">Source</a>
-      </li>
-    </ul>
-  </nav>
+  <div class="dock-wrap">
+    <div class="wrap">
+      <nav class="dock" aria-label="Primary">
+        <div class="dock-links">
+          {
+            groups.map((group) => (
+              <div class="dock-group" data-dock-group>
+                <button
+                  type="button"
+                  class="dock-trigger"
+                  data-dock-trigger
+                  aria-expanded="false"
+                  aria-controls={`dock-${group.id}`}
+                  data-current={isNavGroupCurrent(path, group) ? '' : undefined}
+                >
+                  {group.label}
+                  <svg class="dock-chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+
+                <div class="dock-panel" id={`dock-${group.id}`} hidden>
+                  <p class="dock-panel-kicker">{group.kicker}</p>
+                  <ul>
+                    {group.items.map((item) => (
+                      <li>
+                        <a
+                          href={item.href}
+                          class="dock-panel-link"
+                          target={item.external ? '_blank' : undefined}
+                          rel={item.external ? 'noopener' : undefined}
+                          aria-current={isNavItemCurrent(path, item.href) ? 'page' : undefined}
+                        >
+                          <span class="dock-panel-title">{item.label}</span>
+                          <span class="dock-panel-desc">{item.description}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <button
+          type="button"
+          class="dock-menu dock-link"
+          data-mobile-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          Menu
+          <svg viewBox="0 0 16 16" class="size-3.5" fill="none" aria-hidden="true">
+            <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <span class="dock-divider hidden lg:block" aria-hidden="true"></span>
+
+        <button type="button" class="dock-icon-btn" data-theme-toggle aria-label="Switch to dark mode">
+          <svg class="theme-moon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path
+              d="M16.5 12.2A7 7 0 0 1 7.8 3.5a7 7 0 1 0 8.7 8.7Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <svg class="theme-sun" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="3.4" stroke="currentColor" stroke-width="1.5" />
+            <path
+              d="M10 2v1.8M10 16.2V18M2 10h1.8M16.2 10H18M4.6 4.6l1.3 1.3M14.1 14.1l1.3 1.3M15.4 4.6l-1.3 1.3M5.9 14.1l-1.3 1.3"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+
+        <a
+          href={SITE.repo}
+          class="dock-icon-btn hidden lg:inline-flex"
+          target="_blank"
+          rel="noopener"
+          aria-label="Source code on GitHub"
+        >
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.055-.49.055-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.073-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+            ></path>
+          </svg>
+        </a>
+      </nav>
+
+      <div class="mobile-nav lg:hidden" id="mobile-nav" data-mobile-nav hidden>
+        {
+          groups.map((group) => (
+            <div class="mobile-group">
+              <h2>{group.label}</h2>
+              <ul>
+                {group.items.map((item) => (
+                  <li>
+                    <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined}>
+                      {item.label}
+                      <span>{group.kicker}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <p class="mt-4 border-t border-line pt-3 text-[0.68rem] leading-relaxed text-muted">
+          Independent, volunteer-run, and not the municipality's own website.
+        </p>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+
+  if (header) {
+    const triggers = Array.from(header.querySelectorAll<HTMLButtonElement>('[data-dock-trigger]'));
+
+    const closeGroups = (except?: HTMLElement | null) => {
+      for (const trigger of triggers) {
+        const group = trigger.closest<HTMLElement>('[data-dock-group]');
+        if (!group || group === except) continue;
+        trigger.setAttribute('aria-expanded', 'false');
+        group.removeAttribute('data-open');
+        const panel = group.querySelector<HTMLElement>('.dock-panel');
+        if (panel) panel.hidden = true;
+      }
+    };
+
+    for (const trigger of triggers) {
+      trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const group = trigger.closest<HTMLElement>('[data-dock-group]');
+        if (!group) return;
+        const panel = group.querySelector<HTMLElement>('.dock-panel');
+        const open = trigger.getAttribute('aria-expanded') === 'true';
+        const hoverOpen = group.hasAttribute('data-hover');
+        closeGroups(group);
+
+        // On a pointer device the panel may already be open from hover. The
+        // first click should confirm it, not close the menu the reader just
+        // reached; the next click closes it.
+        const next = hoverOpen ? true : !open;
+        trigger.setAttribute('aria-expanded', String(next));
+        group.toggleAttribute('data-open', next);
+        group.removeAttribute('data-hover');
+        if (panel) panel.hidden = !next;
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      if (!(event.target as Element).closest('[data-dock-group]')) closeGroups();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeGroups();
+    });
+
+    const mobileToggle = header.querySelector<HTMLButtonElement>('[data-mobile-toggle]');
+    const mobileNav = header.querySelector<HTMLElement>('[data-mobile-nav]');
+
+    mobileToggle?.addEventListener('click', () => {
+      const open = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', String(!open));
+      if (mobileNav) mobileNav.hidden = open;
+    });
+
+    // On wide screens the dock panel should also open on hover, like a menu bar.
+    if (window.matchMedia('(min-width: 861px)').matches) {
+      for (const trigger of triggers) {
+        const group = trigger.closest<HTMLElement>('[data-dock-group]');
+        const panel = group?.querySelector<HTMLElement>('.dock-panel');
+        if (!group || !panel) continue;
+
+        let closeTimer: number | undefined;
+
+        group.addEventListener('mouseenter', () => {
+          window.clearTimeout(closeTimer);
+          closeGroups(group);
+          trigger.setAttribute('aria-expanded', 'true');
+          group.setAttribute('data-open', '');
+          group.setAttribute('data-hover', '');
+          panel.hidden = false;
+        });
+
+        group.addEventListener('mouseleave', () => {
+          closeTimer = window.setTimeout(() => {
+            trigger.setAttribute('aria-expanded', 'false');
+            group.removeAttribute('data-open');
+            group.removeAttribute('data-hover');
+            panel.hidden = true;
+          }, 160);
+        });
+      }
+    }
+  }
+
+  const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+
+  const setTheme = (theme: 'light' | 'dark') => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem('bb-theme', theme);
+    } catch {
+      /* the choice still applies for this page */
+    }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#080d0f' : '#ffffff');
+    themeToggle?.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    window.dispatchEvent(new CustomEvent('bb:themechange', { detail: { theme } }));
+  };
+
+  const currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+  themeToggle?.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+
+  themeToggle?.addEventListener('click', () => {
+    setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+  });
+</script>

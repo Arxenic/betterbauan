@@ -327,13 +327,23 @@ async function main() {
     });
 
   const pinsByBarangay = new Map();
+  const pinsByBarangayYear = new Map();
   for (const pin of pins) {
     if (!pin.barangay) continue;
     const current = pinsByBarangay.get(pin.barangay) ?? { contracts: 0, contractAmount: 0 };
     current.contracts += 1;
     current.contractAmount += pin.amount ?? 0;
     pinsByBarangay.set(pin.barangay, current);
+
+    if (!pinsByBarangayYear.has(pin.barangay)) pinsByBarangayYear.set(pin.barangay, new Map());
+    const byYear = pinsByBarangayYear.get(pin.barangay);
+    const yearStats = byYear.get(pin.year) ?? { contracts: 0, contractAmount: 0 };
+    yearStats.contracts += 1;
+    yearStats.contractAmount += pin.amount ?? 0;
+    byYear.set(pin.year, yearStats);
   }
+
+  const years = [...new Set(pins.map((pin) => pin.year))].sort();
 
   const levels = {
     country: {
@@ -365,6 +375,7 @@ async function main() {
       municipality: bauanMunicipality.polygons,
       barangays: barangays.map((barangay) => {
         const stats = pinsByBarangay.get(barangay.name) ?? { contracts: 0, contractAmount: 0 };
+        const perYear = pinsByBarangayYear.get(barangay.name);
         return {
           name: barangay.name,
           psgc: barangay.psgc,
@@ -372,21 +383,39 @@ async function main() {
           households: barangay.households,
           contracts: stats.contracts,
           contractAmount: stats.contractAmount,
+          contractsByYear: Object.fromEntries(
+            years.map((year) => {
+              const entry = perYear?.get(year) ?? { contracts: 0, contractAmount: 0 };
+              return [year, { contracts: entry.contracts, contractAmount: entry.contractAmount }];
+            })
+          ),
           polygons: barangay.polygons,
         };
       }),
       pins,
+      years,
       totals: {
         pins: pins.length,
         assignedPins: pins.filter((pin) => pin.barangay).length,
         contractAmount: pins.reduce((sum, pin) => sum + (pin.amount ?? 0), 0),
+        assignedContractAmount: pins
+          .filter((pin) => pin.barangay)
+          .reduce((sum, pin) => sum + (pin.amount ?? 0), 0),
         barangaysWithContracts: pinsByBarangay.size,
+        byYear: years.map((year) => {
+          const assigned = pins.filter((pin) => pin.barangay && pin.year === year);
+          return {
+            year,
+            contracts: assigned.length,
+            contractAmount: assigned.reduce((sum, pin) => sum + (pin.amount ?? 0), 0),
+          };
+        }),
       },
     },
   };
 
   const payload = {
-    schemaVersion: '1.0.0',
+    schemaVersion: '1.1.0',
     source: {
       name: 'philippines-json-maps',
       publisher: 'Community mirror of PSA / NAMRIA administrative boundaries',

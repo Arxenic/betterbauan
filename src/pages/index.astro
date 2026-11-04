@@ -1,264 +1,385 @@
 ---
 import Base from '../layouts/Base.astro';
-import Callout from '../components/Callout.astro';
+import BauanMark from '../components/BauanMark.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import Stat from '../components/Stat.astro';
+import Callout from '../components/Callout.astro';
 import dpwh from '../data/generated/dpwh.json';
 import fdp from '../data/generated/fdp.json';
+import map from '../data/generated/map.json';
 import psa from '../data/generated/psa.json';
+import { MAYOR } from '../data/officials';
 import { SITE } from '../data/site';
-import { isoDate, num, pesoShort } from '../lib/format';
+import { isoDate, num, pesoCompact, pesoShort } from '../lib/format';
 
 const m = psa.municipality;
+const bauan = map.levels.bauan;
 const completed = dpwh.summary.byStatus.Completed ?? 0;
-const ongoing = dpwh.summary.byStatus['On-Going'] ?? 0;
-const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at(-1) ?? '';
+const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt, map.source.retrievedAt].sort().at(-1) ?? '';
 
-const featureCard = {
-  href: '/map',
-  title: 'Map',
-  meta: '3D · 40 barangays',
-  blurb:
-    'Fly from the Philippines to Batangas to Bauan, then read a barangay or a contract where it actually sits.',
-};
+const largest = [...bauan.barangays].sort((a, b) => b.population - a.population)[0];
+const byContract = [...bauan.barangays]
+  .sort((a, b) => b.contractAmount - a.contractAmount)
+  .slice(0, 5);
+const maxContract = byContract[0]?.contractAmount ?? 1;
 
-const cards = [
+const contents = [
   {
-    href: '/government',
-    title: 'Government',
-    meta: 'Municipal profile',
-    blurb:
-      'The town in numbers and codes, plus a candid note on why the officials list is not published yet.',
+    href: '/map',
+    n: '01',
+    title: 'The town, in three scales',
+    desc: 'From the archipelago to Batangas to forty barangays, each grown to its own statistic.',
   },
   {
     href: '/barangays',
-    title: 'Barangays',
-    meta: `${psa.barangays.length} barangays`,
-    blurb: 'Population and households for every barangay, reconciled to the municipal total.',
+    n: '02',
+    title: 'Where everyone lives',
+    desc: 'Population and households for all forty barangays, reconciled to the municipal total.',
   },
   {
     href: '/finances',
-    title: 'Finances',
-    meta: `${num(fdp.summary.count)} filings`,
-    blurb:
-      'Every statutory financial document the municipality has posted, with a direct link to each one.',
+    n: '03',
+    title: 'The money, filed',
+    desc: `${num(fdp.summary.count)} statutory filings, posted by the LGU itself and indexed here.`,
   },
   {
     href: '/projects',
-    title: 'Projects',
-    meta: `${num(dpwh.summary.count)} contracts`,
-    blurb: `National infrastructure contracts in Bauan — ${pesoShort(dpwh.summary.totalBudget)} across ${num(completed)} completed and ${num(ongoing)} ongoing.`,
+    n: '04',
+    title: 'What was built',
+    desc: `${num(dpwh.summary.count)} national infrastructure contracts, ${pesoShort(dpwh.summary.totalBudget)} in all.`,
   },
   {
     href: '/documents',
-    title: 'Documents',
-    meta: `CY${fdp.coverage.from}–CY${fdp.coverage.to}`,
-    blurb: 'The full disclosure archive, searchable by form and period, downloadable from the source.',
+    n: '05',
+    title: 'The paper trail',
+    desc: 'The full disclosure archive, searchable by form and period, linked to the originals.',
   },
   {
-    href: '/sources',
-    title: 'Sources',
-    meta: 'Evidence tiers',
-    blurb: 'Every record this site reads, what it is allowed to support, and what is still missing.',
+    href: '/government',
+    n: '06',
+    title: 'Who governs',
+    desc: `Mayor ${MAYOR.name}, the 2025–2028 council, and the mayors who came before.`,
+  },
+  {
+    href: '/culture',
+    n: '07',
+    title: 'Sublian, and the town that moved',
+    desc: 'The Holy Cross, the feast on 3 May, and the three relocations that brought the town to this shore.',
   },
 ];
 ---
 
 <Base>
-  <section class="border-b border-line">
-    <div class="wrap grid grid-cols-1 gap-12 py-14 lg:grid-cols-[1.35fr_0.95fr] lg:items-start lg:py-20">
-      <div>
-        <p class="eyebrow">Bauan, Batangas · independent civic project</p>
-        <h1 class="mt-4 font-display text-[2.45rem] leading-[1.04] tracking-tight sm:text-[3.2rem] lg:text-[3.55rem]">
-          The town's public records,<br class="hidden sm:block" />
-          <span class="text-brand">in one place.</span>
+  <!-- Cover ------------------------------------------------------- -->
+  <section class="cover">
+    <div class="wrap cover-grid">
+      <div class="relative z-10">
+        <p class="kicker">Bauan, Batangas · independent public record</p>
+
+        <h1 class="cover-title mt-5">
+          We are<br />
+          <span class="outline">One</span><br />
+          in Bauan.
         </h1>
-        <p class="lede mt-6 max-w-xl">
-          Population, barangays, budgets and infrastructure contracts for the Municipality of Bauan —
-          each one traced to the agency that published it, and dated so you know how fresh it is.
+
+        <p class="standfirst mt-6 max-w-md">
+          The town's population, barangays, budget, contracts and culture — assembled from the agencies
+          that publish them, and dated so you can tell how fresh each one is.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/barangays" class="btn btn-primary">Start with the barangays</a>
-          <a href="/finances" class="btn btn-secondary">See public finances</a>
+
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a href="#contents" class="btn btn-primary">Read the record</a>
+          <a href="/map" class="btn btn-secondary">Open the 3D map</a>
         </div>
-        <p class="mt-5 max-w-xl text-[0.8rem] leading-relaxed text-muted">
+
+        <dl class="cover-lines mt-9 max-w-xl">
+          <div class="cover-line">
+            <dt>Population</dt>
+            <dd class="tnum" data-count={String(m.population)}>{num(m.population)}</dd>
+          </div>
+          <div class="cover-line">
+            <dt>Barangays</dt>
+            <dd class="tnum">Forty</dd>
+          </div>
+          <div class="cover-line">
+            <dt>Contracts mapped</dt>
+            <dd class="tnum">{num(bauan.totals.assignedPins)}</dd>
+          </div>
+        </dl>
+
+        <p class="mt-7 scroll-cue">
+          <span aria-hidden="true"></span>
+          Scroll to read
+        </p>
+      </div>
+
+      <div class="relative mt-2" data-parallax="-0.035">
+        <div
+          class="emblem-stage"
+          data-emblem
+          role="img"
+          aria-label="The Bauan municipal emblem in three dimensions: a golden sun over two green ridges, the white municipal hall, a palm and three bands of sea."
+        >
+          <div class="emblem-ring" aria-hidden="true"></div>
+          <div class="emblem-ring emblem-ring-2" aria-hidden="true"></div>
+          <div class="emblem-glow" aria-hidden="true"></div>
+          <div data-emblem-fallback hidden class="absolute inset-0 grid place-content-center">
+            <BauanMark class="size-52 text-ink" />
+          </div>
+          <noscript>
+            <div class="absolute inset-0 grid place-content-center">
+              <BauanMark class="size-52 text-ink" />
+            </div>
+          </noscript>
+          <p class="emblem-caption">
+            The municipal mark, rebuilt in three dimensions. Drag across it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee ----------------------------------------------------- -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {
+        [0, 1].map(() => (
+          <div class="marquee-seq">
+            <span>{num(m.population)} residents</span>
+            <i />
+            <span>40 barangays</span>
+            <i />
+            <span>{pesoShort(dpwh.summary.totalBudget)} in contracts</span>
+            <i />
+            <span>{num(fdp.summary.count)} filings</span>
+            <i />
+            <span>Sublian · 3 May</span>
+            <i />
+            <span>Parish 1596 · town 1690</span>
+            <i />
+            <span>We are One in Bauan</span>
+            <i />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Contents ---------------------------------------------------- -->
+  <section id="contents" class="wrap py-14 sm:py-20">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+      <div data-reveal>
+        <p class="kicker">Contents</p>
+        <h2 class="display-xl mt-4">Seven ways<br />into the record.</h2>
+        <p class="standfirst mt-5 max-w-sm">
+          Every page is built from a committed dataset. Re-run the scripts and you should get the same
+          bytes.
+        </p>
+        <p class="mt-6 max-w-sm text-[0.8rem] leading-relaxed text-muted">
           No account, no tracking, no opinion. Just the record, with a link to check it yourself.
         </p>
       </div>
 
-      <aside class="card p-5 sm:p-6" aria-labelledby="snapshot-heading">
-        <div class="flex items-baseline justify-between gap-3">
-          <h2 id="snapshot-heading" class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
-            What you can check today
-          </h2>
-          <span class="text-[0.7rem] text-muted">{isoDate(refreshed)}</span>
-        </div>
-        <dl class="mt-4 divide-y divide-line">
-          <div class="flex items-baseline justify-between gap-4 py-2.5">
-            <dt class="text-sm text-ink-soft">Population</dt>
-            <dd class="tnum text-sm font-medium text-ink">{num(m.population)}</dd>
-          </div>
-          <div class="flex items-baseline justify-between gap-4 py-2.5">
-            <dt class="text-sm text-ink-soft">Barangays</dt>
-            <dd class="tnum text-sm font-medium text-ink">{num(psa.barangays.length)}</dd>
-          </div>
-          <div class="flex items-baseline justify-between gap-4 py-2.5">
-            <dt class="text-sm text-ink-soft">Financial filings</dt>
-            <dd class="tnum text-sm font-medium text-ink">{num(fdp.summary.count)}</dd>
-          </div>
-          <div class="flex items-baseline justify-between gap-4 py-2.5">
-            <dt class="text-sm text-ink-soft">Infrastructure contracts</dt>
-            <dd class="tnum text-sm font-medium text-ink">{num(dpwh.summary.count)}</dd>
-          </div>
-        </dl>
-        <p class="mt-4 border-t border-line pt-3 text-[0.74rem] leading-relaxed text-muted">
-          Each figure is regenerated from a government source by a script in the{' '}
-          <a href={SITE.repo} class="text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
-            public repository</a
-          >. Re-run it and you should get the same bytes.
-        </p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="border-b border-line bg-surface/60">
-    <div class="wrap grid grid-cols-2 gap-6 py-8 sm:grid-cols-4 sm:gap-4">
-      <Stat value={num(m.population)} label="Population" note="PSA, 2024 census" />
-      <Stat value={num(m.households)} label="Households" note="PSA, 2024 census" />
-      <Stat value={num(psa.barangays.length)} label="Barangays" note="PSA PSGC" />
-      <Stat
-        value={`${m.landAreaKm2} km²`}
-        label="Land area"
-        note={`${num(m.density2024)} people per km²`}
-      />
-    </div>
-  </section>
-
-  <section class="wrap py-14 sm:py-16">
-    <SectionHeading
-      eyebrow="Browse"
-      title="Seven ways into the record"
-      lede="Every page is built from a committed dataset, so the whole site can be rebuilt and audited from source."
-    />
-
-    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <li class="sm:col-span-2 lg:col-span-3">
-        <a
-          href={featureCard.href}
-          class="card group grid grid-cols-1 gap-6 overflow-hidden p-6 no-underline transition-colors hover:border-brand/50 hover:bg-brand-soft/30 sm:p-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
-        >
-          <div>
-            <p class="text-[0.62rem] uppercase tracking-[0.16em] text-muted">Featured</p>
-            <div class="mt-2 flex flex-wrap items-baseline gap-3">
-              <h3 class="font-display text-[1.6rem] tracking-tight text-ink">{featureCard.title}</h3>
-              <span class="text-[0.7rem] uppercase tracking-[0.08em] text-muted">{featureCard.meta}</span>
-            </div>
-            <p class="mt-2 max-w-xl text-sm leading-relaxed text-ink-soft">{featureCard.blurb}</p>
-            <span class="mt-4 inline-block text-[0.8rem] font-medium text-brand">Open the map →</span>
-          </div>
-
-          <ol class="map-rail hidden border-line-strong lg:block" aria-hidden="true">
+      <ol class="toc" data-reveal style="--reveal-delay:120ms">
+        {
+          contents.map((item) => (
             <li>
-              <div class="map-rail-item">
-                <span class="map-rail-num">01</span>
-                <span class="map-rail-text">
-                  <span class="map-rail-title">Philippines</span>
-                  <span class="map-rail-note">18 regions</span>
-                </span>
-              </div>
+              <a href={item.href} class="toc-item">
+                <span class="toc-num">{item.n}</span>
+                <span class="toc-title">{item.title}</span>
+                <span class="toc-desc">{item.desc}</span>
+                <span class="toc-arrow" aria-hidden="true">→</span>
+              </a>
             </li>
-            <li>
-              <div class="map-rail-item">
-                <span class="map-rail-num">02</span>
-                <span class="map-rail-text">
-                  <span class="map-rail-title">Batangas</span>
-                  <span class="map-rail-note">34 cities and municipalities</span>
-                </span>
-              </div>
-            </li>
-            <li>
-              <div class="map-rail-item">
-                <span class="map-rail-num">03</span>
-                <span class="map-rail-text">
-                  <span class="map-rail-title">Bauan</span>
-                  <span class="map-rail-note">40 barangays, by the number</span>
-                </span>
-              </div>
-            </li>
-          </ol>
-        </a>
-      </li>
-
-      {
-        cards.map((card) => (
-          <li>
-            <a
-              href={card.href}
-              class="card group flex h-full flex-col justify-between p-5 no-underline transition-colors hover:border-brand/50 hover:bg-brand-soft/40"
-            >
-              <div>
-                <div class="flex items-baseline justify-between gap-3">
-                  <h3 class="font-display text-[1.1rem] tracking-tight text-ink">{card.title}</h3>
-                  <span class="text-[0.7rem] uppercase tracking-[0.08em] text-muted">{card.meta}</span>
-                </div>
-                <p class="mt-2 text-sm leading-relaxed text-ink-soft">{card.blurb}</p>
-              </div>
-              <span class="mt-4 text-[0.8rem] text-brand opacity-0 transition-opacity group-hover:opacity-100">
-                Open →
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <section class="border-y border-line bg-surface">
-    <div class="wrap py-14 sm:py-16">
-      <SectionHeading
-        eyebrow="How this works"
-        title="Nothing here is guessed"
-        lede="A transparency site is only worth the trust it can prove. Three rules govern every page."
-      />
-
-      <ol class="mt-8 grid gap-8 sm:grid-cols-3">
-        <li>
-          <p class="font-display text-2xl text-brand/40">01</p>
-          <h3 class="mt-1 text-[1rem] font-semibold text-ink">Every figure has a record</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            Each number links to the agency that published it — a PSA table, a DILG filing, a DPWH
-            contract — with the date it was read.
-          </p>
-        </li>
-        <li>
-          <p class="font-display text-2xl text-brand/40">02</p>
-          <h3 class="mt-1 text-[1rem] font-semibold text-ink">Unverifiable means unpublished</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            If a claim cannot be traced to a primary record, the page says so and stays empty. An
-            honest gap beats a wrong number.
-          </p>
-        </li>
-        <li>
-          <p class="font-display text-2xl text-brand/40">03</p>
-          <h3 class="mt-1 text-[1rem] font-semibold text-ink">Corrections are public</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            A wrong figure is withdrawn first and re-verified second. Every change is recorded in the
-            repository's history.
-          </p>
-        </li>
+          ))
+        }
       </ol>
+    </div>
+  </section>
 
+  <!-- Feature: the map -------------------------------------------- -->
+  <section class="border-y border-line bg-surface-soft">
+    <div class="wrap grid grid-cols-1 gap-10 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-20">
+      <div data-reveal>
+        <p class="kicker">Feature · the map</p>
+        <h2 class="display-l mt-4">The town, grown<br />to its own numbers.</h2>
+        <p class="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-ink-soft">
+          Fly from the Philippines to Batangas to Bauan, then read a barangay or a contract where it
+          actually sits. On the town level, each of the forty barangays rises to its population,
+          households, contract count or contract value.
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/map" class="btn btn-primary">Enter the map</a>
+          <a href="/barangays" class="btn btn-secondary">Skip to the table</a>
+        </div>
+
+        <p class="serif-note mt-6 max-w-md">
+          Heights are statistics, not elevation. A true relief model would need a digital elevation
+          file, which this project does not ship — so the map does not pretend to show one.
+        </p>
+      </div>
+
+      <div class="figure" data-reveal style="--reveal-delay:100ms">
+        <div class="flex items-baseline justify-between gap-4">
+          <h3 class="display-m">Where the contract value sits</h3>
+          <span class="folio">Top five barangays</span>
+        </div>
+
+        <ul class="chart-rows mt-5">
+          {
+            byContract.map((barangay) => (
+              <li class="chart-row">
+                <span class="chart-label">{barangay.name}</span>
+                <span class="chart-bar">
+                  <span
+                    class="chart-fill"
+                    style={`width:${Math.max(3, (barangay.contractAmount / maxContract) * 100)}%`}
+                  />
+                </span>
+                <span class="chart-value">{pesoCompact(barangay.contractAmount)}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-4">
+          <div>
+            <p class="folio">Mapped contracts</p>
+            <p class="tnum font-display text-xl font-bold">{num(bauan.totals.assignedPins)}</p>
+          </div>
+          <div>
+            <p class="folio">Mapped value</p>
+            <p class="tnum font-display text-xl font-bold">{pesoCompact(bauan.totals.contractAmount)}</p>
+          </div>
+          <div>
+            <p class="folio">Barangays with work</p>
+            <p class="tnum font-display text-xl font-bold">{num(bauan.totals.barangaysWithContracts)}</p>
+          </div>
+        </div>
+
+        <p class="figure-caption mt-4">
+          DPWH records whose coordinates fall inside a barangay polygon. Five of the 108 contracts
+          could not be matched to a polygon and are not drawn.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers ----------------------------------------------------- -->
+  <section class="wrap py-14 sm:py-20">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4" data-reveal>
+      <h2 class="display-l">The record, in four figures.</h2>
+      <span class="folio">PSA 2024 · DPWH · DILG FDP</span>
+    </div>
+
+    <dl class="grid grid-cols-2 gap-x-8 gap-y-10 pt-8 lg:grid-cols-4">
+      <div data-reveal>
+        <dt class="kicker-plain">Residents</dt>
+        <dd class="stat-mega mt-2 text-brand" data-count={String(m.population)}>{num(m.population)}</dd>
+        <p class="mt-2 text-[0.78rem] leading-relaxed text-muted">2024 census, PSA</p>
+      </div>
+      <div data-reveal style="--reveal-delay:80ms">
+        <dt class="kicker-plain">Households</dt>
+        <dd class="stat-mega mt-2" data-count={String(m.households)}>{num(m.households)}</dd>
+        <p class="mt-2 text-[0.78rem] leading-relaxed text-muted">2024 census, PSA</p>
+      </div>
+      <div data-reveal style="--reveal-delay:160ms">
+        <dt class="kicker-plain">Infrastructure</dt>
+        <dd class="stat-mega mt-2 text-gold" data-count="2.05" data-decimals="2" data-prefix="₱" data-suffix="B">
+          ₱2.05B
+        </dd>
+        <p class="mt-2 text-[0.78rem] leading-relaxed text-muted">
+          {num(dpwh.summary.count)} contracts · {num(completed)} completed
+        </p>
+      </div>
+      <div data-reveal style="--reveal-delay:240ms">
+        <dt class="kicker-plain">Filings</dt>
+        <dd class="stat-mega mt-2" data-count={String(fdp.summary.count)}>{num(fdp.summary.count)}</dd>
+        <p class="mt-2 text-[0.78rem] leading-relaxed text-muted">
+          CY{fdp.coverage.from}–CY{fdp.coverage.to}, DILG portal
+        </p>
+      </div>
+    </dl>
+
+    <p class="mt-10 max-w-3xl text-[0.82rem] leading-relaxed text-muted">
+      Land area is {m.landAreaKm2} km² from PSA, the figure this site publishes; the commonly cited
+      53.31 km² is noted on the <a href="/government#profile" class="link-underline">government page</a>.
+      The largest barangay is {largest?.name}, with {num(largest?.population ?? 0)} residents.
+    </p>
+  </section>
+
+  <!-- Culture ---------------------------------------------------- -->
+  <section class="border-y border-line">
+    <div class="wrap grid grid-cols-1 gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
+      <div data-reveal>
+        <p class="kicker">Culture · Sublian</p>
+        <h2 class="display-l mt-4">The festival is<br />the history.</h2>
+        <p class="dropcap mt-5 max-w-xl text-[0.98rem] leading-[1.7] text-ink-soft">
+          Bauan's subli is a dance offered to the Mahal na Poong Santa Cruz, the Holy Cross found in
+          Alitagtag at the end of the sixteenth century. The town keeps the feast on 3 May; the
+          Sublian Festival fills the days before it, with the two sibling crosses meeting at Concordia
+          and a procession back through Manghinao.
+        </p>
+        <p class="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink-soft">
+          The 25th Sublian Festival was held on 2 May 2026. The town also counts its founding from the
+          move to the present site in 1690 — the 336th anniversary fell on 30 January 2026.
+        </p>
+        <a href="/culture" class="btn btn-secondary mt-7">Read the culture page</a>
+      </div>
+
+      <figure class="pullquote self-start" data-reveal style="--reveal-delay:100ms">
+        “One Legacy, One Community, One Future, as We are One in Bauan.”
+        <cite>336th Founding Anniversary theme, Municipality of Bauan, 2026</cite>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Method ----------------------------------------------------- -->
+  <section class="wrap py-14 sm:py-20">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4">
+      <h2 class="display-l">Nothing here is guessed.</h2>
+      <span class="folio">Three rules</span>
+    </div>
+
+    <ol class="mt-8 grid gap-8 sm:grid-cols-3">
+      <li data-reveal>
+        <p class="stat-mega text-line-strong">01</p>
+        <h3 class="mt-1 text-[1rem] font-bold">Every figure has a record</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+          Each number links to the agency that published it — a PSA table, a DILG filing, a DPWH
+          contract — with the date it was read.
+        </p>
+      </li>
+      <li data-reveal style="--reveal-delay:80ms">
+        <p class="stat-mega text-line-strong">02</p>
+        <h3 class="mt-1 text-[1rem] font-bold">Unverifiable means unpublished</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+          If a claim cannot be traced to a primary record, the page says so and stays empty. An honest
+          gap beats a wrong number.
+        </p>
+      </li>
+      <li data-reveal style="--reveal-delay:160ms">
+        <p class="stat-mega text-line-strong">03</p>
+        <h3 class="mt-1 text-[1rem] font-bold">Corrections are public</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+          A wrong figure is withdrawn first and re-verified second. Every change is recorded in the
+          repository's history.
+        </p>
+      </li>
+    </ol>
+
+    <div class="mt-10 max-w-3xl">
       <EvidenceNote
         sourceId="psa-openstat"
         locator="PO_2024/0041A6DTPH3.px"
         retrievedAt={psa.retrievedAt}
-        note="Population, households and land area on this page come from the table above. Barangay figures reconcile to the municipal total exactly."
+        note={`Population, households and land area come from the PSA table. Barangay figures reconcile to the municipal total exactly. Last data refresh ${isoDate(refreshed)}.`}
       />
     </div>
   </section>
 
-  <section class="wrap py-14 sm:py-16">
+  <!-- Disclaimer ------------------------------------------------- -->
+  <section class="wrap pb-16">
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
       <Callout tone="warn" title="This is not the municipality's website">
         <p>
@@ -274,15 +395,20 @@ const cards = [
       </Callout>
 
       <div class="card p-5">
-        <h2 class="font-display text-[1.1rem] tracking-tight">Found an error?</h2>
+        <h2 class="display-m">Found an error?</h2>
         <p class="mt-2 text-sm leading-relaxed text-ink-soft">
           Corrections are the point, not an embarrassment. Send the source that contradicts us and the
           figure comes down first, then gets re-verified.
         </p>
-        <a href={SITE.issues} class="mt-4 inline-block text-sm text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
+        <a href={SITE.issues} class="mt-4 inline-block text-sm link-underline" rel="noopener">
           Open an issue on GitHub
         </a>
       </div>
     </div>
   </section>
 </Base>
+
+<script>
+  import { initEmblem } from '../lib/emblem3d';
+  initEmblem();
+</script>

@@ -5,52 +5,73 @@ page and not like a generated dashboard. These are the rules behind it.
 
 ## References
 
-- **[USWDS](https://designsystem.digital.gov/)** — the United States Web Design System, and its typeface
-  **[Public Sans](https://github.com/uswds/public-sans)** (SIL Open Font License). Public Sans was drawn
-  for government services: plain, narrow, legible at small sizes. It is the body face here.
-- **[Fraunces](https://github.com/undercasetype/Fraunces)** by Undercase Type (SIL Open Font License).
-  A variable serif with a warm, slightly wonky optical size. Used only for display: headlines, figures,
-  barangay names. It gives the site a printed-matter voice that a system sans cannot.
+- **[Public Sans](https://github.com/uswds/public-sans)** — drawn for US government services: plain,
+  narrow, legible at small sizes. It remains the body face.
+- **[Archivo](https://github.com/Omnibus-Type/Archivo)** and **Archivo Black** by Omnibus-Type (SIL Open
+  Font License). A grotesque with a wide weight range for headlines and a single fat cut for the
+  wordmark and cover. This is the display voice: magazine, not municipal memo.
+- **[Newsreader](https://github.com/productiontype/Newsreader)** by Production Type (SIL Open Font
+  License). Used only in italic, for standfirsts, pull quotes and captions. It is the one serif on the
+  page, and it never sets body copy.
 - **[The Pudding](https://pudding.cool/)** — the standard for data stories where motion carries meaning
-  rather than decorating. The map's level change and the bars' rise are borrowed from that discipline:
-  one idea per gesture, and the ability to stop.
+  rather than decorating. The map's level change, the bars' rise and the year scrubber follow that
+  discipline: one idea per gesture, and the ability to stop.
 
-Both fonts are installed from npm (`@fontsource-variable/*`) and bundled by Vite. There is no request to
-Google Fonts or any font CDN at runtime.
+All fonts are installed from npm (`@fontsource*/*`) and bundled by Vite. There is no request to Google
+Fonts or any font CDN at runtime.
 
 ## Colour
 
-| Token | Value | Use |
-| --- | --- | --- |
-| `paper` | `#FFFFFF` | Page background. White, deliberately. |
-| `surface-soft` | `#F7F5EF` | Quiet panels, chart wells |
-| `ink` | `#121A1F` | Text, active states |
-| `ink-soft` | `#3D4A50` | Body copy |
-| `muted` | `#66737A` | Labels, notes |
-| `line` | `#E6E2D9` | Hairlines |
-| `line-strong` | `#CFC8BA` | Edges that need to hold a shape |
-| `brand` | `#0E4A40` | Deep pine: links, primary buttons, bars |
-| `brand-deep` | `#072E28` | Hover |
-| `accent` | `#C2542D` | Vermilion: the highlighted place, the measured bar, the active rail mark |
+The palette is sampled from the municipal mark: the gold sun, the two green ridges, the blue sea, and
+the red of the seal. White is the page, not a tint of it.
 
-Rules: vermilion is never used for body text or large fills, only for one thing at a time. Green carries
-structure. The page is white; panels are cream; there are no gradients on text and no glassmorphism.
+| Token | Light | Dark | Use |
+| --- | --- | --- | --- |
+| `paper` | `#FFFFFF` | `#080D0F` | Page background |
+| `surface-soft` | `#F2F5F3` | `#0C1214` | Quiet panels, chart wells |
+| `ink` | `#0A1114` | `#F3F7F5` | Text, active states |
+| `ink-soft` | `#37464B` | `#B9C6C2` | Body copy |
+| `muted` | `#6C7A7D` | `#8A9A96` | Labels, notes |
+| `line` | `#DFE5E3` | `#1D2A2C` | Hairlines |
+| `line-strong` | `#B7C2BF` | `#33443F` | Edges that need to hold a shape |
+| `brand` | `#0E5537` | `#57C293` | Links, primary buttons, the town |
+| `brand-deep` | `#083A26` | `#3FA97D` | Hover |
+| `gold` | `#E8A317` | `#F3BE4F` | Sun, contract pins, the active rail mark |
+| `sea` | `#0C5B87` | `#62B8E8` | Water, secondary data |
+| `leaf` | `#2E7D46` | `#6FD196` | Hills, secondary marks |
+| `accent` | `#C63A2E` | `#F0705F` | Seal red: warnings and caveats only |
+
+Rules: gold is a data accent, never a background wash. Red is reserved for caveats. Green carries
+structure. Panels are cool grey-green, never cream, and there are no gradients on text.
 
 ## Type and layout
 
-- Display sizes use Fraunces with tight tracking (`-0.02em` to `-0.03em`) and a line height near `1`.
+- Display sizes use Archivo at 700–800 weight, tracking `-0.03em`, line height near `0.92`. The cover
+  uses Archivo Black at `clamp(3.2rem, 10.4vw, 8.4rem)`; interior page titles use `display-xl`.
 - Body is Public Sans at `0.9rem`–`1rem`, line height `1.6`.
+- Standfirsts and pull quotes are Newsreader italic; captions may use it at small sizes.
 - Numbers are tabular everywhere (`font-variant-numeric: tabular-nums`).
-- Labels are `0.62rem`, uppercase, `0.14em` tracking, muted. They are a rhythm, not decoration.
-- Layout uses hairline rules and generous margins instead of cards with shadows. Corners are square.
-- The tab menu is not a segmented control. It is a numbered vertical rail (`01 / 02 / 03`) with a
-  vermilion marker that moves with the selection.
+- Labels are `0.62rem`, uppercase, `0.2em` tracking, muted. They are a rhythm, not decoration.
+- Layout uses hairline rules and generous margins instead of cards with shadows. Corners are square;
+  the dock and pills are the only rounded objects.
+- Navigation is a floating dark pill dock with four groups (Overview, Government, Transparency, About).
+  Each opens a panel of its sections; below 860px the dock collapses to a Menu sheet. The page keeps
+  exactly four top-level destinations, so the group, not the page, is the unit of navigation.
 
 ## Charts
 
 `BarChart.astro` and `ColumnChart.astro` are server-rendered HTML and CSS. No chart library, no canvas,
 no SVG text that screen readers cannot follow — every value is a real string in the document. Bars grow
 once with a CSS keyframe and stop. Under `prefers-reduced-motion` they appear immediately.
+
+## The 3D mark
+
+The header and cover use a procedural three.js emblem rather than a bitmap of the seal. It is built from
+the mark's own parts — gold sun and rays, two green ridges, the white municipal hall with its arched
+portal and columns, a palm, three sea bands and terraces — so it scales cleanly, moves on pointer
+parallax, and re-lights itself in dark mode. There is no texture download and no model file: the
+geometry is generated at runtime from the same palette tokens as the page. `BauanMark.astro` is the flat
+SVG fallback for the masthead and no-WebGL readers.
 
 ## Map
 
@@ -62,13 +83,19 @@ the bars re-grow when the measure changes.
 one would mean downloading terrain tiles at build time or calling a tile service at runtime. Neither is
 acceptable here, so the map says what it is instead of pretending.
 
+The town view also has a **year scrubber**. `scripts/build-map.mjs` stores, for every barangay, the count
+and value of contracts dated in each year; choosing a year keeps only those pins and re-grows the town to
+that year's own totals. The "All years" position is the reconciled whole, not a default that hides data.
+
 Motion rules:
 
 - One camera move at a time; a new level cancels the previous move.
 - Auto-rotation stops on interaction and resumes only after nine seconds idle.
-- `prefers-reduced-motion` disables the dolly, the rise and the pulse.
+- `prefers-reduced-motion` disables the dolly, the rise, the beacon pulse and the pointer parallax.
 - Pins are only plotted when DPWH's coordinate lands inside a barangay polygon. The rest are disclosed,
   never nudged onto the map.
+- Contract pins are beacons (stem, emissive head, gold halo) rather than flat dots, so they remain legible
+  above the tallest barangay.
 
 ## What would have needed the cloud, and did not
 

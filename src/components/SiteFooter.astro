@@ -1,80 +1,98 @@
 ---
-import { NAV, SITE } from '../data/site';
+import BauanMark from './BauanMark.astro';
+import { NAV_GROUPS, SITE } from '../data/site';
 import { isoDate } from '../lib/format';
 import dpwh from '../data/generated/dpwh.json';
 import fdp from '../data/generated/fdp.json';
+import mapData from '../data/generated/map.json';
 import psa from '../data/generated/psa.json';
 
-const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at(-1) ?? null;
+const refreshed =
+  [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt, mapData.source.retrievedAt].sort().at(-1) ?? null;
 const year = new Date().getFullYear();
+const groups = NAV_GROUPS.filter((group) => group.id !== 'about');
 ---
 
-<footer class="mt-24 border-t border-line bg-surface">
-  <div class="wrap grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr]">
-    <div>
-      <p class="font-display text-lg tracking-tight">
-        {SITE.wordmarkFirst}<span class="text-brand">{SITE.wordmarkSecond}</span>
-      </p>
-      <p class="mt-3 max-w-sm text-sm leading-relaxed text-ink-soft">
-        An independent, volunteer-run project. Not affiliated with, endorsed by, or operated by the
-        Municipality of Bauan or any government agency.
-      </p>
-      <p class="mt-4 text-sm text-muted">
-        Part of the{' '}
-        <a href={SITE.directory} class="text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
-          Better LGU directory
-        </a>.
-      </p>
+<footer class="mt-20 border-t-2 border-ink bg-surface">
+  <div class="wrap py-10 sm:py-14">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-3">
+          <BauanMark class="size-11 shrink-0 text-ink" />
+          <p class="mega text-[1.55rem] leading-none">
+            Better<span class="text-brand">Bauan</span>
+          </p>
+        </div>
+        <p class="standfirst mt-4 max-w-xs text-[1.05rem]">{SITE.tagline}</p>
+        <p class="mt-3 max-w-sm text-[0.82rem] leading-relaxed text-ink-soft">
+          An independent, volunteer-run record of the Municipality of Bauan, Batangas. Not affiliated
+          with, endorsed by, or operated by the LGU or any government agency.
+        </p>
+      </div>
+
+      {
+        groups.map((group) => (
+          <nav aria-label={group.label}>
+            <h2 class="kicker-plain whitespace-nowrap text-[0.58rem] tracking-[0.14em]">{group.label}</h2>
+            <ul class="mt-3 space-y-2 text-[0.85rem]">
+              {group.items
+                .filter((item) => !item.external)
+                .map((item) => (
+                  <li>
+                    <a href={item.href} class="text-ink-soft no-underline hover:text-brand">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          </nav>
+        ))
+      }
     </div>
 
-    <nav aria-label="Footer">
-      <h2 class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">Explore</h2>
-      <ul class="mt-3 space-y-2 text-sm">
-        {
-          NAV.map((item) => (
-            <li>
-              <a href={item.href} class="text-ink-soft no-underline hover:text-brand">
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-        <li>
-          <a href="/sources" class="text-ink-soft no-underline hover:text-brand">Sources</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div>
-      <h2 class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">Data</h2>
-      <ul class="mt-3 space-y-2 text-sm text-ink-soft">
-        <li>
-          Last refreshed
-          <span class="block text-ink">{isoDate(refreshed)}</span>
-        </li>
-        <li>
-          <a href="/about#verification" class="text-brand underline decoration-brand/30 underline-offset-2">
-            How figures are verified
-          </a>
-        </li>
-        <li>
-          <a href={SITE.issues} class="text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
-            Report a correction
-          </a>
-        </li>
-        <li>
-          <a href={SITE.repo} class="text-brand underline decoration-brand/30 underline-offset-2" rel="noopener">
-            Source code
-          </a>
-        </li>
-      </ul>
+    <div class="mt-10 grid gap-6 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <p class="folio">Last data refresh</p>
+        <p class="mt-1 text-[0.85rem] text-ink">{isoDate(refreshed)}</p>
+      </div>
+      <div>
+        <p class="folio">Part of</p>
+        <a
+          href={SITE.directory}
+          class="mt-1 inline-block text-[0.85rem] text-brand underline decoration-brand/30 underline-offset-2"
+          rel="noopener"
+        >
+          Better LGU directory
+        </a>
+      </div>
+      <div>
+        <p class="folio">Corrections</p>
+        <a
+          href={SITE.issues}
+          class="mt-1 inline-block text-[0.85rem] text-brand underline decoration-brand/30 underline-offset-2"
+          rel="noopener"
+        >
+          Report a correction
+        </a>
+      </div>
+      <div>
+        <p class="folio">Method</p>
+        <a
+          href="/about#verification"
+          class="mt-1 inline-block text-[0.85rem] text-brand underline decoration-brand/30 underline-offset-2"
+        >
+          How figures are verified
+        </a>
+      </div>
     </div>
   </div>
 
   <div class="border-t border-line">
-    <div class="wrap flex flex-col gap-2 py-5 text-[0.78rem] text-muted sm:flex-row sm:items-center sm:justify-between">
-      <p>© {year} BetterBauan contributors. Code MIT · content CC BY 4.0.</p>
-      <p>Built from public records. No personal data collected.</p>
+    <div
+      class="wrap flex flex-col gap-2 py-5 text-[0.72rem] text-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {year} BetterBauan contributors · code MIT · content CC BY 4.0</p>
+      <p>Built from public records · no cookies · no analytics</p>
     </div>
   </div>
 </footer>
