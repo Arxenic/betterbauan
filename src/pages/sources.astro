@@ -79,7 +79,7 @@ const missing = SOURCES.filter((source) => source.status !== 'used');
         {
           SOURCES.map((source) => (
             <li id={source.id} class="card scroll-mt-24 p-5">
-              <div class="grid gap-4 lg:grid-cols-[1.05fr_1.2fr]">
+              <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1.05fr_1.2fr]">
                 <div>
                   <div class="flex flex-wrap items-center gap-2">
                     <TierBadge tier={source.tier} />

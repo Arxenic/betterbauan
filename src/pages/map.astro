@@ -1,0 +1,292 @@
+---
+import Base from '../layouts/Base.astro';
+import Callout from '../components/Callout.astro';
+import EvidenceNote from '../components/EvidenceNote.astro';
+import map from '../data/generated/map.json';
+import { num, peso } from '../lib/format';
+
+const pins = map.levels.bauan.pins.length;
+const mapped = map.levels.bauan.totals.assignedPins;
+const barangays = map.levels.bauan.barangays.length;
+const totals = map.levels.bauan.totals;
+const largest = [...map.levels.bauan.barangays].sort((a, b) => b.population - a.population)[0];
+const ranking = [...map.levels.bauan.barangays]
+  .sort((a, b) => b.population - a.population)
+  .slice(0, 6);
+---
+
+<Base
+  title="Map"
+  description="A 3D data map of Bauan, Batangas: the province, the town, its 40 barangays grown to their own statistics, and the DPWH contracts with verified coordinates."
+>
+  <section class="border-b border-line bg-paper">
+    <div class="wrap pb-8 pt-10 sm:pt-14">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-2xl">
+          <p class="eyebrow">Location · 13.79°N 120.96°E</p>
+          <h1 class="mt-3 font-display text-[2.6rem] leading-[0.98] font-semibold tracking-[-0.03em] sm:text-[3.4rem]">
+            Where Bauan is,
+            <span class="text-accent">and what it holds.</span>
+          </h1>
+          <p class="lede mt-4 max-w-xl">
+            Three scales, one town. The country, then the province, then forty barangays grown into a
+            landscape of their own numbers — with every DPWH contract that has a usable coordinate.
+          </p>
+        </div>
+
+        <dl class="flex gap-8 border-t border-line pt-5 lg:border-t-0 lg:pt-0">
+          <div>
+            <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Barangays</dt>
+            <dd class="tnum font-display text-[1.6rem] font-semibold leading-none">{barangays}</dd>
+          </div>
+          <div>
+            <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Mapped contracts</dt>
+            <dd class="tnum font-display text-[1.6rem] font-semibold leading-none">{mapped}</dd>
+          </div>
+          <div>
+            <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Mapped value</dt>
+            <dd class="tnum font-display text-[1.6rem] font-semibold leading-none">
+              ₱{(totals.contractAmount / 1_000_000_000).toFixed(2)}B
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper">
+    <div class="wrap map-layout">
+      <div class="map-controls">
+        <p class="map-scale-label text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">Scale</p>
+
+        <div class="map-rail-wrap mt-3" role="group" aria-label="Map level">
+          <ol class="map-rail">
+            <li>
+              <button type="button" data-map-level="country" aria-pressed="true" class="map-rail-item">
+                <span class="map-rail-num">01</span>
+                <span class="map-rail-text">
+                  <span class="map-rail-title">Philippines</span>
+                  <span class="map-rail-note">18 regions</span>
+                </span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-map-level="province" aria-pressed="false" class="map-rail-item">
+                <span class="map-rail-num">02</span>
+                <span class="map-rail-text">
+                  <span class="map-rail-title">Batangas</span>
+                  <span class="map-rail-note">34 cities and municipalities</span>
+                </span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-map-level="bauan" aria-pressed="false" class="map-rail-item">
+                <span class="map-rail-num">03</span>
+                <span class="map-rail-text">
+                  <span class="map-rail-title">Bauan</span>
+                  <span class="map-rail-note">40 barangays, by the number</span>
+                </span>
+              </button>
+            </li>
+          </ol>
+        </div>
+
+        <p data-map-hint class="map-hint mt-5 text-[0.82rem] leading-relaxed text-ink-soft">
+          The Philippines in 18 regions. Bauan sits on the western coast of Batangas, in Region IV-A.
+          Click the highlighted province, or use the rail, to fly in.
+        </p>
+
+        <div data-map-detail aria-live="polite" class="map-detail mt-5 min-h-[7rem] border-t border-line pt-4">
+          <p class="map-detail-empty">Hover a shape to read its name, then click to fly in.</p>
+        </div>
+
+        <div data-map-metric-row hidden class="map-metrics mt-5">
+          <p class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">
+            Height is data, not elevation
+          </p>
+          <div class="mt-2.5 grid grid-cols-2 gap-1.5">
+            <button type="button" data-map-metric="population" aria-pressed="true" class="map-metric">
+              Population
+            </button>
+            <button type="button" data-map-metric="households" aria-pressed="false" class="map-metric">
+              Households
+            </button>
+            <button type="button" data-map-metric="contracts" aria-pressed="false" class="map-metric">
+              Contracts
+            </button>
+            <button
+              type="button"
+              data-map-metric="contractAmount"
+              aria-pressed="false"
+              class="map-metric"
+            >
+              Contract value
+            </button>
+          </div>
+        </div>
+
+        <div data-map-pin-row hidden class="map-pins mt-4">
+          <label class="flex cursor-pointer items-start gap-2.5 text-[0.78rem] leading-snug text-ink-soft">
+            <input type="checkbox" data-map-pins class="map-switch" checked />
+            <span>Show the {mapped} DPWH contracts inside a barangay</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="map-stage">
+        <div
+          data-map-frame
+          class="map-frame"
+          role="img"
+          aria-label="Interactive 3D map of the Philippines, Batangas and Bauan. Use the scale rail to change level."
+        >
+          <div data-map-canvas class="map-canvas"></div>
+          <div data-map-tooltip hidden class="map-tooltip" aria-hidden="true"></div>
+          <div data-map-fallback hidden class="map-fallback">
+            <p>This browser could not start WebGL, so the 3D map is unavailable.</p>
+            <p class="mt-2">
+              The same facts are on the <a href="/barangays">barangays</a> and
+              <a href="/projects">projects</a> pages.
+            </p>
+          </div>
+          <noscript>
+            <div class="map-fallback">
+              <p>
+                The 3D map needs JavaScript. The underlying facts are on the
+                <a href="/barangays">barangays</a> and <a href="/projects">projects</a> pages.
+              </p>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+          <p class="text-[0.7rem] text-muted">Drag to turn · scroll to zoom</p>
+          <ul class="flex items-center gap-4 text-[0.68rem] text-muted">
+            <li class="flex items-center gap-1.5">
+              <span class="size-2 bg-[#ded6c5] outline outline-1 outline-[#9f9278]"></span> Land
+            </li>
+            <li class="flex items-center gap-1.5">
+              <span class="size-2 bg-[#c2542d]"></span> Bauan / height
+            </li>
+            <li class="flex items-center gap-1.5">
+              <span class="size-2 rounded-full bg-[#0e4a40]"></span> Contract
+            </li>
+          </ul>
+        </div>
+        <p data-map-legend hidden class="mt-1.5 text-[0.7rem] text-muted"></p>
+
+        <div class="mt-5 border border-line bg-surface-soft/60 p-4 sm:p-5">
+          <div class="flex items-baseline justify-between gap-4">
+            <h2
+              data-map-ranking-title
+              class="font-display text-[1.05rem] font-semibold tracking-tight"
+            >
+              Largest barangays
+            </h2>
+            <span class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Top six</span>
+          </div>
+          <ol data-map-ranking class="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+            {
+              ranking.map((barangay, index) => (
+                <li class="map-rank">
+                  <span class="map-rank-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="map-rank-name">{barangay.name}</span>
+                  <span class="map-rank-value">{num(barangay.population)}</span>
+                  <span class="map-rank-bar">
+                    <span style={`width:${Math.max(4, (barangay.population / ranking[0].population) * 100)}%`} />
+                  </span>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-surface-soft">
+    <div class="wrap grid grid-cols-1 gap-10 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:py-16">
+      <div>
+        <h2 class="font-display text-[1.8rem] font-semibold tracking-tight">Reading the model</h2>
+        <div class="prose-block mt-4 max-w-2xl text-[0.92rem] leading-relaxed text-ink-soft">
+          <p>
+            The country silhouette is dissolved from the 18 regional boundaries. The province view shows
+            all 34 cities and municipalities of Batangas, with Bauan raised and coloured. The town view
+            breaks Bauan into its {barangays} barangays — the same forty, with the same PSA counts, as the
+            <a href="/barangays">barangays page</a>.
+          </p>
+          <p>
+            <strong>Height is a statistic, not terrain.</strong> Each barangay is extruded to its
+            population by default; the measure buttons rebuild the town by households, contract count or
+            contract value. A true relief model would need a digital elevation file, which this project
+            does not ship — so the map does not pretend to show one.
+          </p>
+          <p>
+            {pins} DPWH contracts carry coordinates that fall inside Bauan; {mapped} of those also land
+            inside a barangay polygon, and only those are plotted. The other {pins - mapped} sit in
+            coastal gaps where the simplified boundary and the coordinate disagree. Nothing is guessed
+            into place.
+          </p>
+        </div>
+
+        <EvidenceNote
+          sourceId="philippines-json-maps"
+          locator="Country, Batangas province and Bauan barangay boundaries"
+          retrievedAt={map.source.retrievedAt}
+          note="Simplified to render at screen size. This map is for orientation, not measurement."
+        />
+      </div>
+
+      <div class="space-y-6">
+        <Callout tone="note" title="Nothing is fetched while you look">
+          <p>
+            The geometry, the barangay counts and the contract pins are committed files. The page is
+            static HTML plus one bundled script; three.js is self-hosted. There is no tile server, no
+            geocoder, no font CDN and no analytics request.
+          </p>
+        </Callout>
+
+        <div class="border border-line bg-paper p-5">
+          <h2 class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">On this map</h2>
+          <dl class="mt-3 space-y-2 text-sm">
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Regions</dt>
+              <dd class="tnum text-ink">{map.levels.country.shapes.length}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Batangas municipalities</dt>
+              <dd class="tnum text-ink">{map.levels.province.shapes.length}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Bauan barangays</dt>
+              <dd class="tnum text-ink">{barangays}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Contracts inside a barangay</dt>
+              <dd class="tnum text-ink">{totals.assignedPins}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Value of mapped contracts</dt>
+              <dd class="tnum text-ink">{peso(totals.contractAmount)}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Largest barangay</dt>
+              <dd class="text-ink">{largest.name} · {num(largest.population)}</dd>
+            </div>
+          </dl>
+          <div class="mt-4 flex flex-wrap gap-4 border-t border-line pt-4 text-sm">
+            <a href="/barangays" class="map-static-link">Barangays</a>
+            <a href="/projects" class="map-static-link">Projects</a>
+            <a href="/sources" class="map-static-link">Sources</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { initMap } from '../lib/map3d';
+
+  initMap();
+</script>

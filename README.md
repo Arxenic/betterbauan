@@ -18,6 +18,7 @@ Bauan or any government agency.
 
 | Page | What it holds | Source |
 | --- | --- | --- |
+| `/map` | A three-level 3D map: the Philippines, Batangas, then 40 barangays grown to their own statistics, with contract pins | PSA, DPWH, PSA/NAMRIA boundaries |
 | `/barangays` | Population and households for all 40 barangays, reconciled to the municipal total | PSA OpenSTAT, 2024 POPCEN |
 | `/finances` | Index of the 14 statutory financial forms, with direct links | DILG Full Disclosure Policy Portal |
 | `/documents` | All 156 filings, by form and period | DILG Full Disclosure Policy Portal |
@@ -50,22 +51,42 @@ variants — are in [`docs/research-bauan.md`](docs/research-bauan.md).
 
 - [Astro](https://astro.build) — static output, no server, no database, no client-side data fetching
 - [Tailwind CSS 4](https://tailwindcss.com) via the Vite plugin
+- [three.js](https://threejs.org) for the map, bundled locally
 - Node scripts that read public APIs and write committed JSON
 
 The site has no analytics, no cookies and no backend. Every figure is in the HTML at build time.
 
+### Nothing is fetched while you read
+
+This is a hard constraint, not a preference:
+
+- **Fonts** are self-hosted from npm (`@fontsource-variable/public-sans`, `@fontsource-variable/fraunces`).
+  There is no Google Fonts request and no font CDN.
+- **Map geometry** is committed as `src/data/generated/map.json`. The page never calls a tile server, a
+  geocoder or a basemap API. `scripts/build-map.mjs --download` fetches the raw boundaries only when a
+  maintainer runs it, and the output is reviewed and committed.
+- **Charts** are server-rendered CSS. No chart library loads in the browser.
+- **No analytics, no tag manager, no third-party script of any kind.**
+- The only outbound requests are the data-refresh scripts, run by a person, from a terminal.
+
+That means no API keys exist in this repository, and none are needed to run or deploy it. If a future
+feature needs a cloud service, it does not belong in this build.
+
 ```
 src/
-  data/generated/   committed datasets (psa.json, fdp.json, dpwh.json)
+  data/generated/   committed datasets (psa.json, fdp.json, dpwh.json, map.json)
   data/             evidence tiers, source register, form descriptions
   pages/            one file per route
-  components/       small presentational pieces
+  components/       small presentational pieces, including the charts
+  lib/map3d.ts      the three.js scene
+  styles/           the design tokens and shared classes
 scripts/
   fetch-psa.mjs     PSA OpenSTAT PxWeb API
   fetch-fdp.mjs     DILG Full Disclosure portal (HTML index)
   fetch-dpwh.mjs    DPWH contract API (BetterGov mirror)
+  build-map.mjs     boundaries + contract pins -> map.json
   lib/fdp-client.mjs
-docs/               verification policy and research notes
+docs/               verification policy, research notes, design notes
 ```
 
 ## Running it
@@ -85,7 +106,8 @@ Rebuild the datasets:
 npm run data:psa
 npm run data:dpwh
 npm run data:fdp
-# or all three
+npm run data:map      # needs data/geo/raw/, or pass --download
+# or all four
 npm run data:all
 ```
 

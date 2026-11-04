@@ -7,6 +7,8 @@ interface Props {
 import { SITE } from '../data/site';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import '@fontsource-variable/fraunces/wght.css';
+import '@fontsource-variable/public-sans/wght.css';
 import '../styles/global.css';
 
 const { title, description = SITE.description } = Astro.props;
@@ -23,7 +25,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#0c4a56" />
+    <meta name="theme-color" content="#0e4a40" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />

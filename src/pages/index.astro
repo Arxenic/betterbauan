@@ -15,6 +15,14 @@ const completed = dpwh.summary.byStatus.Completed ?? 0;
 const ongoing = dpwh.summary.byStatus['On-Going'] ?? 0;
 const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at(-1) ?? '';
 
+const featureCard = {
+  href: '/map',
+  title: 'Map',
+  meta: '3D · 40 barangays',
+  blurb:
+    'Fly from the Philippines to Batangas to Bauan, then read a barangay or a contract where it actually sits.',
+};
+
 const cards = [
   {
     href: '/government',
@@ -59,7 +67,7 @@ const cards = [
 
 <Base>
   <section class="border-b border-line">
-    <div class="wrap grid gap-12 py-14 lg:grid-cols-[1.35fr_0.95fr] lg:items-start lg:py-20">
+    <div class="wrap grid grid-cols-1 gap-12 py-14 lg:grid-cols-[1.35fr_0.95fr] lg:items-start lg:py-20">
       <div>
         <p class="eyebrow">Bauan, Batangas · independent civic project</p>
         <h1 class="mt-4 font-display text-[2.45rem] leading-[1.04] tracking-tight sm:text-[3.2rem] lg:text-[3.55rem]">
@@ -130,11 +138,58 @@ const cards = [
   <section class="wrap py-14 sm:py-16">
     <SectionHeading
       eyebrow="Browse"
-      title="Six ways into the record"
+      title="Seven ways into the record"
       lede="Every page is built from a committed dataset, so the whole site can be rebuilt and audited from source."
     />
 
     <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <li class="sm:col-span-2 lg:col-span-3">
+        <a
+          href={featureCard.href}
+          class="card group grid grid-cols-1 gap-6 overflow-hidden p-6 no-underline transition-colors hover:border-brand/50 hover:bg-brand-soft/30 sm:p-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
+        >
+          <div>
+            <p class="text-[0.62rem] uppercase tracking-[0.16em] text-muted">Featured</p>
+            <div class="mt-2 flex flex-wrap items-baseline gap-3">
+              <h3 class="font-display text-[1.6rem] tracking-tight text-ink">{featureCard.title}</h3>
+              <span class="text-[0.7rem] uppercase tracking-[0.08em] text-muted">{featureCard.meta}</span>
+            </div>
+            <p class="mt-2 max-w-xl text-sm leading-relaxed text-ink-soft">{featureCard.blurb}</p>
+            <span class="mt-4 inline-block text-[0.8rem] font-medium text-brand">Open the map →</span>
+          </div>
+
+          <ol class="map-rail hidden border-line-strong lg:block" aria-hidden="true">
+            <li>
+              <div class="map-rail-item">
+                <span class="map-rail-num">01</span>
+                <span class="map-rail-text">
+                  <span class="map-rail-title">Philippines</span>
+                  <span class="map-rail-note">18 regions</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <div class="map-rail-item">
+                <span class="map-rail-num">02</span>
+                <span class="map-rail-text">
+                  <span class="map-rail-title">Batangas</span>
+                  <span class="map-rail-note">34 cities and municipalities</span>
+                </span>
+              </div>
+            </li>
+            <li>
+              <div class="map-rail-item">
+                <span class="map-rail-num">03</span>
+                <span class="map-rail-text">
+                  <span class="map-rail-title">Bauan</span>
+                  <span class="map-rail-note">40 barangays, by the number</span>
+                </span>
+              </div>
+            </li>
+          </ol>
+        </a>
+      </li>
+
       {
         cards.map((card) => (
           <li>
@@ -204,7 +259,7 @@ const cards = [
   </section>
 
   <section class="wrap py-14 sm:py-16">
-    <div class="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
       <Callout tone="warn" title="This is not the municipality's website">
         <p>
           BetterBauan is built by volunteers from public records. It is not affiliated with, endorsed

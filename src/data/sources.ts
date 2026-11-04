@@ -52,6 +52,16 @@ export const SOURCES: Source[] = [
     note: 'Every contract is published by DPWH; BetterGov mirrors that publication as an open API. Records are filtered to Bauan by name and coordinate, mislocated records are flagged rather than trusted, and contracts that also name another LGU are marked as shared because their amount is not Bauan-only.',
   },
   {
+    id: 'philippines-json-maps',
+    name: 'Philippine administrative boundaries',
+    publisher: 'Community mirror of PSA / NAMRIA boundary shapefiles',
+    url: 'https://github.com/faeldon/philippines-json-maps',
+    tier: 'C',
+    supports: 'Country, provincial and barangay outlines used by the 3D location map.',
+    status: 'used',
+    note: 'Simplified for rendering. Used for orientation only — no area, distance or boundary is measured from it.',
+  },
+  {
     id: 'coa-aar',
     name: 'Annual Audit Report — Municipality of Bauan',
     publisher: 'Commission on Audit',

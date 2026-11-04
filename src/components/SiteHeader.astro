@@ -5,19 +5,30 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => path === href;
 ---
 
-<header class="border-b border-line bg-paper">
-  <div class="wrap flex items-center justify-between gap-6 py-4">
-    <a href="/" class="group flex items-baseline gap-2 no-underline">
-      <span class="font-display text-[1.35rem] leading-none tracking-tight text-ink">
+<header class="bg-paper">
+  <div class="border-b border-line">
+    <div
+      class="wrap flex items-center justify-between gap-4 py-2 text-[0.62rem] uppercase tracking-[0.15em] text-muted"
+    >
+      <p>An independent public record</p>
+      <p class="hidden sm:block">Bauan, Batangas · Philippines</p>
+    </div>
+  </div>
+
+  <div class="wrap flex items-center justify-between gap-6 py-4 lg:py-5">
+    <a href="/" class="group flex items-baseline gap-3 no-underline">
+      <span class="font-display text-[1.5rem] leading-none font-semibold tracking-[-0.02em] text-ink lg:text-[1.7rem]">
         {SITE.wordmarkFirst}<span class="text-brand">{SITE.wordmarkSecond}</span>
       </span>
-      <span class="hidden text-[0.7rem] uppercase tracking-[0.14em] text-muted sm:inline">
-        {SITE.province}
+      <span
+        class="hidden border-l border-line pl-3 text-[0.6rem] uppercase leading-[1.5] tracking-[0.14em] text-muted sm:inline"
+      >
+        Municipal<br />record
       </span>
     </a>
 
-    <nav aria-label="Primary" class="hidden md:block">
-      <ul class="flex items-center gap-5 text-[0.9rem]">
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-4 lg:gap-6">
         {
           NAV.map((item) => (
             <li>
@@ -25,9 +36,9 @@ const isActive = (href: string) => path === href;
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 class:list={[
-                  'no-underline transition-colors hover:text-brand',
+                  'relative block pb-1 text-[0.68rem] uppercase tracking-[0.12em] no-underline transition-colors hover:text-brand',
                   isActive(item.href)
-                    ? 'font-semibold text-brand underline decoration-brand/40 decoration-2 underline-offset-[6px]'
+                    ? 'font-semibold text-ink after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-accent'
                     : 'text-ink-soft',
                 ]}
               >
@@ -36,13 +47,13 @@ const isActive = (href: string) => path === href;
             </li>
           ))
         }
-        <li>
+        <li class="border-l border-line pl-4 lg:pl-6">
           <a
             href={SITE.repo}
-            class="inline-flex items-center gap-1.5 rounded-sm border border-line-strong px-2.5 py-1 text-[0.8rem] text-ink-soft no-underline transition-colors hover:border-brand hover:text-brand"
+            class="inline-flex items-center gap-1.5 text-[0.68rem] uppercase tracking-[0.12em] text-ink-soft no-underline transition-colors hover:text-brand"
             rel="noopener"
           >
-            <svg viewBox="0 0 16 16" aria-hidden="true" class="size-3.5 fill-current">
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="size-3 fill-current">
               <path
                 d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.055-.49.055-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.073-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
               ></path>
@@ -53,13 +64,15 @@ const isActive = (href: string) => path === href;
       </ul>
     </nav>
 
-    <span class="rounded-full border border-line-strong px-2.5 py-1 text-[0.68rem] uppercase tracking-[0.1em] text-muted md:hidden">
+    <span
+      class="border border-line-strong px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.12em] text-muted lg:hidden"
+    >
       Independent
     </span>
   </div>
 
-  <nav aria-label="Primary, compact" class="border-t border-line md:hidden">
-    <ul class="no-scrollbar wrap flex gap-5 overflow-x-auto py-2.5 text-[0.85rem]">
+  <nav aria-label="Primary, compact" class="border-t border-line lg:hidden">
+    <ul class="no-scrollbar wrap flex gap-5 overflow-x-auto py-2.5 text-[0.66rem] uppercase tracking-[0.1em]">
       {
         NAV.map((item) => (
           <li class="shrink-0">
@@ -67,8 +80,10 @@ const isActive = (href: string) => path === href;
               href={item.href}
               aria-current={isActive(item.href) ? 'page' : undefined}
               class:list={[
-                'no-underline',
-                isActive(item.href) ? 'font-semibold text-brand' : 'text-ink-soft',
+                'relative block pb-1 no-underline',
+                isActive(item.href)
+                  ? 'font-semibold text-ink after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-accent'
+                  : 'text-ink-soft',
               ]}
             >
               {item.label}

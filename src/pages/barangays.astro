@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BarChart from '../components/BarChart.astro';
 import Callout from '../components/Callout.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
 import Stat from '../components/Stat.astro';
@@ -9,6 +10,15 @@ import { num, pct } from '../lib/format';
 const m = psa.municipality;
 const barangays = [...psa.barangays].sort((a, b) => b.population - a.population);
 const maxShare = barangays[0].population / m.population;
+
+const topPopulation = barangays.slice(0, 12).map((barangay) => ({
+  label: barangay.name,
+  value: barangay.population,
+}));
+const topTwelveShare =
+  barangays.slice(0, 12).reduce((sum, barangay) => sum + barangay.population, 0) / m.population;
+const medianPopulation = barangays[Math.floor(barangays.length / 2)].population;
+const belowThousand = barangays.filter((barangay) => barangay.population < 1000).length;
 ---
 
 <Base
@@ -32,6 +42,41 @@ const maxShare = barangays[0].population / m.population;
         <Stat value={num(m.households)} label="Households" note="2024 census" />
         <Stat value={`${m.landAreaKm2} km²`} label="Land area" note="PSA" />
       </div>
+    </div>
+  </section>
+
+  <section class="wrap pt-10 sm:pt-12">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-12">
+      <BarChart
+        title="Population by barangay"
+        subtitle="Top twelve of forty"
+        rows={topPopulation}
+        note={`The twelve shown hold ${pct(topTwelveShare)} of Bauan's ${num(m.population)} residents. The full table is below.`}
+      />
+
+      <dl class="grid content-start gap-5 border-t border-line pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+        <div>
+          <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Largest</dt>
+          <dd class="mt-1 font-display text-[1.2rem] font-semibold leading-tight">
+            {barangays[0].name}
+          </dd>
+          <dd class="tnum text-[0.78rem] text-muted">{num(barangays[0].population)} people</dd>
+        </div>
+        <div>
+          <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Median barangay</dt>
+          <dd class="tnum mt-1 font-display text-[1.2rem] font-semibold leading-tight">
+            {num(medianPopulation)}
+          </dd>
+          <dd class="text-[0.78rem] text-muted">people, halfway through the list</dd>
+        </div>
+        <div>
+          <dt class="text-[0.62rem] uppercase tracking-[0.14em] text-muted">Under 1,000 people</dt>
+          <dd class="tnum mt-1 font-display text-[1.2rem] font-semibold leading-tight">
+            {belowThousand}
+          </dd>
+          <dd class="text-[0.78rem] text-muted">of {barangays.length} barangays</dd>
+        </div>
+      </dl>
     </div>
   </section>
 

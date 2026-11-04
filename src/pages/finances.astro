@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Callout from '../components/Callout.astro';
+import ColumnChart from '../components/ColumnChart.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
 import Stat from '../components/Stat.astro';
 import { FDP_FORM_NOTES } from '../data/fdp-forms';
@@ -28,6 +29,10 @@ const years = Object.entries(fdp.summary.byYear)
 
 const quarterlyCount = FDP_FORM_NOTES.filter((form) => form.cadence === 'quarterly').length;
 const annualCount = FDP_FORM_NOTES.length - quarterlyCount;
+
+const filingsByYear = [...years]
+  .sort((a, b) => a.year - b.year)
+  .map((row) => ({ label: String(row.year), value: row.count }));
 ---
 
 <Base
@@ -56,6 +61,29 @@ const annualCount = FDP_FORM_NOTES.length - quarterlyCount;
   </section>
 
   <section class="wrap py-10 sm:py-12">
+    <div class="mb-10 grid grid-cols-1 gap-8 border border-line bg-surface p-5 sm:p-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <ColumnChart
+        title="Filings published by year"
+        subtitle={`CY${fdp.coverage.from} to CY${fdp.coverage.to}`}
+        rows={filingsByYear}
+        note="A filing is one form for one period, not one document bundle."
+      />
+      <div class="border-t border-line pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+        <p class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted">
+          How to read the count
+        </p>
+        <p class="mt-2 text-[0.85rem] leading-relaxed text-ink-soft">
+          A complete year shows {quarterlyCount * 4 + annualCount} filings: each of the {quarterlyCount}{' '}
+          quarterly forms four times, plus {annualCount} annual forms. 2023 to 2025 hit that mark exactly.
+          2022 is partial, and 2026 is still in progress.
+        </p>
+        <p class="mt-3 text-[0.78rem] leading-relaxed text-muted">
+          Missing forms are not evidence of missing money. They are evidence of missing documents — which
+          is the thing this page can prove.
+        </p>
+      </div>
+    </div>
+
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <h2 class="font-display text-[1.5rem] tracking-tight">Most recent filing for each form</h2>
@@ -117,7 +145,7 @@ const annualCount = FDP_FORM_NOTES.length - quarterlyCount;
   </section>
 
   <section class="border-y border-line bg-surface">
-    <div class="wrap grid gap-10 py-12 lg:grid-cols-[0.85fr_1.15fr] sm:py-14">
+    <div class="wrap grid grid-cols-1 gap-10 py-12 lg:grid-cols-[0.85fr_1.15fr] sm:py-14">
       <div>
         <h2 class="font-display text-[1.5rem] tracking-tight">How complete is the record?</h2>
         <p class="lede mt-3">

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Callout from '../components/Callout.astro';
+import ColumnChart from '../components/ColumnChart.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
 import Stat from '../components/Stat.astro';
 import dpwh from '../data/generated/dpwh.json';
@@ -14,7 +15,19 @@ const procurement = dpwh.summary.byStatus['For Procurement'] ?? 0;
 const years = Object.entries(dpwh.summary.byYear)
   .map(([year, count]) => ({ year: Number(year), count }))
   .sort((a, b) => b.year - a.year);
-const maxYearCount = Math.max(...years.map((row) => row.count));
+
+const countByYear = [...years]
+  .sort((a, b) => a.year - b.year)
+  .map((row) => ({ label: String(row.year), value: row.count }));
+
+const valueByYear = [...years]
+  .sort((a, b) => a.year - b.year)
+  .map((row) => ({
+    label: String(row.year),
+    value: contracts
+      .filter((contract) => Number(contract.year) === row.year)
+      .reduce((sum, contract) => sum + (contract.budget ?? 0), 0),
+  }));
 
 const largest = [...contracts]
   .filter((contract) => contract.budget !== null)
@@ -62,28 +75,14 @@ const statusStyle: Record<string, string> = {
   </section>
 
   <section class="wrap py-10 sm:py-12">
-    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr]">
       <div>
-        <h2 class="font-display text-[1.5rem] tracking-tight">Contracts by year</h2>
-        <p class="mt-1 text-sm text-muted">
-          Count of contracts, by the year DPWH attributes them to. Values are not adjusted for inflation.
-        </p>
-        <ul class="mt-5 space-y-2">
-          {
-            years.map((row) => (
-              <li class="flex items-center gap-3">
-                <span class="tnum w-10 text-[0.78rem] text-muted">{row.year}</span>
-                <div class="h-2 flex-1 overflow-hidden rounded-full bg-line/60">
-                  <div
-                    class="h-full rounded-full bg-brand/70"
-                    style={`width: ${((row.count / maxYearCount) * 100).toFixed(1)}%`}
-                  />
-                </div>
-                <span class="tnum w-8 text-right text-[0.78rem] text-ink-soft">{row.count}</span>
-              </li>
-            ))
-          }
-        </ul>
+        <ColumnChart
+          title="Contracts by year"
+          subtitle="Count, by the year DPWH attributes them to"
+          rows={countByYear}
+          note="The 2026 figure is a partial year."
+        />
       </div>
 
       <div>
@@ -94,7 +93,9 @@ const statusStyle: Record<string, string> = {
               <li class="py-3">
                 <div class="flex items-baseline gap-3">
                   <span class="tnum text-[0.72rem] text-muted">{String(index + 1).padStart(2, '0')}</span>
-                  <p class="flex-1 text-[0.82rem] leading-snug text-ink-soft">{contract.description}</p>
+                  <p class="min-w-0 flex-1 break-words text-[0.82rem] leading-snug text-ink-soft">
+                    {contract.description}
+                  </p>
                 </div>
                 <p class="tnum mt-1 pl-7 text-[0.8rem] font-medium text-ink">{peso(contract.budget)}</p>
               </li>
@@ -106,6 +107,16 @@ const statusStyle: Record<string, string> = {
           Bauan-only spending. See the note below.
         </p>
       </div>
+    </div>
+
+    <div class="mt-10 max-w-3xl border-t border-line pt-8">
+      <ColumnChart
+        title="Contract value by year"
+        subtitle="Nominal pesos, not adjusted for inflation"
+        rows={valueByYear}
+        format="pesoCompact"
+        note={`Shared contracts are counted at full value here. Excluding the shared portion, ${pesoShort(bauanOnlyBudget)} of the ${pesoShort(dpwh.summary.totalBudget)} is Bauan-only.`}
+      />
     </div>
 
     <div class="mt-8">

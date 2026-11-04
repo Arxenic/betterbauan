@@ -28,6 +28,16 @@ export const pesoShort = (value: number | null | undefined): string => {
   return peso(value);
 };
 
+/** 537100000 -> "₱537M" — for chart labels, where space is scarce. */
+export const pesoCompact = (value: number | null | undefined): string => {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return '—';
+  if (value === 0) return '₱0';
+  if (value >= 1_000_000_000) return `₱${(value / 1_000_000_000).toFixed(2)}B`;
+  if (value >= 1_000_000) return `₱${Math.round(value / 1_000_000)}M`;
+  if (value >= 1_000) return `₱${Math.round(value / 1_000)}k`;
+  return peso(value);
+};
+
 /** 0.0735 -> "7.4%" */
 export const pct = (value: number, digits = 1): string =>
   `${(value * 100).toFixed(digits).replace(/\.0$/, '')}%`;

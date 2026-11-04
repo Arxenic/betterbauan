@@ -1,0 +1,56 @@
+---
+/**
+ * Horizontal bar chart. Server-rendered, no chart library, no client script.
+ * Labels are real text so the chart is readable with images or CSS disabled.
+ */
+import { num, peso, pesoCompact, pesoShort } from '../lib/format';
+
+interface Row {
+  label: string;
+  value: number;
+  note?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  rows: Row[];
+  format?: 'number' | 'peso' | 'pesoShort' | 'pesoCompact';
+  note?: string;
+  id?: string;
+}
+
+const { title, subtitle, rows, format = 'number', note, id } = Astro.props;
+
+const formatters = { number: num, peso, pesoShort, pesoCompact } as const;
+const fmt = formatters[format];
+const max = Math.max(...rows.map((row) => row.value), 1);
+---
+
+<figure class="chart" id={id}>
+  <figcaption class="chart-caption">
+    <span class="chart-title">{title}</span>
+    {subtitle && <span class="chart-subtitle">{subtitle}</span>}
+  </figcaption>
+
+  <ol class="chart-rows">
+    {
+      rows.map((row, index) => (
+        <li class="chart-row">
+          <span class="chart-label" title={row.label}>
+            {row.label}
+          </span>
+          <span class="chart-bar">
+            <span
+              class="chart-fill"
+              style={`width:${Math.max(1.5, (row.value / max) * 100).toFixed(2)}%;animation-delay:${index * 45}ms`}
+            />
+          </span>
+          <span class="chart-value">{fmt(row.value)}</span>
+        </li>
+      ))
+    }
+  </ol>
+
+  {note && <p class="chart-note">{note}</p>}
+</figure>
