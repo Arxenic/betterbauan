@@ -55,6 +55,7 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { href: '/government', label: 'Mayor & council', description: 'The 2025–2028 officials, reported and labelled.' },
       { href: '/government#mayors', label: 'Mayors since 1998', description: 'The succession, including the first woman elected mayor.' },
+      { href: '/government#sk', label: 'Sangguniang Kabataan', description: 'Forty youth councils, the 10% fund rule, and the project ledger still missing.' },
       { href: '/government#profile', label: 'Municipal profile', description: 'PSGC, land area, population density and official channels.' },
     ],
   },

@@ -7,6 +7,7 @@ interface Props {
 import { SITE } from '../data/site';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import Assistant from '../components/Assistant.astro';
 import '@fontsource-variable/archivo/wght.css';
 import '@fontsource/archivo-black';
 import '@fontsource-variable/newsreader/wght-italic.css';
@@ -75,6 +76,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </main>
 
     <SiteFooter />
+    <Assistant />
     <script>
       import '../lib/motion';
     </script>

@@ -1,0 +1,188 @@
+---
+import BauanSeal from './BauanSeal.astro';
+
+const suggestions = [
+  'Sino ang mayor ng Bauan?',
+  'What is the SK gap?',
+  'Why are 17 contracts not on the map?',
+  'What is Sublian?',
+  'How many people live in Bauan?',
+  'How can I help verify the record?',
+];
+---
+
+<div class="assistant" data-assistant>
+  <button
+    type="button"
+    class="assistant-hint"
+    data-assistant-open
+    data-assistant-hint
+    aria-controls="assistant-panel"
+    aria-expanded="false"
+  >
+    Ask me about Bauan <span aria-hidden="true">→</span>
+  </button>
+
+  <button
+    type="button"
+    class="assistant-launcher"
+    data-assistant-open
+    aria-controls="assistant-panel"
+    aria-expanded="false"
+    aria-label="Open the Bauan Assistant"
+  >
+    <span class="assistant-bot" data-bot-canvas aria-hidden="true"></span>
+    <span class="assistant-bot-fallback" data-bot-fallback aria-hidden="true">
+      <svg viewBox="0 0 120 120" role="presentation">
+        <defs>
+          <linearGradient id="bot-face" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="1" stop-color="#e8eee9" />
+          </linearGradient>
+          <linearGradient id="bot-visor" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#17252a" />
+            <stop offset="1" stop-color="#060b0d" />
+          </linearGradient>
+        </defs>
+        <circle cx="60" cy="60" r="54" fill="#f2f5f3" />
+        <path d="M60 8 67 22h-14Z" fill="#e8a317" />
+        <path d="M48 33h24l5 9H43Z" fill="#0e5537" />
+        <rect x="42" y="41" width="36" height="7" rx="2" fill="#f7f2e4" />
+        <rect x="30" y="36" width="60" height="42" rx="18" fill="url(#bot-face)" stroke="#cfdad4" />
+        <rect x="36" y="46" width="48" height="24" rx="11" fill="url(#bot-visor)" />
+        <ellipse cx="50" cy="58" rx="5" ry="6" fill="#62b8e8" />
+        <ellipse cx="70" cy="58" rx="5" ry="6" fill="#62b8e8" />
+        <circle cx="60" cy="86" r="11" fill="#0e5537" stroke="#e8a317" stroke-width="3" />
+        <path d="M54 86h12M60 80v12" stroke="#f3be4f" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </span>
+    <span class="assistant-status-dot" aria-hidden="true"></span>
+  </button>
+
+  <section
+    id="assistant-panel"
+    class="assistant-panel"
+    data-assistant-panel
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="assistant-title"
+    hidden
+  >
+    <header class="assistant-head">
+      <div class="assistant-id">
+        <BauanSeal class="size-9 shrink-0" />
+        <div>
+          <p id="assistant-title" class="assistant-title">Bauan Assistant</p>
+          <p class="assistant-subtitle"><span class="assistant-online" aria-hidden="true"></span> Open record · NYO</p>
+        </div>
+      </div>
+      <div class="assistant-head-actions">
+        <button
+          type="button"
+          class="assistant-icon-btn"
+          data-assistant-voice
+          aria-pressed="false"
+          aria-label="Read replies aloud"
+          title="Read replies aloud"
+        >
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 8v4h3l4 3V5L7 8H4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+            <path d="M14 7.5a4 4 0 0 1 0 5M16.5 5a7 7 0 0 1 0 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button type="button" class="assistant-icon-btn" data-assistant-close aria-label="Close the assistant">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <p class="assistant-scope">
+      Answers only from this site. English · Filipino · Taglish.
+    </p>
+
+    <div class="assistant-messages" data-assistant-messages aria-live="polite">
+      <div class="assistant-msg assistant-msg-bot">
+        <p>
+          Kumusta! I’m the Bauan Assistant. I can only answer from the BetterBauan record — the mayor
+          and council, the 40 barangays, the map, contracts, finances, culture and the gaps.
+        </p>
+        <p class="mt-2">Ask in English, Filipino or Taglish, or tap an example below.</p>
+      </div>
+    </div>
+
+    <div class="assistant-chips" data-assistant-chips>
+      {
+        suggestions.map((suggestion) => (
+          <button type="button" class="assistant-chip" data-assistant-prompt={suggestion}>
+            {suggestion}
+          </button>
+        ))
+      }
+    </div>
+
+    <form class="assistant-composer" data-assistant-form>
+      <label class="sr-only" for="assistant-input">Ask about Bauan</label>
+      <textarea
+        id="assistant-input"
+        data-assistant-input
+        rows="1"
+        maxlength="1200"
+        placeholder="Ask about Bauan…"
+        autocomplete="off"
+      ></textarea>
+      <div class="assistant-tools">
+        <label class="assistant-lang">
+          <span class="sr-only">Voice input language</span>
+          <select data-assistant-lang aria-label="Voice input language">
+            <option value="en-PH">EN</option>
+            <option value="fil-PH">FIL</option>
+          </select>
+        </label>
+        <button
+          type="button"
+          class="assistant-icon-btn"
+          data-assistant-mic
+          aria-pressed="false"
+          aria-label="Ask by voice"
+          title="Ask by voice"
+        >
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="7.2" y="2.6" width="5.6" height="10" rx="2.8" stroke="currentColor" stroke-width="1.4" />
+            <path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5M7.5 17.5h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button type="submit" class="assistant-send" data-assistant-send>
+          <span data-assistant-send-label>Send</span>
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="m3.5 10 12-6-4.2 12-2.2-4.6L3.5 10Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </form>
+
+    <p class="assistant-status" data-assistant-status aria-live="polite"></p>
+    <p class="assistant-disclaimer">
+      Messages are sent to NYO to be answered; voice uses your browser's speech service. This site
+      stores no chat, account or audio. Not the municipality; for official transactions, use the LGU.
+    </p>
+  </section>
+</div>
+
+<script>
+  import { initAssistant } from '../lib/assistant';
+
+  initAssistant();
+
+  const startBot = async () => {
+    const { initBot } = await import('../lib/bot3d');
+    initBot();
+  };
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => void startBot(), { timeout: 1800 });
+  } else {
+    setTimeout(() => void startBot(), 900);
+  }
+</script>

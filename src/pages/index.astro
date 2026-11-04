@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import BauanMark from '../components/BauanMark.astro';
+import BauanSeal from '../components/BauanSeal.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
 import Callout from '../components/Callout.astro';
 import dpwh from '../data/generated/dpwh.json';
@@ -21,6 +21,77 @@ const byContract = [...bauan.barangays]
   .sort((a, b) => b.contractAmount - a.contractAmount)
   .slice(0, 5);
 const maxContract = byContract[0]?.contractAmount ?? 1;
+
+const ledger = [
+  {
+    id: 'sk',
+    index: '01',
+    kicker: 'Youth money',
+    title: 'Forty SKs, no project ledger',
+    figure: '40',
+    unit: 'youth councils',
+    body: 'Every barangay has a Sangguniang Kabataan and a 10% youth fund. Not one barangay-level SK budget, youth investment plan or project list is available here in a form a resident can check.',
+    facts: [
+      ['What is public', 'The federation president and the 10% fund rule'],
+      ['What is missing', 'Budgets, ABYIPs, project lists, utilisation reports'],
+      ['What would close it', 'SK annual budgets and project disclosures'],
+    ],
+    href: '/government#sk',
+    label: 'Read the SK section',
+    issue: 'SK project data: budgets and project lists for the 40 barangays',
+  },
+  {
+    id: 'unplaced',
+    index: '02',
+    kicker: 'The map',
+    title: 'Seventeen contracts off the map',
+    figure: '17',
+    unit: 'contracts disclosed, not placed',
+    body: '108 DPWH contracts carry coordinates inside Bauan. Only 91 fall inside a barangay polygon. The other 17 are disclosed, but the boundary and the coordinate disagree, so they are not drawn.',
+    facts: [
+      ['Disclosed inside Bauan', '108 contracts'],
+      ['Placed inside a barangay', '91 contracts'],
+      ['Unplaced', '17 contracts, named on the projects page'],
+    ],
+    href: '/map',
+    label: 'Open the map',
+    issue: 'Unplaced DPWH contracts: help match the 17 coordinates to a barangay',
+  },
+  {
+    id: 'roster',
+    index: '03',
+    kicker: 'The officials',
+    title: 'A roster still waiting for the proclamation',
+    figure: 'C',
+    unit: 'evidence tier, not a verdict',
+    body: 'The 2025–2028 mayor and council are published because the LGU announced them. The COMELEC certificate of canvass is still not in hand, so vote counts are withheld rather than copied from a media transcription.',
+    facts: [
+      ['Published', 'Mayor, vice mayor, eight councilors, two ex officio'],
+      ['Withheld', 'Vote counts and the exact proclamation date'],
+      ['What would close it', 'The COMELEC Certificate of Canvass for Bauan'],
+    ],
+    href: '/government',
+    label: 'Read the roster',
+    issue: 'COMELEC 2025 Certificate of Canvass for Bauan',
+  },
+  {
+    id: 'mayors',
+    index: '04',
+    kicker: 'The succession',
+    title: 'Six mayors on record. Two hundred forty-six before them.',
+    figure: '6',
+    unit: 'terms listed since 1998',
+    body: 'Bauan counts 246 local chief executives since 1653. This page can name the six terms from 1998 onward. The earlier succession needs the Municipal Secretary’s records; it will not be invented.',
+    facts: [
+      ['Listed', '1998 to the present'],
+      ['Counted by the LGU', '246 local chief executives since 1653'],
+      ['What would close it', 'The municipal record of earlier mayors'],
+    ],
+    href: '/government#mayors',
+    label: 'See the succession',
+    issue: 'Bauan mayors before 1998: municipal record or secretary’s list',
+  },
+];
 
 const contents = [
   {
@@ -114,24 +185,34 @@ const contents = [
 
       <div class="relative mt-2" data-parallax="-0.035">
         <div
-          class="emblem-stage"
-          data-emblem
+          class="emblem-stage seal-stage"
+          data-seal
           role="img"
-          aria-label="The Bauan municipal emblem in three dimensions: a golden sun over two green ridges, the white municipal hall, a palm and three bands of sea."
+          aria-label="The official Sangguniang Bayan seal of Bauan, struck as a two-sided medallion. Drag to turn it; the reverse carries the BetterBauan record mark."
         >
           <div class="emblem-ring" aria-hidden="true"></div>
-          <div class="emblem-ring emblem-ring-2" aria-hidden="true"></div>
           <div class="emblem-glow" aria-hidden="true"></div>
-          <div data-emblem-fallback hidden class="absolute inset-0 grid place-content-center">
-            <BauanMark class="size-52 text-ink" />
+          <div class="seal-badge">
+            <span>Official seal</span>
+            <span>Sangguniang Bayan · Bauan</span>
+          </div>
+          <div data-seal-fallback hidden class="absolute inset-0 grid place-content-center">
+            <BauanSeal class="size-56" />
           </div>
           <noscript>
             <div class="absolute inset-0 grid place-content-center">
-              <BauanMark class="size-52 text-ink" />
+              <BauanSeal class="size-56" />
             </div>
           </noscript>
+          <div data-seal-loading class="seal-loading">Striking the seal…</div>
+          <div class="seal-actions">
+            <button type="button" class="btn btn-secondary" data-seal-flip>
+              Flip the seal
+            </button>
+            <span class="seal-drag-note">Drag to turn · double-click to flip</span>
+          </div>
           <p class="emblem-caption">
-            The municipal mark, rebuilt in three dimensions. Drag across it.
+            The actual seal, not a redrawing. Front and back, in three dimensions.
           </p>
         </div>
       </div>
@@ -193,6 +274,113 @@ const contents = [
           ))
         }
       </ol>
+    </div>
+  </section>
+
+  <!-- Open community ledger --------------------------------------- -->
+  <section id="open-ledger" class="ledger-section border-y border-line" data-ledger>
+    <div class="wrap py-14 sm:py-20">
+      <div class="flex flex-wrap items-start justify-between gap-6">
+        <div data-reveal>
+          <p class="kicker">Open community · what is still missing</p>
+          <h2 class="display-xl mt-4">
+            The record<br />
+            has holes.<br />
+            <span class="text-brand">Here they are.</span>
+          </h2>
+        </div>
+        <div class="max-w-md" data-reveal style="--reveal-delay:100ms">
+          <p class="standfirst">
+            A transparency portal that only shows what is already published is a mirror, not a
+            watchdog. These are the four gaps that matter most to residents — and the work that would
+            close them.
+          </p>
+          <p class="mt-4 text-[0.86rem] leading-relaxed text-muted">
+            Pick a gap. The panel changes; the sources and the ask do too. If you hold one of these
+            records, the issue tracker is open.
+          </p>
+        </div>
+      </div>
+
+      <div class="ledger-grid mt-10">
+        <div class="ledger-list" role="tablist" aria-label="Open record gaps" aria-orientation="vertical" data-reveal>
+          {
+            ledger.map((item, index) => (
+              <button
+                type="button"
+                class="ledger-tab"
+                id={`ledger-tab-${item.id}`}
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`ledger-panel-${item.id}`}
+                tabindex={index === 0 ? 0 : -1}
+                data-ledger-item={item.id}
+              >
+                <span class="ledger-tab-index">{item.index}</span>
+                <span class="ledger-tab-body">
+                  <span class="ledger-tab-kicker">{item.kicker}</span>
+                  <span class="ledger-tab-title">{item.title}</span>
+                </span>
+                <span class="ledger-tab-arrow" aria-hidden="true">→</span>
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="ledger-panels" data-reveal style="--reveal-delay:80ms">
+          {
+            ledger.map((item, index) => (
+              <article
+                class="ledger-panel"
+                id={`ledger-panel-${item.id}`}
+                role="tabpanel"
+                aria-labelledby={`ledger-tab-${item.id}`}
+                data-ledger-panel={item.id}
+                hidden={index !== 0}
+              >
+                <div class="ledger-figure">
+                  <span class="ledger-big tnum">{item.figure}</span>
+                  <span class="ledger-unit">{item.unit}</span>
+                </div>
+                <div class="ledger-copy">
+                  <p class="ledger-eyebrow">{item.kicker}</p>
+                  <h3 class="ledger-title">{item.title}</h3>
+                  <p class="ledger-body">{item.body}</p>
+                  <dl class="ledger-facts">
+                    {item.facts.map(([label, value]) => (
+                      <div>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div class="ledger-actions">
+                    <a href={item.href} class="btn btn-primary">{item.label}</a>
+                    <a
+                      href={`${SITE.issues}?title=${encodeURIComponent(item.issue)}`}
+                      class="ledger-help"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      I can help with this ↗
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-5">
+        <p class="max-w-xl text-[0.8rem] leading-relaxed text-muted">
+          The gaps are part of the record, not a footnote. Every correction and every newly published
+          file moves one of these panels closer to empty.
+        </p>
+        <a href={SITE.issues} class="btn btn-secondary" target="_blank" rel="noopener">
+          Open the issue tracker
+        </a>
+      </div>
     </div>
   </section>
 
@@ -409,6 +597,9 @@ const contents = [
 </Base>
 
 <script>
-  import { initEmblem } from '../lib/emblem3d';
-  initEmblem();
+  import { initLedger } from '../lib/ledger';
+  import { initSeal } from '../lib/seal3d';
+
+  initSeal();
+  initLedger();
 </script>

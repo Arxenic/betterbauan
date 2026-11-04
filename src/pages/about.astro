@@ -53,7 +53,8 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
         <p>
           BetterBauan is volunteer-run and unaffiliated. It is not endorsed by, operated by, or funded by
           the Municipality of Bauan or any government agency. It carries no advertising, sets no cookies,
-          and runs no analytics — there is no server-side code to log a visit.
+          and runs no analytics. The site is static except for one stateless assistant endpoint: a message
+          you choose to send is passed to NYO, and no chat, account or audio is stored here.
         </p>
         <p>
           It is part of the{' '}
@@ -88,7 +89,7 @@ const refreshed = [psa.retrievedAt, dpwh.retrievedAt, fdp.retrievedAt].sort().at
             </div>
             <div>
               <dt class="text-muted">Built with</dt>
-              <dd class="text-ink">Astro, static HTML, no backend</dd>
+              <dd class="text-ink">Astro, static HTML, one edge endpoint for the assistant</dd>
             </div>
           </dl>
         </div>

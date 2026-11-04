@@ -6,6 +6,7 @@ import TierBadge from '../components/TierBadge.astro';
 import fpdi from '../data/generated/fdp.json';
 import psa from '../data/generated/psa.json';
 import { COUNCILORS, EX_OFFICIO, MAYOR, MAYORS, VICE_MAYOR } from '../data/officials';
+import { SK } from '../data/sk';
 import { num } from '../lib/format';
 
 const m = psa.municipality;
@@ -167,6 +168,87 @@ const profile = [
           >
             foi.gov.ph ↗
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sangguniang Kabataan --------------------------------------- -->
+  <section id="sk" class="border-t border-line bg-surface-soft">
+    <div class="wrap py-12 sm:py-16">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-ink pb-4">
+        <h2 class="display-l">Sangguniang Kabataan.</h2>
+        <span class="folio">Forty youth councils · {SK.term}</span>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div data-reveal>
+          <p class="kicker-plain text-brand">The youth councils</p>
+          <h3 class="display-l mt-2">
+            Forty councils.<br />
+            <span class="text-brand">No project ledger.</span>
+          </h3>
+          <p class="standfirst mt-5 max-w-xl">
+            Every one of Bauan's forty barangays has a Sangguniang Kabataan. The federation has a seat
+            in the Sangguniang Bayan. What the public record does not yet have is the part residents ask
+            about most: what each SK budgeted, planned and built.
+          </p>
+          <p class="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink-soft">
+            {SK.federationPresident} is the SK Federation President and sits ex officio on the
+            Sangguniang Bayan. Under {SK.statutes}, each SK is entitled to {SK.fundRule} for youth
+            development. The rule is clear; the barangay-level project data is not.
+          </p>
+          <p class="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink-soft">
+            This project has not found a machine-readable SK budget, Annual Barangay Youth Investment
+            Plan or project list for any of the forty barangays. That is a gap, not a zero: the absence
+            of a published list does not mean no project exists.
+          </p>
+
+          <div class="mt-6 border border-gold/40 bg-gold-soft px-4 py-3 text-[0.78rem] leading-relaxed text-ink-soft">
+            <strong class="text-ink">Why this sits on the front page.</strong> Youth money is public
+            money. If the SKs publish their plans and projects, this section becomes a table with the same
+            evidence rules as the rest of the site. Until then, it stays an honest gap.
+          </div>
+        </div>
+
+        <div class="space-y-5" data-reveal style="--reveal-delay:100ms">
+          <div class="grid grid-cols-3 gap-3 border-t border-ink pt-4">
+            <div>
+              <p class="folio">Barangay SKs</p>
+              <p class="stat-mega mt-1 text-brand">{SK.councils}</p>
+            </div>
+            <div>
+              <p class="folio">Fund rule</p>
+              <p class="stat-mega mt-1 text-gold">10%</p>
+            </div>
+            <div>
+              <p class="folio">Project datasets</p>
+              <p class="stat-mega mt-1 text-line-strong">0</p>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <p class="kicker-plain">What this page can verify</p>
+            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-ink-soft">
+              <li>{SK.federationPresident} · {SK.federationRole}</li>
+              <li>{SK.councils} barangay SKs in the {SK.term} term</li>
+              <li>{SK.fundRule}, under {SK.statutes}</li>
+            </ul>
+            <div class="mt-5 border-t border-line pt-4">
+              <p class="kicker-plain text-accent">Still missing</p>
+              <ul class="mt-3 space-y-1.5 text-sm leading-relaxed text-ink-soft">
+                {SK.missing.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <a
+              href={SK.law}
+              target="_blank"
+              rel="noopener"
+              class="mt-5 inline-block text-sm link-underline"
+            >
+              Read RA 10742 ↗
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 ---
-import BauanMark from './BauanMark.astro';
+import BauanSeal from './BauanSeal.astro';
 import { NAV_GROUPS, SITE } from '../data/site';
 import { isoDate } from '../lib/format';
 import dpwh from '../data/generated/dpwh.json';
@@ -18,7 +18,7 @@ const groups = NAV_GROUPS.filter((group) => group.id !== 'about');
     <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
       <div>
         <div class="flex items-center gap-3">
-          <BauanMark class="size-11 shrink-0 text-ink" />
+          <BauanSeal class="size-11 shrink-0" />
           <p class="mega text-[1.55rem] leading-none">
             Better<span class="text-brand">Bauan</span>
           </p>

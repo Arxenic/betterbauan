@@ -1,6 +1,6 @@
 ---
 import { NAV_GROUPS, SITE, isNavGroupCurrent, isNavItemCurrent } from '../data/site';
-import BauanMark from './BauanMark.astro';
+import BauanSeal from './BauanSeal.astro';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const groups = NAV_GROUPS;
@@ -25,7 +25,7 @@ const dateline = new Intl.DateTimeFormat('en-GB', {
 
   <div class="wrap masthead">
     <a href="/" class="masthead-link" aria-label="BetterBauan front page">
-      <BauanMark class="size-9 shrink-0 text-ink" />
+      <BauanSeal class="size-9 shrink-0" />
       <span class="masthead-word">Better<em>Bauan</em></span>
       <span class="masthead-sub">We are One in Bauan.</span>
     </a>
