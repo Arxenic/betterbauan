@@ -2831,7 +2831,7 @@ html[data-theme='dark'] .assistant-launcher {
 
 .assistant-field textarea {
   width: 100%;
-  min-height: 1.5rem;
+  min-height: 2.5rem;
   max-height: 8.25rem;
   flex: 1;
   resize: none;
@@ -2843,6 +2843,14 @@ html[data-theme='dark'] .assistant-launcher {
   line-height: 1.45;
   color: var(--color-ink);
   outline: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* The composer grows with the text; hide the native scrollbar arrows that
+   otherwise sit between the last line and the language control. */
+.assistant-field textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .assistant-field textarea::placeholder {
