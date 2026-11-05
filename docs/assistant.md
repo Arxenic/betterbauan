@@ -18,6 +18,22 @@ It declines unrelated coding, homework, medical, legal, financial, electoral and
 the record does not contain an answer, it says so and points to the nearest page or named gap. It should
 never invent a project, amount, official or source.
 
+## Interface and mark
+
+The panel follows the centred reference layout: a single question, suggestion pills, one composer and
+a short privacy note. It is deliberately white and green rather than a dark chat surface, so it reads as
+part of the record instead of a separate product.
+
+The launcher is a small procedural three.js mascot, not the Sangguniang Bayan seal: a gold sun with leaf
+rays, a cream barong and the public ledger above a blue-green wave. The sun and ridges come from the
+municipal mark; the character is original to BetterBauan. Its head tracks the pointer.
+
+A supplied GLB can replace the mascot without changing the panel. Put the file in `public/assets/`, then
+set `data-model="/assets/your-file.glb"` on `[data-bot-canvas]` in
+[`Assistant.astro`](../src/components/Assistant.astro). The loader scales the model, finds a node whose
+name contains `head`, and turns that node toward the cursor; if no head node exists, it turns the whole
+model.
+
 ## Architecture
 
 ```

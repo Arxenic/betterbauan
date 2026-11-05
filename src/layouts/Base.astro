@@ -41,7 +41,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           var theme = saved === 'dark' || saved === 'light' ? saved : 'light';
           document.documentElement.dataset.theme = theme;
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute('content', theme === 'dark' ? '#080d0f' : '#ffffff');
+          if (meta) meta.setAttribute('content', theme === 'dark' ? '#071b13' : '#ffffff');
         } catch (error) {
           document.documentElement.dataset.theme = 'light';
         }

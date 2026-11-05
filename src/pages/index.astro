@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BauanMark from '../components/BauanMark.astro';
 import BauanSeal from '../components/BauanSeal.astro';
 import EvidenceNote from '../components/EvidenceNote.astro';
 import Callout from '../components/Callout.astro';
@@ -185,34 +186,24 @@ const contents = [
 
       <div class="relative mt-2" data-parallax="-0.035">
         <div
-          class="emblem-stage seal-stage"
-          data-seal
+          class="emblem-stage"
+          data-emblem
           role="img"
-          aria-label="The official Sangguniang Bayan seal of Bauan, struck as a two-sided medallion. Drag to turn it; the reverse carries the BetterBauan record mark."
+          aria-label="The BetterBauan municipal mark in three dimensions: a golden sun over two green ridges, the white municipal hall, a palm and three bands of sea."
         >
           <div class="emblem-ring" aria-hidden="true"></div>
+          <div class="emblem-ring emblem-ring-2" aria-hidden="true"></div>
           <div class="emblem-glow" aria-hidden="true"></div>
-          <div class="seal-badge">
-            <span>Official seal</span>
-            <span>Sangguniang Bayan · Bauan</span>
-          </div>
-          <div data-seal-fallback hidden class="absolute inset-0 grid place-content-center">
-            <BauanSeal class="size-56" />
+          <div data-emblem-fallback hidden class="absolute inset-0 grid place-content-center">
+            <BauanMark class="size-52 text-ink" />
           </div>
           <noscript>
             <div class="absolute inset-0 grid place-content-center">
-              <BauanSeal class="size-56" />
+              <BauanMark class="size-52 text-ink" />
             </div>
           </noscript>
-          <div data-seal-loading class="seal-loading">Striking the seal…</div>
-          <div class="seal-actions">
-            <button type="button" class="btn btn-secondary" data-seal-flip>
-              Flip the seal
-            </button>
-            <span class="seal-drag-note">Drag to turn · double-click to flip</span>
-          </div>
           <p class="emblem-caption">
-            The actual seal, not a redrawing. Front and back, in three dimensions.
+            The BetterBauan mark, rebuilt in three dimensions. Drag across it.
           </p>
         </div>
       </div>
@@ -380,6 +371,77 @@ const contents = [
         <a href={SITE.issues} class="btn btn-secondary" target="_blank" rel="noopener">
           Open the issue tracker
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference: the town seal ------------------------------------ -->
+  <section id="town-seal" class="seal-reference-section border-b border-line">
+    <div class="wrap py-14 sm:py-20">
+      <div class="seal-reference-grid">
+        <div class="seal-reference-stage" data-reveal>
+          <div
+            class="emblem-stage seal-stage"
+            data-seal
+            role="img"
+            aria-label="The Sangguniang Bayan seal of Bauan, struck as a two-sided medallion. Drag to turn it; the reverse carries the BetterBauan record mark."
+          >
+            <div class="emblem-ring" aria-hidden="true"></div>
+            <div class="emblem-glow" aria-hidden="true"></div>
+            <div class="seal-badge">
+              <span>Reference only</span>
+              <span>Sangguniang Bayan · Bauan</span>
+            </div>
+            <div data-seal-fallback hidden class="absolute inset-0 grid place-content-center">
+              <BauanSeal class="size-56" />
+            </div>
+            <noscript>
+              <div class="absolute inset-0 grid place-content-center">
+                <BauanSeal class="size-56" />
+              </div>
+            </noscript>
+            <div data-seal-loading class="seal-loading">Striking the seal…</div>
+          </div>
+          <div class="seal-actions">
+            <button type="button" class="btn btn-secondary" data-seal-flip>
+              Flip the seal
+            </button>
+            <span class="seal-drag-note">Drag to turn · double-click to flip</span>
+          </div>
+        </div>
+
+        <div data-reveal style="--reveal-delay:100ms">
+          <p class="kicker">Reference · the town seal</p>
+          <h2 class="display-l mt-4">A seal, not<br />the site's logo.</h2>
+          <p class="standfirst mt-5 max-w-lg">
+            The gold disc belongs to the Sangguniang Bayan of Bauan. It is shown here to identify the
+            government whose record this project follows — never as the BetterBauan brand.
+          </p>
+          <p class="mt-4 max-w-lg text-[0.92rem] leading-relaxed text-ink-soft">
+            The site's own mark is the sun, the municipal hall, the green ridges and the sea: a
+            resemblance of the town, drawn for this project. The official seal is reproduced exactly
+            and kept below the fold, with its ownership stated.
+          </p>
+
+          <div class="seal-compare mt-7">
+            <div class="seal-compare-item">
+              <BauanMark class="size-11 shrink-0 text-ink" />
+              <div>
+                <p class="seal-compare-title">BetterBauan mark</p>
+                <p class="seal-compare-note">The independent record's own emblem.</p>
+              </div>
+            </div>
+            <div class="seal-compare-item">
+              <BauanSeal class="size-11 shrink-0" />
+              <div>
+                <p class="seal-compare-title">Sangguniang Bayan seal</p>
+                <p class="seal-compare-note">The municipality's official seal, for identification only.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="/government" class="btn btn-secondary mt-7">Read the government record</a>
+        </div>
       </div>
     </div>
   </section>
@@ -597,9 +659,11 @@ const contents = [
 </Base>
 
 <script>
+  import { initEmblem } from '../lib/emblem3d';
   import { initLedger } from '../lib/ledger';
   import { initSeal } from '../lib/seal3d';
 
+  initEmblem();
   initSeal();
   initLedger();
 </script>

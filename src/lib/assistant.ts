@@ -49,6 +49,8 @@ export function initAssistant() {
   const language = root.querySelector<HTMLSelectElement>('[data-assistant-lang]');
   const hint = root.querySelector<HTMLElement>('[data-assistant-hint]');
   const fallback = root.querySelector<HTMLElement>('[data-bot-fallback]');
+  const welcome = root.querySelector<HTMLElement>('[data-assistant-welcome]');
+  const backdrop = root.querySelector<HTMLElement>('[data-assistant-backdrop]');
 
   if (!panel || !form || !input || !messagesHost || !send) return;
 
@@ -70,6 +72,7 @@ export function initAssistant() {
   const setStreaming = (value: boolean) => {
     streaming = value;
     send.setAttribute('aria-busy', String(value));
+    send.setAttribute('aria-label', value ? 'Stop the answer' : 'Send question');
     if (sendLabel) sendLabel.textContent = value ? 'Stop' : 'Send';
     messagesHost.setAttribute('aria-busy', String(value));
   };
@@ -78,7 +81,9 @@ export function initAssistant() {
     if (open) {
       lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       panel.hidden = false;
+      if (backdrop) backdrop.hidden = false;
       root.setAttribute('data-open', '');
+      document.documentElement.classList.add('assistant-open');
       hint?.classList.add('is-hidden');
       for (const opener of openers) opener.setAttribute('aria-expanded', 'true');
       window.requestAnimationFrame(() => {
@@ -90,7 +95,9 @@ export function initAssistant() {
     } else {
       panel.classList.remove('is-open');
       panel.hidden = true;
+      if (backdrop) backdrop.hidden = true;
       root.removeAttribute('data-open');
+      document.documentElement.classList.remove('assistant-open');
       for (const opener of openers) opener.setAttribute('aria-expanded', 'false');
       controller?.abort();
       window.speechSynthesis?.cancel();
@@ -103,9 +110,30 @@ export function initAssistant() {
   }
 
   closeButton?.addEventListener('click', () => setOpen(false));
+  backdrop?.addEventListener('click', () => setOpen(false));
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !panel.hidden) setOpen(false);
+  });
+
+  // Keep keyboard focus inside the dialog while it is open.
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || panel.hidden) return;
+    const focusable = Array.from(
+      panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((element) => element.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 
   // A modest welcome hint, not a modal. It disappears for good on first open.
@@ -183,7 +211,9 @@ export function initAssistant() {
     setOpen(true);
     input.value = '';
     resizeInput();
+    if (welcome) welcome.hidden = true;
     if (chips) chips.hidden = true;
+    root.setAttribute('data-started', '');
     started = true;
 
     addMessage('user', question);
